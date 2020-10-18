@@ -1,0 +1,18 @@
+{
+    "name": "com.virgis.gdal",
+    "version": "3.1.2",
+    "displayName": "Gdal",
+    "description": "Open-Source Geospatial Data Translation LIbrary",
+    "unity": "2018.1",
+   "keywords": [
+      "gdal",
+      "gis",
+      "geospatial",
+      "data"
+    ],  
+    "author": {
+      "name": "Virgis Team",
+      "email": "info@virgis.og",
+      "url": "https://www.virgis.org"
+    }
+  }
