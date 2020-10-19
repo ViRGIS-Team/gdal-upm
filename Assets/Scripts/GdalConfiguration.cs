@@ -66,7 +66,7 @@ using Debug = UnityEngine.Debug;
 
 namespace OSGeo
 {
-    public static class GdalConfiguration 
+    public static class GdalConfiguration
     {
         private static volatile bool _configuredOgr;
         private static volatile bool _configuredGdal;
@@ -77,7 +77,8 @@ namespace OSGeo
         /// </summary>
         static GdalConfiguration()
         {
-            try {
+            try
+            {
                 // Set the GDAL environment variables.
                 string gdalPath = Application.streamingAssetsPath;
                 string gdalData = Path.Combine(gdalPath, "gdal-data");
@@ -90,7 +91,7 @@ namespace OSGeo
 
                 //string projSharePath = Path.Combine(gdalPath, "share");
                 Gdal.SetConfigOption("PROJ_LIB", projData);
-                Gdal.SetConfigOption("CURL_CA_BUNDLE", Path.Combine( gdalData,"cacert.pem"));
+                Gdal.SetConfigOption("CURL_CA_BUNDLE", Path.Combine(gdalData, "cacert.pem"));
                 Osr.SetPROJSearchPath(projData);
 
                 //Other gdal configs
@@ -101,8 +102,10 @@ namespace OSGeo
                 _usable = true;
 
                 Debug.Log($"GDAL version string : {Gdal.VersionInfo(null)}");
-            } catch (Exception e) {
-                    _usable = false;
+            }
+            catch (Exception e)
+            {
+                _usable = false;
                 Debug.LogError(e.ToString());
                 throw;
             }
@@ -176,10 +179,12 @@ namespace OSGeo
         }
         private static void PrintDriversOgr()
         {
-            if (_usable) {
+            if (_usable)
+            {
                 string drivers = "";
                 var num = Ogr.GetDriverCount();
-                for (var i = 0; i < num; i++) {
+                for (var i = 0; i < num; i++)
+                {
                     var driver = Ogr.GetDriver(i);
                     drivers += $"OGR {i}: {driver.GetName()}";
                     drivers += ", ";
@@ -191,10 +196,12 @@ namespace OSGeo
 
         private static void PrintDriversGdal()
         {
-            if (_usable) {
+            if (_usable)
+            {
                 string drivers = "";
                 var num = Gdal.GetDriverCount();
-                for (var i = 0; i < num; i++) {
+                for (var i = 0; i < num; i++)
+                {
                     var driver = Gdal.GetDriver(i);
                     drivers += $"GDAL {i}: {driver.ShortName}-{driver.LongName}";
                     drivers += ", ";
@@ -202,26 +209,6 @@ namespace OSGeo
                 Debug.Log($"GDAL Drivers : {drivers}");
 
             }
-        }
-
-        public static void ConfigureMdal() {
-            Debug.Log("Mdal Version " + Mdal.Mdal.GetVersion());
-        }
-
-        public static void ConfiurePdal() {
-            pdal.Config config = new pdal.Config();
-            Debug.Log("GDAL Data Path: " + config.GdalData);
-            Debug.Log("Proj4 Data Path: " + config.Proj4Data);
-
-            Debug.Log("PDAL Version Integer: " + config.VersionInteger);
-            Debug.Log("PDAL Version Major: " + config.VersionMajor);
-            Debug.Log("PDAL Version Minor: " + config.VersionMinor);
-            Debug.Log("PDAL Version Patch: " + config.VersionPatch);
-
-            Debug.Log("PDAL Full Version: " + config.FullVersion);
-            Debug.Log("PDAL Version: " + config.Version);
-            Debug.Log("PDAL SHA1: " + config.Sha1);
-            Debug.Log("PDAL Debug Info: " + config.DebugInfo);
         }
     }
 }
