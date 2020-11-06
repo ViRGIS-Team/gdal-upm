@@ -10,7 +10,14 @@ namespace OSGeo {
 
     public class Install{
 
-        const string sharedObject = "gdalinfo.exe";
+#if UNITY_STANDALONE_WIN
+        const string test = "gdalinfo.exe";
+#elif UNITY_STANDALONE_OSX
+        const string test = "gdalinfo";
+#elif UNITY_STANDALONE_LINUX
+        const string test = "gdalinfo";
+#endif
+
         const string packageVersion = "3.1.4";
 
         [InitializeOnLoadMethod]
@@ -25,7 +32,11 @@ namespace OSGeo {
                 {
                     string pluginPath = Path.Combine(Application.dataPath, "Conda");
                     if (!Directory.Exists(pluginPath)) Directory.CreateDirectory(pluginPath);
-                    string file = Path.Combine(pluginPath, sharedObject);
+#if UNITY_STANDALONE_WIN
+                    string file = Path.Combine(pluginPath, test);
+#else
+                    string file = Path.Combine(pluginPath, "bin", test);
+#endif
                     if (!File.Exists(file))
                     {
                         UpdatePackage();
@@ -38,7 +49,7 @@ namespace OSGeo {
                         {
                             using (Process compiler = new Process())
                             {
-                                compiler.StartInfo.FileName = Path.Combine(pluginPath, "gdalinfo.exe");
+                                compiler.StartInfo.FileName = Path.Combine(pluginPath,"bin", test);
                                 compiler.StartInfo.Arguments = "--version";
                                 compiler.StartInfo.UseShellExecute = false;
                                 compiler.StartInfo.RedirectStandardOutput = true;
@@ -65,7 +76,7 @@ namespace OSGeo {
                 catch (Exception e)
                 {
                     // do nothing
-                    Debug.Log($"Error in Conda Package {sharedObject} : {e.ToString()}");
+                    Debug.Log($"Error in Conda Package {test} : {e.ToString()}");
                 };
             };
 
@@ -83,12 +94,25 @@ namespace OSGeo {
             Debug.Log(Application.streamingAssetsPath);
             using (Process compiler = new Process())
             {
+#if UNITY_STANDALONE_WIN
                 compiler.StartInfo.FileName = "powershell.exe";
-                compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass {exec} -package gdal " +
+                compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass {Path.Combine(path, "install_script.ps1")} -package gdal " +
                                                     $"-install {install} " +
                                                     $"-destination {pluginPath} " +
-                                                    $"-test gdalinfo.exe " +
+                                                    $"-test {test}";
                                                     $"-shared_assets {Application.streamingAssetsPath} ";
+#elif UNITY_STANDALONE_OSX
+                compiler.StartInfo.FileName = "/bin/bash";
+                compiler.StartInfo.Arguments = $" {Path.Combine(path, "install_script.sh")} " +
+                                                $"-p gdal " +
+                                                $"-i {install} " +
+                                                $"-d {pluginPath} " +
+                                                $"-t {test} " +
+                                                $"-s {Application.streamingAssetsPath}  ";
+#elif UNITY_STANDALONE_LINUX
+
+#endif
+                Debug.Log(compiler.StartInfo.Arguments);
                 compiler.StartInfo.UseShellExecute = false;
                 compiler.StartInfo.RedirectStandardOutput = true;
                 compiler.StartInfo.CreateNoWindow = true;
