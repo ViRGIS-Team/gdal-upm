@@ -18,7 +18,7 @@ namespace OSGeo {
         const string test = "gdalinfo";
 #endif
 
-        const string packageVersion = "3.1.2";
+        const string packageVersion = "3.1.4";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
