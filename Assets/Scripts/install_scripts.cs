@@ -99,7 +99,7 @@ namespace OSGeo {
                 compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass {Path.Combine(path, "install_script.ps1")} -package gdal " +
                                                     $"-install {install} " +
                                                     $"-destination {pluginPath} " +
-                                                    $"-test {test}" +
+                                                    $"-test {test} " +
                                                     $"-shared_assets {Application.streamingAssetsPath} ";
 #elif UNITY_STANDALONE_OSX
                 compiler.StartInfo.FileName = "/bin/bash";
