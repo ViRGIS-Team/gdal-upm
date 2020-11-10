@@ -14,7 +14,7 @@ The Package can also be installed using the Unity Package Manager directly from 
 
 ## Development and Use in the player
 
-The scripts for accessing GDAL?OGR functions are included in the `OSGEO`namespace and follow the [GDAL/OGR C# Api](https://trac.osgeo.org/gdal/wiki/GdalOgrInCsharp).
+The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespace and follow the [GDAL/OGR C# Api](https://trac.osgeo.org/gdal/wiki/GdalOgrInCsharp).
 
 For more details - see the documentation.
 
