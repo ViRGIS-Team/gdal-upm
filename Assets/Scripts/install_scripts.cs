@@ -4,7 +4,6 @@ using System.IO;
 using System.Diagnostics;
 using System;
 using Debug = UnityEngine.Debug;
-using Gdal = OSGeo.GDAL.Gdal;
 
 namespace OSGeo {
 
@@ -18,7 +17,7 @@ namespace OSGeo {
         const string test = "gdalinfo";
 #endif
 
-        const string packageVersion = "3.2.0";
+        const string packageVersion = "3.1.4";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
@@ -96,19 +95,19 @@ namespace OSGeo {
             {
 #if UNITY_STANDALONE_WIN
                 compiler.StartInfo.FileName = "powershell.exe";
-                compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass {Path.Combine(path, "install_script.ps1")} -package gdal " +
+                compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass \"{Path.Combine(path, "install_script.ps1")}\" -package gdal " +
                                                     $"-install {install} " +
-                                                    $"-destination {pluginPath} " +
+                                                    $"-destination '{pluginPath}' " +
                                                     $"-test {test} " +
-                                                    $"-shared_assets {Application.streamingAssetsPath} ";
+                                                    $"-shared_assets '{Application.streamingAssetsPath}' ";
 #elif UNITY_STANDALONE_OSX
                 compiler.StartInfo.FileName = "/bin/bash";
-                compiler.StartInfo.Arguments = $" {Path.Combine(path, "install_script.sh")} " +
+                compiler.StartInfo.Arguments = $" '{Path.Combine(path, "install_script.sh")}' " +
                                                 $"-p gdal " +
                                                 $"-i {install} " +
-                                                $"-d {pluginPath} " +
+                                                $"-d '{pluginPath}' " +
                                                 $"-t {test} " +
-                                                $"-s {Application.streamingAssetsPath}  ";
+                                                $"-s '{Application.streamingAssetsPath}'  ";
 #elif UNITY_STANDALONE_LINUX
 
 #endif
