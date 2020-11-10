@@ -11,7 +11,6 @@ do
    esac
 done
 
-export PATH="~/opt/anaconda3/bin:$PATH"
 echo "Package is $package"
 echo "Install is $package"
 echo "Shared Assett path $shared_assets"
