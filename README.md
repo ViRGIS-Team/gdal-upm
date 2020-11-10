@@ -1,4 +1,4 @@
-# Unity Package for MDAL
+# Unity Package for GDAL
 
 The [Geospatial Data Abstraction Layer](https://gdal.org//) (GDAL) is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source License by the Open Source Geospatial Foundation. It provides a single data model for multiple supported data formats. MDAL is used by QGIS for data access for mesh layers. 
 
