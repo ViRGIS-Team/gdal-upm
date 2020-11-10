@@ -71,7 +71,6 @@ namespace OSGeo {
                             UpdatePackage();
                         }
                     }
-                    AssetDatabase.Refresh();
                 }
                 catch (Exception e)
                 {
