@@ -1,6 +1,6 @@
 # Unity Package for GDAL
 
-The [Geospatial Data Abstraction Layer](https://gdal.org//) (GDAL) is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source License by the Open Source Geospatial Foundation. It provides a single data model for multiple supported data formats. MDAL is used by QGIS for data access for mesh layers. 
+The [Geospatial Data Abstraction Layer](https://gdal.org//) (GDAL) is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source License by the Open Source Geospatial Foundation. It provides a single data model for multiple supported data formats. 
 
 This repo is a Unity Package for using GDAL in a project.
 
@@ -26,7 +26,7 @@ The C# bindings currently only work on Windows Platforms.
 
 ## Running in the Editor
 
-This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of MDAL.
+This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of GDAL.
 
 For this package to work , the development machine MUST have a working copy of Conda (either full Conda or Miniconda) installed and in the path. The following CLI command should work without change or embellishment:
 
