@@ -20,18 +20,22 @@ conda install -c conda-forge --name upm $install -y
 
 env=`conda info --envs |grep upm | grep -o '/.*'`
 
-echo "copy $env/lib/*.dylib to $destination" 
-mkdir -p $destination/lib && cp -avf "$env"/lib/*.dylib $destination/lib
+echo "copy $env/lib/*.dylib to $destination/lib" 
+mkdir -p "$destination/lib" 
+cp -avf "$env"/lib/*.dylib "$destination/lib"
 
 echo "copy $env/bin/$test $destination"
-mkdir -p $destination/bin && cp -avf "$env"/bin/$test $destination/bin
+mkdir -p "$destination/bin" 
+cp -avf "$env/bin/$test" "$destination/bin"
 
 echo "Processing gdal data"
 echo "copy $env/share/gdal to $shared_assets"
-mkdir -p $shared_assets/gdal && cp -av "$env"/share/gdal/* $shared_assets/gdal
+mkdir -p "$shared_assets/gdal" 
+cp -av "$env"/share/gdal/* "$shared_assets/gdal"
 
 echo "Processing proj data"
 echo "copy $env/share/proj to $shared_assets"
-mkdir -p $shared_assets/proj && cp -av "$env"/share/proj/* $shared_assets/proj
+mkdir -p "$shared_assets/proj" 
+cp -av "$env"/share/proj/* "$shared_assets/proj"
 
 conda remove --name upm --all -y

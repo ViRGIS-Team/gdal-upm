@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System;
 using Debug = UnityEngine.Debug;
 
+
 namespace OSGeo {
 
     public class Install{
@@ -100,7 +101,7 @@ namespace OSGeo {
                                                     $"-destination '{pluginPath}' " +
                                                     $"-test {test} " +
                                                     $"-shared_assets '{Application.streamingAssetsPath}' ";
-#elif UNITY_STANDALONE_OSX
+#else
                 compiler.StartInfo.FileName = "/bin/bash";
                 compiler.StartInfo.Arguments = $" '{Path.Combine(path, "install_script.sh")}' " +
                                                 $"-p gdal " +
@@ -108,7 +109,6 @@ namespace OSGeo {
                                                 $"-d '{pluginPath}' " +
                                                 $"-t {test} " +
                                                 $"-s '{Application.streamingAssetsPath}'  ";
-#elif UNITY_STANDALONE_LINUX
 
 #endif
                 Debug.Log(compiler.StartInfo.Arguments);
