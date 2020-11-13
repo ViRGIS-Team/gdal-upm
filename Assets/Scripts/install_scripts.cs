@@ -5,16 +5,16 @@ using System.Diagnostics;
 using System;
 using Debug = UnityEngine.Debug;
 
-
+#if UNITY_EDITOR
 namespace OSGeo {
 
     public class Install{
 
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR_WIN
         const string test = "gdalinfo.exe";
-#elif UNITY_STANDALONE_OSX
+#elif UNITY_EDITOR_OSX
         const string test = "gdalinfo";
-#elif UNITY_STANDALONE_LINUX
+#elif UNITY_EDITOR_LINUX
         const string test = "gdalinfo";
 #endif
 
@@ -32,7 +32,7 @@ namespace OSGeo {
                 {
                     string pluginPath = Path.Combine(Application.dataPath, "Conda");
                     if (!Directory.Exists(pluginPath)) Directory.CreateDirectory(pluginPath);
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR_WIN
                     string file = Path.Combine(pluginPath, test);
 #else
                     string file = Path.Combine(pluginPath, "bin", test);
@@ -40,6 +40,7 @@ namespace OSGeo {
                     if (!File.Exists(file))
                     {
                         UpdatePackage();
+                        AssetDatabase.Refresh();
                     }
                     else if (!EditorApplication.isPlayingOrWillChangePlaymode)
                     {
@@ -70,6 +71,7 @@ namespace OSGeo {
                         {
                             UpdatePackage();
                         }
+                        AssetDatabase.Refresh();
                     }
                 }
                 catch (Exception e)
@@ -93,7 +95,7 @@ namespace OSGeo {
             Debug.Log(Application.streamingAssetsPath);
             using (Process compiler = new Process())
             {
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR_WIN
                 compiler.StartInfo.FileName = "powershell.exe";
                 compiler.StartInfo.Arguments = $"-ExecutionPolicy Bypass \"{Path.Combine(path, "install_script.ps1")}\" -package gdal " +
                                                     $"-install {install} " +
@@ -124,3 +126,4 @@ namespace OSGeo {
         }
     }
 }
+#endif
