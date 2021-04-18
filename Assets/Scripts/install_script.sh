@@ -17,7 +17,7 @@ echo "Shared Assett path $shared_assets"
 conda create --name upm -y
 conda install -c conda-forge --name upm $install -y
 
-envsdata = `conda info --envs`
+envsdata=$(conda info --envs)
 echo "ENVSDATA : $envsdata" 
 env=`conda info --envs |grep upm | grep -o '/.*'`
 
@@ -29,7 +29,7 @@ cp -avf "$env"/lib/*.dylib "$destination/lib"
 
 echo "copy $env/lib/*.so to $destination/lib" 
 mkdir -p "$destination/lib" 
-cp -avf "$env"/lib/*.so "$destination/lib"
+cp -avf "$env"/lib/*.so* "$destination/lib"
 
 echo "copy $env/bin/$test $destination"
 mkdir -p "$destination/bin" 

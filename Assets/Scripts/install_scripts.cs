@@ -104,7 +104,7 @@ namespace OSGeo {
                                                     $"-shared_assets '{Application.streamingAssetsPath}' ";
 #else
                 compiler.StartInfo.FileName = "/bin/bash";
-                compiler.StartInfo.Arguments = $" -l '{Path.Combine(path, "install_script.sh")}' " +
+                compiler.StartInfo.Arguments = $" -i '{Path.Combine(path, "install_script.sh")}' " +
                                                 $"-p gdal " +
                                                 $"-i {install} " +
                                                 $"-d '{pluginPath}' " +
