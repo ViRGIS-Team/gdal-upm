@@ -14,8 +14,10 @@ namespace OSGeo {
         const string test = "gdalinfo.exe";
 #elif UNITY_EDITOR_OSX
         const string test = "gdalinfo";
+        const string basharg = "-l";
 #elif UNITY_EDITOR_LINUX
         const string test = "gdalinfo";
+        const string basharg = "-i";
 #endif
 
         const string packageVersion = "3.2.2";
@@ -104,7 +106,7 @@ namespace OSGeo {
                                                     $"-shared_assets '{Application.streamingAssetsPath}' ";
 #else
                 compiler.StartInfo.FileName = "/bin/bash";
-                compiler.StartInfo.Arguments = $" -i '{Path.Combine(path, "install_script.sh")}' " +
+                compiler.StartInfo.Arguments = $" {basharg} '{Path.Combine(path, "install_script.sh")}' " +
                                                 $"-p gdal " +
                                                 $"-i {install} " +
                                                 $"-d '{pluginPath}' " +
