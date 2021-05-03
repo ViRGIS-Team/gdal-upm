@@ -1,0 +1,1 @@
+{"build": "h0a44026_0", "build_number": 0, "depends": ["libcxx >=11.1.0", "libgdal 3.2.2.*", "libgdal >=3.2.2,<3.3.0a0", "mono"], "license": "MIT", "name": "gdal-csharp", "subdir": "osx-64", "timestamp": 1619725552426, "version": "3.2.2", "size": 262496, "md5": "d7d8e226ed5745893a0d9ae1417048f9", "sha256": "9e3ff5ce86ad2134e50e7f7f0df726baade7e42e54fc378a9560f5496e16aca3"}

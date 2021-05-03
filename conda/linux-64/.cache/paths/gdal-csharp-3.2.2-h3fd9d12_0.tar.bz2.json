@@ -1,0 +1,221 @@
+{
+  "paths": [
+    {
+      "_path": "bin/GDALAdjustContrast.exe",
+      "path_type": "hardlink",
+      "sha256": "88e0e0db0a6b9f339b4da4c6adadc4823129f504b1695cd357b16aeb1c2c8457",
+      "size_in_bytes": 8192
+    },
+    {
+      "_path": "bin/GDALColorTable.exe",
+      "path_type": "hardlink",
+      "sha256": "74d007f6bab9e56c1e769cf336e9c78d2af52dec489aa9ce9be0ecc07a62f8c4",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GDALCreateCopy.exe",
+      "path_type": "hardlink",
+      "sha256": "2f79b6497bd7d1104d50187eb0c676111c5cd3b67b2f33e027d559d5ff26f4b1",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GDALDatasetRasterIO.exe",
+      "path_type": "hardlink",
+      "sha256": "f80f20d81b767e1e604038651b3fc87e487e4958510cbbec2d72cc02eee5817d",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALDatasetRasterIOEx.exe",
+      "path_type": "hardlink",
+      "sha256": "fbca118771376ea7c0e0f878cd8b25ae7880aedd53aa17450806793d78b0d3b2",
+      "size_in_bytes": 9216
+    },
+    {
+      "_path": "bin/GDALDatasetWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "2c11335e42d3213172e19f1cc475b3e96659ede838a212503dd995cccea8e570",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "bin/GDALGetHistogram.exe",
+      "path_type": "hardlink",
+      "sha256": "7ce09c63a5aec74682e42cb145f3fcd598339226156619fbe1ed2cf3903b6465",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/GDALInfo.exe",
+      "path_type": "hardlink",
+      "sha256": "f066de0fdd0f6dcc69d472fe3da0b785630257a88182560fdad7ef897420caae",
+      "size_in_bytes": 8704
+    },
+    {
+      "_path": "bin/GDALMemDataset.exe",
+      "path_type": "hardlink",
+      "sha256": "71fe3482c772b62dc8ff3a6245b70c71e2f0fdffe2bf0fddc38f95bd60ba1f0a",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/GDALOverviews.exe",
+      "path_type": "hardlink",
+      "sha256": "e0e6076ac1598fe00b98c3269a74c75599dba396f6c3160c1f7ba8b62d5fc0d1",
+      "size_in_bytes": 6144
+    },
+    {
+      "_path": "bin/GDALRead.exe",
+      "path_type": "hardlink",
+      "sha256": "292cfaa3d012024523304c2f78ff0e1a861c17b9c00ad208b251aaa1fb50e46d",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALReadDirect.exe",
+      "path_type": "hardlink",
+      "sha256": "db4873f6498dfeb38c2c6bf72ea1fd682e505a910f4e1a4c67a43016f892a62f",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALWarp.exe",
+      "path_type": "hardlink",
+      "sha256": "bcc2301c716f48f3373a82e69045bde2ba71e42c240e1bb18c446fc31b79b9cf",
+      "size_in_bytes": 4096
+    },
+    {
+      "_path": "bin/GDALWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "e878157f16f15958130993da19b1e55ae1fe88a93533c63414470cbb8985420b",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GetCRSInfo.exe",
+      "path_type": "hardlink",
+      "sha256": "f343db36ccfc808f317790b29ed4e7f5c7bc7e694b86168292a3b4c50063b73e",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/OGRFeatureEdit.exe",
+      "path_type": "hardlink",
+      "sha256": "71fd7791c2fb3d9c60d016e3498d0a5e9b64ded6ee4f537883c5ffb4d232ceee",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/OGRGEOS.exe",
+      "path_type": "hardlink",
+      "sha256": "c2f0cc4b539f6a1ca1d82cc7b34ebaa603669144b5f872ae0f89030a2773966c",
+      "size_in_bytes": 4096
+    },
+    {
+      "_path": "bin/OGRLayerAlg.exe",
+      "path_type": "hardlink",
+      "sha256": "a7e457dce9d7c6e95947e6543c5618846b62f4e4480f83b8bc8312bd90abe913",
+      "size_in_bytes": 6656
+    },
+    {
+      "_path": "bin/OSRTransform.exe",
+      "path_type": "hardlink",
+      "sha256": "f9a73cab8b16a74c8693526d60aa73c6be9fa710b717a885fb3dfeded7bce26e",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/ReadXML.exe",
+      "path_type": "hardlink",
+      "sha256": "eeec518ee9fe56106c2b554db932eeb0c7697601e4f863462bd614d3fb718cf2",
+      "size_in_bytes": 3584
+    },
+    {
+      "_path": "bin/VSIMem.exe",
+      "path_type": "hardlink",
+      "sha256": "8c7f8a6a39c8f4efe782e47b7da6cb5a99e46b3a967e04c32be35ed2a700aa8a",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/WKT2WKB.exe",
+      "path_type": "hardlink",
+      "sha256": "bcd205411703c8fb5287056f6e4bb36b20544d894ecd4eb2b31505ed8c2ebcf9",
+      "size_in_bytes": 3584
+    },
+    {
+      "_path": "bin/createdata.exe",
+      "path_type": "hardlink",
+      "sha256": "9cfca418b558989d1acd8a9951ab9b6264ca8cbf5d90217f3777801374ded2d9",
+      "size_in_bytes": 7168
+    },
+    {
+      "_path": "bin/gdal_test.exe",
+      "path_type": "hardlink",
+      "sha256": "84877b6b352f02d9c81acd52d5d3e4f03b98d12a176e6d9bed16c1b4c9a19329",
+      "size_in_bytes": 3072
+    },
+    {
+      "_path": "bin/ogrinfo.exe",
+      "path_type": "hardlink",
+      "sha256": "e304a1b7e4759cc2d892bf4cacd0f5f8629732224d81e6b0709cbb4bf5f6a388",
+      "size_in_bytes": 6656
+    },
+    {
+      "_path": "etc/conda/activate.d/gdal-csharp_activate.sh",
+      "path_type": "hardlink",
+      "sha256": "88a4f87b9c3e8757b9887c7674cd0bf0264dd10dd4d5aeba3e9e77b86e194e1b",
+      "size_in_bytes": 757
+    },
+    {
+      "_path": "etc/conda/deactivate.d/gdal-csharp_deactivate.sh",
+      "path_type": "hardlink",
+      "sha256": "7aded9eeecf96c2bc60b88856103902b1d9f381013cfde94e65e64a689595a69",
+      "size_in_bytes": 74
+    },
+    {
+      "_path": "lib/gdal_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "04a37717447610b700a302e4f136b988951337f6ad833cb5b9cd32e5f3f5b7cd",
+      "size_in_bytes": 142336
+    },
+    {
+      "_path": "lib/gdalconst_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "12c70ae91ad76f33e1f6d1d93df9d6fbe9d3cc8dd221aca64fafdf9aa6f16b86",
+      "size_in_bytes": 27136
+    },
+    {
+      "_path": "lib/libgdal_wrap.so",
+      "path_type": "hardlink",
+      "sha256": "dcb348962e2838de625377ff776ecf710e22baa9f92974a03881754f10fade01",
+      "size_in_bytes": 237784
+    },
+    {
+      "_path": "lib/libgdalconst_wrap.so",
+      "path_type": "hardlink",
+      "sha256": "5c30c57ca3b7196bf0f79bd6fc6bf39b9a82176d39347aa27d785d839af0d4d6",
+      "size_in_bytes": 42952
+    },
+    {
+      "_path": "lib/libogr_wrap.so",
+      "path_type": "hardlink",
+      "sha256": "768049ae9898374fa64f4f08629696371d6d12930af744194eb684ddc0145a05",
+      "size_in_bytes": 193976
+    },
+    {
+      "_path": "lib/libosr_wrap.so",
+      "path_type": "hardlink",
+      "sha256": "6aea4a51c9e1bea56b00375dd2629c5f2e043c4c5f393355d439b4bafa438ab4",
+      "size_in_bytes": 109704
+    },
+    {
+      "_path": "lib/ogr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "b78c06bf6f754685e2add5a18cb2438e2abe230257be9e25935b1c8affbf09a3",
+      "size_in_bytes": 102912
+    },
+    {
+      "_path": "lib/osr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "803dd0812dcc533631e653d9f1bc992e4a65aa3d26f1bea36c2c56b3595cfa54",
+      "size_in_bytes": 70656
+    },
+    {
+      "_path": "lib/template.csproj",
+      "path_type": "hardlink",
+      "sha256": "8ce6c41844bdde59083b4dd3f7b2a5dd49992baf32fb7764d589db731502cc3a",
+      "size_in_bytes": 427
+    }
+  ],
+  "paths_version": 1
+}

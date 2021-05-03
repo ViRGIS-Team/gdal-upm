@@ -1,0 +1,261 @@
+{
+  "paths": [
+    {
+      "_path": "bin/GDALAdjustContrast.exe",
+      "path_type": "hardlink",
+      "sha256": "c6ac14c370c0bd8a02afce2fb2d48c88a25f79db82b514f1c70171297115b2c9",
+      "size_in_bytes": 8192
+    },
+    {
+      "_path": "bin/GDALColorTable.exe",
+      "path_type": "hardlink",
+      "sha256": "8315152dac6b717d3e5fa34d267fd79a0018e2c2bc29160d790057fb86a7d58f",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GDALCreateCopy.exe",
+      "path_type": "hardlink",
+      "sha256": "d8053a3b8f824c2e97906657c62aeff7c385a4a213334bf1ac408b97b231f642",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GDALDatasetRasterIO.exe",
+      "path_type": "hardlink",
+      "sha256": "c02aa5a0f79d353811368c02448cd4354a4e2ef01da9e6a2f2d68635705c4fc6",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALDatasetRasterIOEx.exe",
+      "path_type": "hardlink",
+      "sha256": "103bf0f9035df8cc37498cf74536f6aacedd9bf13d36ef9baaff8185459814c4",
+      "size_in_bytes": 9216
+    },
+    {
+      "_path": "bin/GDALDatasetWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "9b41cac9f4678bf55f1b24e77170ae74907c2c7a0e3f0e5bb606fc5d0828426b",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "bin/GDALGetHistogram.exe",
+      "path_type": "hardlink",
+      "sha256": "ec96b833e515bebf9ead0bfb424db6f9d58f7700f2fb1c18aedd6f5f9aa8ad4b",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/GDALInfo.exe",
+      "path_type": "hardlink",
+      "sha256": "c64ad466e870bf45a45de05ecda1ee1c81b68a1bfd975810a1cc7300a93495c7",
+      "size_in_bytes": 8704
+    },
+    {
+      "_path": "bin/GDALMemDataset.exe",
+      "path_type": "hardlink",
+      "sha256": "9b6ae94fd6bce0d6689114aac0f3c0716d4f7380dca55be137bee31aec5d0d84",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/GDALOverviews.exe",
+      "path_type": "hardlink",
+      "sha256": "8647b9bdda115a5a4577af5fd7615c90ea9b834decdf68751cf1f6b3814cf09d",
+      "size_in_bytes": 6144
+    },
+    {
+      "_path": "bin/GDALRead.exe",
+      "path_type": "hardlink",
+      "sha256": "7308f600db7c65b34b596d6e0193df14dfb4c02ebdf294a9a9790c539bacefc5",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALReadDirect.exe",
+      "path_type": "hardlink",
+      "sha256": "9ba3869b2c062cfa85098a3a1341fa502a605179bbbfdfadaa43f519a78b0d67",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "bin/GDALWarp.exe",
+      "path_type": "hardlink",
+      "sha256": "0bce0e77d4402a9fb39d7d0ca7184c367f1c6a7d65d2e81860716049c879e445",
+      "size_in_bytes": 4096
+    },
+    {
+      "_path": "bin/GDALWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "c99df6362037a3d0b440178cf1c2f3f51a77666926af1e4ef9bae5289b743388",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/GetCRSInfo.exe",
+      "path_type": "hardlink",
+      "sha256": "2f3263d3d4b8252d4ec3a795ac4d756ff2f7cf74fc18e420b54780bfb53e6f3a",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/OGRFeatureEdit.exe",
+      "path_type": "hardlink",
+      "sha256": "4cb510a386ddfdccc9ad73edd0589469a9656817e08d5597dab98220976e2f63",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "bin/OGRGEOS.exe",
+      "path_type": "hardlink",
+      "sha256": "2d53c4a95763aef7d43775e597c903ef9f11e349509905eb01eb041199743199",
+      "size_in_bytes": 4096
+    },
+    {
+      "_path": "bin/OGRLayerAlg.exe",
+      "path_type": "hardlink",
+      "sha256": "9ab3c9a4630ac15c7aaca3fdcb19046875b6bddc07336e3470a7dea7d1417d6b",
+      "size_in_bytes": 6656
+    },
+    {
+      "_path": "bin/OSRTransform.exe",
+      "path_type": "hardlink",
+      "sha256": "f2923986bfec1a04f61efd04392932b475cd4073110229c64501c388260e1d1b",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/ReadXML.exe",
+      "path_type": "hardlink",
+      "sha256": "3e17c7f7ce36073560eb699fb8768f7464354487f7468d883ff34d234f70fd84",
+      "size_in_bytes": 3584
+    },
+    {
+      "_path": "bin/VSIMem.exe",
+      "path_type": "hardlink",
+      "sha256": "4b4ac9687d2594659fac5ee27e0869efab04d39bfcf9a43417b248248ed625ec",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "bin/WKT2WKB.exe",
+      "path_type": "hardlink",
+      "sha256": "044231f1f8ad4fe39bb9ff7a73ca3cf266421f6d5ae99d9f8162e1413559de64",
+      "size_in_bytes": 3584
+    },
+    {
+      "_path": "bin/createdata.exe",
+      "path_type": "hardlink",
+      "sha256": "8de701719862477d321d5c43ad140fbafc8fafaa12018f9a89c170d68cded9a2",
+      "size_in_bytes": 7168
+    },
+    {
+      "_path": "bin/gdal_test.exe",
+      "path_type": "hardlink",
+      "sha256": "086ce532bf7c1dd0d02f20e838a757929d641ee9d9694d40765f678c741d16d7",
+      "size_in_bytes": 3072
+    },
+    {
+      "_path": "bin/ogrinfo.exe",
+      "path_type": "hardlink",
+      "sha256": "d571ef4ccaf890b60cf534c40337cfed180372e75d820970791dc02538fba6c8",
+      "size_in_bytes": 6656
+    },
+    {
+      "_path": "etc/conda/activate.d/gdal-csharp_activate.sh",
+      "path_type": "hardlink",
+      "sha256": "88a4f87b9c3e8757b9887c7674cd0bf0264dd10dd4d5aeba3e9e77b86e194e1b",
+      "size_in_bytes": 757
+    },
+    {
+      "_path": "etc/conda/deactivate.d/gdal-csharp_deactivate.sh",
+      "path_type": "hardlink",
+      "sha256": "7aded9eeecf96c2bc60b88856103902b1d9f381013cfde94e65e64a689595a69",
+      "size_in_bytes": 74
+    },
+    {
+      "_path": "lib/gdal_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "65de5aa141ed21e662e5c0943001dc21a3336965dd4d58485772415d1bb00b7c",
+      "size_in_bytes": 142336
+    },
+    {
+      "_path": "lib/gdalconst_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "441c00fc6c5ece001589c8776ff7a2a2622cf45b5b9fdbf01f1f216f848ef435",
+      "size_in_bytes": 27136
+    },
+    {
+      "_path": "lib/libgdal_wrap.28.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "25cc110e744a188026625729d0cffde88814e934fe7ef31854f9420ce63f9dc8",
+      "size_in_bytes": 150764
+    },
+    {
+      "_path": "lib/libgdal_wrap.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "25cc110e744a188026625729d0cffde88814e934fe7ef31854f9420ce63f9dc8",
+      "size_in_bytes": 150764
+    },
+    {
+      "_path": "lib/libgdalconst_wrap.28.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "0da05f3384d2696fd10f4ea5bc1902a48e2233530a08002d89bc231abb110bf9",
+      "size_in_bytes": 26152
+    },
+    {
+      "_path": "lib/libgdalconst_wrap.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "0da05f3384d2696fd10f4ea5bc1902a48e2233530a08002d89bc231abb110bf9",
+      "size_in_bytes": 26152
+    },
+    {
+      "_path": "lib/libogr_wrap.28.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "93ce69bada5230d89690517e98716168442d502a48bde1d71464bede10703dc4",
+      "size_in_bytes": 121608
+    },
+    {
+      "_path": "lib/libogr_wrap.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "93ce69bada5230d89690517e98716168442d502a48bde1d71464bede10703dc4",
+      "size_in_bytes": 121608
+    },
+    {
+      "_path": "lib/libosr_wrap.28.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "c3990cc273f288c81373fe166a4877e006bb1805cac7f89f9df92dc6e8b3e3ff",
+      "size_in_bytes": 69864
+    },
+    {
+      "_path": "lib/libosr_wrap.dylib",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/Users/paulharwood/opt/anaconda3/conda-bld/gdal-csharp_1619725053851/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "c3990cc273f288c81373fe166a4877e006bb1805cac7f89f9df92dc6e8b3e3ff",
+      "size_in_bytes": 69864
+    },
+    {
+      "_path": "lib/ogr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "12bbd2f43d87b72082d3d4441f389ca056a036991ba7e9ef06d3436a2ffbc93b",
+      "size_in_bytes": 102912
+    },
+    {
+      "_path": "lib/osr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "cce9cbf3319a1fcaf87b1d5690de5011700c4a1338007c9ed70ba6c68ad279b0",
+      "size_in_bytes": 70656
+    },
+    {
+      "_path": "lib/template.csproj",
+      "path_type": "hardlink",
+      "sha256": "8ce6c41844bdde59083b4dd3f7b2a5dd49992baf32fb7764d589db731502cc3a",
+      "size_in_bytes": 427
+    }
+  ],
+  "paths_version": 1
+}
