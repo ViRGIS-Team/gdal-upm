@@ -1,0 +1,977 @@
+{
+  "paths": [
+    {
+      "_path": "Library/bin/GDALAdjustContrast.deps.json",
+      "path_type": "hardlink",
+      "sha256": "9ef7d030e5c585e2083592e65a740c473015514b9491226be33785385a0d190d",
+      "size_in_bytes": 46182
+    },
+    {
+      "_path": "Library/bin/GDALAdjustContrast.dll",
+      "path_type": "hardlink",
+      "sha256": "44616a1c378f901d4dcb3d6a6238971a378621bc27c1a8151781e7d22fd73ddd",
+      "size_in_bytes": 8192
+    },
+    {
+      "_path": "Library/bin/GDALAdjustContrast.exe",
+      "path_type": "hardlink",
+      "sha256": "ae04935f5ea90c5e4c452e615e8bbf3e7e27b75e81986045af28999017f05beb",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALAdjustContrast.pdb",
+      "path_type": "hardlink",
+      "sha256": "8a03711c8b5307df6f08cf91eddf63a3e40cca2b58ef8b8e7f9a3c7994309d6d",
+      "size_in_bytes": 10676
+    },
+    {
+      "_path": "Library/bin/GDALAdjustContrast.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALAdjustContrast.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.deps.json",
+      "path_type": "hardlink",
+      "sha256": "6426becd89c8c624e3c9e1a95861b0c5a926ba7abb89fbee855caf7bd84d96f0",
+      "size_in_bytes": 44709
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.dll",
+      "path_type": "hardlink",
+      "sha256": "7ef588647e460380659d4d7155ab510e1a8a6f8787e77f9055b49514da7763fd",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.exe",
+      "path_type": "hardlink",
+      "sha256": "b4b4625ecd6c22a69730b8376d4ee7ad9de9dbd809ce6ea554e47a80f39ea171",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.pdb",
+      "path_type": "hardlink",
+      "sha256": "7188e1a2def2761bc16a0877adbdad12218b6d79199cbeefdabaada90aa8fc50",
+      "size_in_bytes": 9668
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALColorTable.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.deps.json",
+      "path_type": "hardlink",
+      "sha256": "73d38be7e7014ad7999ddb248fef68af254c0fdc3d896e8184e64134a2e8ed31",
+      "size_in_bytes": 44709
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.dll",
+      "path_type": "hardlink",
+      "sha256": "fd1ad3be0790ceb15fe331a16ec957650c2a05673608bbc059fed0b1d5098cfa",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.exe",
+      "path_type": "hardlink",
+      "sha256": "dd158197a700dfeb3fef1e73ab2b7b532a2ccbc3f303aef36abe006d0e24f0f8",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.pdb",
+      "path_type": "hardlink",
+      "sha256": "487b2beaee8c66911031316f5fddb9eb8d0262bc8e8784ebbeec7632411af43c",
+      "size_in_bytes": 9492
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALCreateCopy.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.deps.json",
+      "path_type": "hardlink",
+      "sha256": "25056c20d268b5fc9e7211f3850f28cd87c69154810cbe30a73f75995650ee18",
+      "size_in_bytes": 46185
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.dll",
+      "path_type": "hardlink",
+      "sha256": "a61ceec083c1767f06f5082a3086e04aedda5eef19d8442a7162569a40094081",
+      "size_in_bytes": 7168
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.exe",
+      "path_type": "hardlink",
+      "sha256": "47432e3d303f1f6c6c1bae2efed7f269db69daad2a39fe82bda965b09adafae6",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.pdb",
+      "path_type": "hardlink",
+      "sha256": "7092efd8efcee19ed3625c7cabd8628f572c6f40823ef8c0c37a461d8603ec36",
+      "size_in_bytes": 10472
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIO.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.deps.json",
+      "path_type": "hardlink",
+      "sha256": "5679e1e7de44d2c6f0384f33d08b6def201765993fe7e9de755269d047ed0308",
+      "size_in_bytes": 46191
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.dll",
+      "path_type": "hardlink",
+      "sha256": "b9ccc5bfddd364b66c6bb24cefd5a399af5ff91a6e12bb9b1b5859f47ad975d8",
+      "size_in_bytes": 8704
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.exe",
+      "path_type": "hardlink",
+      "sha256": "599ae03e71f737c2bbd188fbf8acc639f94e9645cc0546c473217bd7f748e031",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.pdb",
+      "path_type": "hardlink",
+      "sha256": "c51d61d720212ec6c092910ade8773827bda9d38469c8347a4ebe511f279d33a",
+      "size_in_bytes": 10744
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALDatasetRasterIOEx.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.deps.json",
+      "path_type": "hardlink",
+      "sha256": "5caa103f2135c0dc726ff7b8058403c08ae55bd35acfcda93d9081e8086e95e4",
+      "size_in_bytes": 44715
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.dll",
+      "path_type": "hardlink",
+      "sha256": "e76ef6f1b02220a82ed1c06ff0df8e378a374c6086f34f61a93b542ed1a96f41",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "98d19742ba7050dbc62dd0fa116214852d7c546ef6f659d862fe2b7f6c7d8ea7",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.pdb",
+      "path_type": "hardlink",
+      "sha256": "8d9328498afde9644d72abbf2df8e5191b1335c38184375984a93894b0b8e8de",
+      "size_in_bytes": 9564
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALDatasetWrite.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.deps.json",
+      "path_type": "hardlink",
+      "sha256": "6cd959c44faa7c61d495ad98910249af3a08ecbb3093bcbc03acc27f556d6261",
+      "size_in_bytes": 44715
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.dll",
+      "path_type": "hardlink",
+      "sha256": "3425cecb788436505c51f8b3fc1f022c7b27c8cd8df5a7030a56cb94b2103dfc",
+      "size_in_bytes": 6144
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.exe",
+      "path_type": "hardlink",
+      "sha256": "0cc731a6b453ced04ac0dc1b4824a6c0936d5951fb9bc97af2b55732b75af583",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.pdb",
+      "path_type": "hardlink",
+      "sha256": "ea13de5412987200c6d933e01ecdedf9ae02d03adbe7b8ee9ea6919485e63d5d",
+      "size_in_bytes": 9676
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALGetHistogram.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALInfo.deps.json",
+      "path_type": "hardlink",
+      "sha256": "d28e64ab70ebf104323a1ec1791de4fc5ff979c32b75c6eb59c2e05384412a6a",
+      "size_in_bytes": 44725
+    },
+    {
+      "_path": "Library/bin/GDALInfo.dll",
+      "path_type": "hardlink",
+      "sha256": "6f4d03f59c9ce5a7f40313821ab0d3afe70b94c7e9dbc0c00da456579abff3ba",
+      "size_in_bytes": 9216
+    },
+    {
+      "_path": "Library/bin/GDALInfo.pdb",
+      "path_type": "hardlink",
+      "sha256": "00f601daffdc74ded7c562a804f488c1eb237f5dbfd33e8ac0d2d0c7610b6928",
+      "size_in_bytes": 10556
+    },
+    {
+      "_path": "Library/bin/GDALInfo.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALInfo.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.deps.json",
+      "path_type": "hardlink",
+      "sha256": "e6aba66fc9533dd1c3e462ea6de302c808d5d131d74ce12e2056e07af73e4b66",
+      "size_in_bytes": 46170
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.dll",
+      "path_type": "hardlink",
+      "sha256": "63b4fcf26d5bd9c74cdf99e7728a91581e5d4057a1326bcbab007c3c302d15a4",
+      "size_in_bytes": 6144
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.exe",
+      "path_type": "hardlink",
+      "sha256": "6137aa7db87f70984673b047b7726a0dd493fa5718edb6ebee215304bd72f1c9",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.pdb",
+      "path_type": "hardlink",
+      "sha256": "d6bebe716e2ec9f979fa7c6a03fa27fd8d9c40dd4bc58a012134772571a59da5",
+      "size_in_bytes": 9804
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALMemDataset.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.deps.json",
+      "path_type": "hardlink",
+      "sha256": "056f993a4bd7b6c4cb285f7436f105402768eb4403218d37abb56dc7e142988a",
+      "size_in_bytes": 44706
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.dll",
+      "path_type": "hardlink",
+      "sha256": "5936b436e52ae4f62525df0077f36017e3df4bf92b04355cb28f96433abe69db",
+      "size_in_bytes": 7168
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.exe",
+      "path_type": "hardlink",
+      "sha256": "90735148cb9e1ec425cdaae4ca8da01683909e338eb7967bb62a4a88e92d7d6a",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.pdb",
+      "path_type": "hardlink",
+      "sha256": "7281273e48389f9f5e91c251472e44d0a4a3de2cfd1b599edf4710a86368c8dd",
+      "size_in_bytes": 9736
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALOverviews.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALRead.deps.json",
+      "path_type": "hardlink",
+      "sha256": "f38dee51c03b24f080cedaa6f77a6ccbf66acb6f7b413b9df2462f359fc1dc6f",
+      "size_in_bytes": 46152
+    },
+    {
+      "_path": "Library/bin/GDALRead.dll",
+      "path_type": "hardlink",
+      "sha256": "cc1ea1f8fbfee04c6487caf53c4ac67a5fad0aadfb4dc0530930d4399b767ea0",
+      "size_in_bytes": 8704
+    },
+    {
+      "_path": "Library/bin/GDALRead.exe",
+      "path_type": "hardlink",
+      "sha256": "dbd470cbcebb4de40946ff25922619ea690d924a46cc780a316079ddadfd6e5a",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALRead.pdb",
+      "path_type": "hardlink",
+      "sha256": "68d04eb5e90111a53b69163344c22bfdbd5d827a719bcffce69833a0fbe48b0a",
+      "size_in_bytes": 10672
+    },
+    {
+      "_path": "Library/bin/GDALRead.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALRead.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.deps.json",
+      "path_type": "hardlink",
+      "sha256": "2ed16e34a4fb640a1c04278465d72ca9d4c73eb7c85ecfcd98c3b4b7e593ff8d",
+      "size_in_bytes": 46170
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.dll",
+      "path_type": "hardlink",
+      "sha256": "599e007d7b6190fbb0b619576b203290ae6f5ae99021e7e5e20a0247decf0fa9",
+      "size_in_bytes": 8704
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.exe",
+      "path_type": "hardlink",
+      "sha256": "56ef231bfacc481eb6d3f4a3e54106e959798056594d0b1a230be59f4fc7e8d6",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.pdb",
+      "path_type": "hardlink",
+      "sha256": "c6490b3970d42da3c20ddb90dbff511820cf030d95c2a4aadeb8168dc849ee84",
+      "size_in_bytes": 10732
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALReadDirect.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALWarp.deps.json",
+      "path_type": "hardlink",
+      "sha256": "9c86758f7ed8d00adb55ad007502db33aab44c6a334c1156a2725a8b8418ec83",
+      "size_in_bytes": 44691
+    },
+    {
+      "_path": "Library/bin/GDALWarp.dll",
+      "path_type": "hardlink",
+      "sha256": "3a64165c539aa30b5be83702dd8f53dd39245a636adb2e017ba7accd68453ed4",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "Library/bin/GDALWarp.pdb",
+      "path_type": "hardlink",
+      "sha256": "6c169f04834c830f3409be478c05e78713ce033966dfda584103c17fe90a9a89",
+      "size_in_bytes": 9480
+    },
+    {
+      "_path": "Library/bin/GDALWarp.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALWarp.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GDALWrite.deps.json",
+      "path_type": "hardlink",
+      "sha256": "ac1a65b642fedd388a4f612ed50c1fb0a814816b1f42fe16af3ec5757a3b6c15",
+      "size_in_bytes": 44694
+    },
+    {
+      "_path": "Library/bin/GDALWrite.dll",
+      "path_type": "hardlink",
+      "sha256": "5f2a7480f2304a28fc3d9e42d6732ebe91b77d3f3137a195df62bc986d0fbf95",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "Library/bin/GDALWrite.exe",
+      "path_type": "hardlink",
+      "sha256": "3d56c554e5310c1c62685715552ab6071b35477de3e5b284fae4eead4fcef85e",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GDALWrite.pdb",
+      "path_type": "hardlink",
+      "sha256": "403e2aae024e221b1de68dc6192ed68ead93799ae5925695f78755dc99094cfe",
+      "size_in_bytes": 9604
+    },
+    {
+      "_path": "Library/bin/GDALWrite.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GDALWrite.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.deps.json",
+      "path_type": "hardlink",
+      "sha256": "2fdca3ebed49f9ce13516c8645c6e866afe94440231969cf5dda39024d96de2a",
+      "size_in_bytes": 44087
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.dll",
+      "path_type": "hardlink",
+      "sha256": "0163bdcd9f4830a6005baef17a5061a3e1bc949c9d520e33e7f5b52c0f5c3590",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.exe",
+      "path_type": "hardlink",
+      "sha256": "682f788171e50e33f361ea0bd958c819f1c55bfd9fe4e10a7fd6a0703573752f",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.pdb",
+      "path_type": "hardlink",
+      "sha256": "80fb1daf623b14d69e6de31f5722ecc4eb8a64f6ceefdd05c105b849068e1c81",
+      "size_in_bytes": 9332
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/GetCRSInfo.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.deps.json",
+      "path_type": "hardlink",
+      "sha256": "5abe40c78dcbe564c01efb3d42d5361b9c4250f308730107835707d39659e2c0",
+      "size_in_bytes": 44419
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.dll",
+      "path_type": "hardlink",
+      "sha256": "df0d68c2590b74394edaaa97de72cd00c0e10948a84e173c9b9cfa1aa3d180f1",
+      "size_in_bytes": 6144
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.exe",
+      "path_type": "hardlink",
+      "sha256": "3d2d4bebe078fe4e8a61f0128f1c620e39e145789247e5602300baff789ccae1",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.pdb",
+      "path_type": "hardlink",
+      "sha256": "4fba5a0fa9048cf93bc5faef32b6f2461bf79bf02318d7c19fa04ce1d5bf7d8c",
+      "size_in_bytes": 9540
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/OGRFeatureEdit.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.deps.json",
+      "path_type": "hardlink",
+      "sha256": "99f15d0aa13172d05ea80b382c4bbe8586dcfa238ffb0491f0dfc4139c5ba390",
+      "size_in_bytes": 44364
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.dll",
+      "path_type": "hardlink",
+      "sha256": "43499ed9a4c8f801c481300433c4ee96ebcabcffd6090d0aec9ce02a408b9802",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.exe",
+      "path_type": "hardlink",
+      "sha256": "5e7049e54603879819ab573030d1cd2b8d969f7bab35fe8b412b1c2942c979f0",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.pdb",
+      "path_type": "hardlink",
+      "sha256": "b17c9a56871c9d257473aa7a4a913cbe47dda376f94104a506aa4f9dd95fb20a",
+      "size_in_bytes": 9380
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/OGRGEOS.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.deps.json",
+      "path_type": "hardlink",
+      "sha256": "310851ff4c4f541fb57291e673e12df230494b271302a2814957c24fadb4cc10",
+      "size_in_bytes": 44410
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.dll",
+      "path_type": "hardlink",
+      "sha256": "7026f23158bcc1e55d8727e68c6b0ecb1fa155ab58f4dfc0a025e79def6134da",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.exe",
+      "path_type": "hardlink",
+      "sha256": "28f2c23b553f4a280919ff6cf1185adccd30fa0e384f7ccbe9bb0a9a654a8beb",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.pdb",
+      "path_type": "hardlink",
+      "sha256": "bea03ab3cdb1dd386003bb0f0383e326bafecd13384dc7e518027fcea2cb9304",
+      "size_in_bytes": 9708
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/OGRLayerAlg.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/OSRTransform.deps.json",
+      "path_type": "hardlink",
+      "sha256": "f4d4b8ef74f487ea1a12ce563c0cf9980244eb157891142fdcadb2324d147096",
+      "size_in_bytes": 44093
+    },
+    {
+      "_path": "Library/bin/OSRTransform.dll",
+      "path_type": "hardlink",
+      "sha256": "af1c6b7e72afeb60b078247680edaae3c13df9759c60186bca1c146bd496dd01",
+      "size_in_bytes": 5120
+    },
+    {
+      "_path": "Library/bin/OSRTransform.exe",
+      "path_type": "hardlink",
+      "sha256": "7781fd2704d66f8183b29a112f32bf450f668a8e0b5c5692b63f46a28d33efaa",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/OSRTransform.pdb",
+      "path_type": "hardlink",
+      "sha256": "83fe43d7b2aba88feb344f51898e37af182ac3d40041600a45ed5dbc4d2b6c54",
+      "size_in_bytes": 9304
+    },
+    {
+      "_path": "Library/bin/OSRTransform.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/OSRTransform.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/ReadXML.deps.json",
+      "path_type": "hardlink",
+      "sha256": "b440d3c735a1e5ba3a467791545ec33dd3e748c916513f97b9f854019d40211a",
+      "size_in_bytes": 44688
+    },
+    {
+      "_path": "Library/bin/ReadXML.dll",
+      "path_type": "hardlink",
+      "sha256": "41a4611364e28d87917be58c7cb233a295808adb758e78171dff4eabfd6974c9",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "Library/bin/ReadXML.exe",
+      "path_type": "hardlink",
+      "sha256": "a470dd6757f186c2cef8d29015c2ea0d5e3ab717bca512b6bd4ae7333afe37d2",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/ReadXML.pdb",
+      "path_type": "hardlink",
+      "sha256": "3b931dd9998c60b470e5cd119ccc53dad9ba76b135f8e2700fb63922873cf26e",
+      "size_in_bytes": 9320
+    },
+    {
+      "_path": "Library/bin/ReadXML.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/ReadXML.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/VSIMem.deps.json",
+      "path_type": "hardlink",
+      "sha256": "fb7a958eba8a05a76dd3307769d99617ef0590e37e91f4021a750bb5182b4d59",
+      "size_in_bytes": 44685
+    },
+    {
+      "_path": "Library/bin/VSIMem.dll",
+      "path_type": "hardlink",
+      "sha256": "19c4487181a51f79a4a708477b768b1a94a549bd82801562f96182e6a8d52c34",
+      "size_in_bytes": 5632
+    },
+    {
+      "_path": "Library/bin/VSIMem.exe",
+      "path_type": "hardlink",
+      "sha256": "102ed28d95345394f669ec1f4efdeee26312170e84770d12dcd0b6daf4f00e56",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/VSIMem.pdb",
+      "path_type": "hardlink",
+      "sha256": "6923417b50014b16cad1fd99c88001f1f02daf7629f47196581fcb0bc40d5f50",
+      "size_in_bytes": 9568
+    },
+    {
+      "_path": "Library/bin/VSIMem.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/VSIMem.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.deps.json",
+      "path_type": "hardlink",
+      "sha256": "c0db12a75a2a513f5fc91abd75827f83e00318b72821330238c90324057b092c",
+      "size_in_bytes": 44364
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.dll",
+      "path_type": "hardlink",
+      "sha256": "6bc0fd4de5e66bc5a210058b284df2231ee8659969f6a9c7ded9ad2a8edf5132",
+      "size_in_bytes": 4608
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.exe",
+      "path_type": "hardlink",
+      "sha256": "2c31cd253071855504d6590041bf039ac133874afda5b0fff34f6f7c28d6665d",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.pdb",
+      "path_type": "hardlink",
+      "sha256": "dda5ef25fc1c67c31f22aa22420ae6885e8a94a7d0e50df6b6c3990493f80565",
+      "size_in_bytes": 9376
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/WKT2WKB.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/createdata.deps.json",
+      "path_type": "hardlink",
+      "sha256": "237a51375c40cc2b40c0317e72dfd3c360ccad62a910a06ba479589bd1750f6d",
+      "size_in_bytes": 44407
+    },
+    {
+      "_path": "Library/bin/createdata.dll",
+      "path_type": "hardlink",
+      "sha256": "b22338fa2be5acc3199ffb8b286f688683604f4ff254a9d82e7a79195b69fbac",
+      "size_in_bytes": 8192
+    },
+    {
+      "_path": "Library/bin/createdata.exe",
+      "path_type": "hardlink",
+      "sha256": "32fcda14d6f206e9957affde42d57f0bd418f74ff3de80cf6232274d2e900fbb",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/createdata.pdb",
+      "path_type": "hardlink",
+      "sha256": "4abff74149ddfbe4ec9ec53781906130e416109fb0ccbdde0512ebca6bdc438e",
+      "size_in_bytes": 10028
+    },
+    {
+      "_path": "Library/bin/createdata.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/createdata.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/gdal_csharp.deps.json",
+      "path_type": "hardlink",
+      "sha256": "c9c3fdaffc59e95ef6d9a99f5ca597765e09b4d057765a898473b3f29f3c2661",
+      "size_in_bytes": 1960
+    },
+    {
+      "_path": "Library/bin/gdal_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "3e0145ee5e63520c66129fbc49f76630deff87d304b5a190fddd6e20cb12c5eb",
+      "size_in_bytes": 123392
+    },
+    {
+      "_path": "Library/bin/gdal_csharp.pdb",
+      "path_type": "hardlink",
+      "sha256": "385af5734efef14c296024b828c7829a67069a0c4c5225d8eb43497859399f68",
+      "size_in_bytes": 47256
+    },
+    {
+      "_path": "Library/bin/gdal_test.deps.json",
+      "path_type": "hardlink",
+      "sha256": "5b45b97a25c6f32ef308e919c9b503045f587fdeafc2cbc51384738decca73f2",
+      "size_in_bytes": 44694
+    },
+    {
+      "_path": "Library/bin/gdal_test.dll",
+      "path_type": "hardlink",
+      "sha256": "0d9c2275bad5d1e766a729892708bfa0847f3adaeb19e0158288a0b4fc9135ed",
+      "size_in_bytes": 4096
+    },
+    {
+      "_path": "Library/bin/gdal_test.exe",
+      "path_type": "hardlink",
+      "sha256": "9557a2169365ca72f509d45892c1b17024c4735b105581ef0d3dd9d72277716f",
+      "size_in_bytes": 139264
+    },
+    {
+      "_path": "Library/bin/gdal_test.pdb",
+      "path_type": "hardlink",
+      "sha256": "cd55340f8270ecabd25bc83768ebfb153ab5fb9b3d701fb6c86609469179cc3c",
+      "size_in_bytes": 9220
+    },
+    {
+      "_path": "Library/bin/gdal_test.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/gdal_test.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/gdal_wrap.dll",
+      "path_type": "hardlink",
+      "sha256": "d230ac696d0d23d076184fcea59fe9fe3f6dad76cfc8481a29f8244f2ff2d97e",
+      "size_in_bytes": 139776
+    },
+    {
+      "_path": "Library/bin/gdalconst_wrap.dll",
+      "path_type": "hardlink",
+      "sha256": "c10792ddb8f9bf7ff5f84be852d062043e7759f688f98c356a947d3b2e12ca80",
+      "size_in_bytes": 20480
+    },
+    {
+      "_path": "Library/bin/hostfxr.dll",
+      "path_type": "hardlink",
+      "sha256": "d04ec58c0b9925d2a106e101701391b7dd83ec5403dc06ee048c45de579c948f",
+      "size_in_bytes": 402312
+    },
+    {
+      "_path": "Library/bin/hostpolicy.dll",
+      "path_type": "hardlink",
+      "sha256": "e11c4140ef044ee24a50e92e513ec6cdda82020319e94879895b284e11cee271",
+      "size_in_bytes": 585096
+    },
+    {
+      "_path": "Library/bin/ogr_csharp.deps.json",
+      "path_type": "hardlink",
+      "sha256": "fcf2f82d84e66afd0624f6efc0a2331b79e15597b7297b7eee0b07b6f0552a5a",
+      "size_in_bytes": 1637
+    },
+    {
+      "_path": "Library/bin/ogr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "d5405970a4006c1a821f1f658d972632159c94dc8897926aa4ad734ab561022e",
+      "size_in_bytes": 89600
+    },
+    {
+      "_path": "Library/bin/ogr_csharp.pdb",
+      "path_type": "hardlink",
+      "sha256": "7b28d1b27a403f07ff1edfc844ce3be7bdc6f5220665a18c6ca6acca6dce2566",
+      "size_in_bytes": 32516
+    },
+    {
+      "_path": "Library/bin/ogr_wrap.dll",
+      "path_type": "hardlink",
+      "sha256": "b6cdcc75c87e4c4f91acafc063c634efa10b7e43a6afb48cb433d5b8a5a450ea",
+      "size_in_bytes": 111104
+    },
+    {
+      "_path": "Library/bin/ogrinfo.deps.json",
+      "path_type": "hardlink",
+      "sha256": "540b7957ee98286631432cd5d04bdb178f7f99e1068f50945002ad4c58f25bf4",
+      "size_in_bytes": 44398
+    },
+    {
+      "_path": "Library/bin/ogrinfo.dll",
+      "path_type": "hardlink",
+      "sha256": "f3fa5ea1967827b46e68b24b45ff3c185cc52e5df59bbf2ee90859d4bc57ad9b",
+      "size_in_bytes": 7680
+    },
+    {
+      "_path": "Library/bin/ogrinfo.pdb",
+      "path_type": "hardlink",
+      "sha256": "16afa4fed5c20c8329f72a6b677b28eca5c915a72e17ef2c4be066256d351292",
+      "size_in_bytes": 10176
+    },
+    {
+      "_path": "Library/bin/ogrinfo.runtimeconfig.dev.json",
+      "path_type": "hardlink",
+      "sha256": "56d2ce398027affde2354f3898dd8135290f515815c9d95cacadcb99a6877b65",
+      "size_in_bytes": 174
+    },
+    {
+      "_path": "Library/bin/ogrinfo.runtimeconfig.json",
+      "path_type": "hardlink",
+      "sha256": "a3034f901c08eabcb7efd3ae3ee4d46902ec7467c8468fb76a827af9db46f7d7",
+      "size_in_bytes": 60
+    },
+    {
+      "_path": "Library/bin/osr_csharp.deps.json",
+      "path_type": "hardlink",
+      "sha256": "08c486c0b86508ec52846268bafe7a61e5162ee5180490b290f99d9fe3868781",
+      "size_in_bytes": 1389
+    },
+    {
+      "_path": "Library/bin/osr_csharp.dll",
+      "path_type": "hardlink",
+      "sha256": "7f78a683a8d20e4af95001b9823aab2c4a9f21041e8222acd16abc8f86b9b83d",
+      "size_in_bytes": 61440
+    },
+    {
+      "_path": "Library/bin/osr_csharp.pdb",
+      "path_type": "hardlink",
+      "sha256": "19a6e4fb03c0859f4980eb69e460950278a3e817ab3215983a25d25943a3db61",
+      "size_in_bytes": 20380
+    },
+    {
+      "_path": "Library/bin/osr_wrap.dll",
+      "path_type": "hardlink",
+      "sha256": "beff3f3200bf32752b6384462d3d6c8256bec988f6960023116f980cb2ab09a6",
+      "size_in_bytes": 65024
+    }
+  ],
+  "paths_version": 1
+}
