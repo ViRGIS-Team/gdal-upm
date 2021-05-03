@@ -49,6 +49,9 @@ namespace Test {
                     {
                         string currentVersion = "0";
                         string response;
+#if !UNITY_EDITOR_WIN
+                        file = "mono " + file;
+#endif
                         try
                         {
                             using (Process compiler = new Process())
@@ -63,6 +66,7 @@ namespace Test {
 
                                 compiler.WaitForExit();
                             }
+                            Debug.Log(response);
                             currentVersion = response.Split(new char[] { ' ', ',' })[2];
                             Debug.Log($"GDAL Version : {currentVersion}");
                         } catch (Exception e)
@@ -94,7 +98,6 @@ namespace Test {
             string exec = Path.Combine(path, "install_script.ps1");
             string response;
             string install = $"gdal-csharp={packageVersion}";
-            Debug.Log(Application.streamingAssetsPath);
             using (Process compiler = new Process())
             {
 #if UNITY_EDITOR_WIN
