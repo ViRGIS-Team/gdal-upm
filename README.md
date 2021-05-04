@@ -12,27 +12,40 @@ The Package can be installed from [Open UPM](https://openupm.com/packages/com.vi
 
 The Package can also be installed using the Unity Package Manager directly from the [GitHub Repo](https://github.com/ViRGIS-Team/mdal-upm).
 
+## Version numbers
+
+This package is a wrapper around a C++ library. We want to keep the link to the library version. However, we also need to be able to have multiple
+builds of the package for the same underlying library version. Unfortunately, UPM does not have the concept of a build number.
+
+Therefore, this package uses the version number ing proposed by [Favo Yang to solve this](https://medium.com/openupm/how-to-maintain-upm-package-part-3-2d08294269ad#88d8). This adds two digits for build number to the SemVer patch value i.e. 3.1.1 => 3.1.100, 3.1.101, 3.1.102 etc.
+
+This has the unfortunate side effect that 3.1.001 will revert to 3.1.1 and this means :
+
+| Package | Library |
+| ------- | ------- |
+| 3.1.0   | 3.1.0   |
+| 3.1.1   | 3.1.0   |
+| 3.1.100 | 3.1.1.  |
+
 ## Development and Use in the player
 
-The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespace and follow the [GDAL/OGR C# Api](https://trac.osgeo.org/gdal/wiki/GdalOgrInCsharp).
-
-For more details - see the documentation.
+The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespace and follow the [GDAL/OGR C# Api](https://gdal.org/api/csharp.html).
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-This Library works on Windows and Mac based platforms and can be used by dependent libraries on those platforms
-
-The C# bindings currently only work on Windows Platforms.
+This Library and the C# bingings work on Windows, Linux and Mac based platforms.
 
 ## Running in the Editor
 
 This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of GDAL.
 
-For this package to work , the development machine MUST have a working copy of Conda (either full Conda or Miniconda) installed and in the path. The following CLI command should work without change or embellishment:
+For this package to work, the development machine MUST have a working copy of Conda (either full Conda or Miniconda) installed and in the path. The following CLI command should work without change or embellishment:
 
 ```
 conda info
 ```
+
+If the development machine is running Windows, it must also have a reasonbly up to date version of Powershell installed.
 
 The package will keep the installation of Mdal in `Assets\Conda`. You may want to exclude this folder from source control.
 
@@ -40,5 +53,5 @@ This package installs the GDAL package, which copies data for GDAL and for PROJ 
 
 ## Documentation
 
-TBD
+See the [GDAL/OGR C# Api](https://gdal.org/api/csharp.html).
 
