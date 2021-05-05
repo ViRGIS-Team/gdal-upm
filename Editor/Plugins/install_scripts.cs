@@ -73,9 +73,11 @@ namespace Test {
                         }
                         if (currentVersion != versionString)
                         {
-                            //UpdatePackage();
+#if ! UNITY_EDITOR_WIN
+                            UpdatePackage();
+                            AssetDatabase.Refresh();
+#endif
                         }
-                        AssetDatabase.Refresh();
                     }
                 }
                 catch (Exception e)
