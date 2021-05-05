@@ -13,10 +13,10 @@ namespace Test {
 #if UNITY_EDITOR_WIN
         const string test = "gdal_test.exe";
 #elif UNITY_EDITOR_OSX
-        const string test = "gdal_test";
+        const string test = "gdal_test.exe";
         const string basharg = "-l";
 #elif UNITY_EDITOR_LINUX
-        const string test = "gdal_test";
+        const string test = "gdal_test.exe";
         const string basharg = "-i";
 #endif
 
@@ -74,7 +74,7 @@ namespace Test {
                         }
                         if (currentVersion != versionString)
                         {
-                            //UpdatePackage();
+                            UpdatePackage();
                         }
                         AssetDatabase.Refresh();
                     }
