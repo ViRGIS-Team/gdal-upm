@@ -49,9 +49,6 @@ namespace Test {
                     {
                         string currentVersion = "0";
                         string response;
-#if !UNITY_EDITOR_WIN
-                        file = "mono " + file;
-#endif
                         try
                         {
                             using (Process compiler = new Process())
