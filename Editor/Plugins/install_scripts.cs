@@ -91,7 +91,6 @@ namespace Test {
             Debug.Log($"Gdal refresh took {stopwatch.Elapsed.TotalSeconds} seconds");
         }
         static void UpdatePackage() {
-            Debug.Log("Gdal Install Script Awake"); 
             string pluginPath = Path.Combine(Application.dataPath, "Conda");
             string path = Path.GetDirectoryName(new StackTrace(true).GetFrame(0).GetFileName());
             string exec = Path.Combine(path, "install_script.ps1");
@@ -114,7 +113,6 @@ namespace Test {
                                                 $"-s '{Application.streamingAssetsPath}'  ";
 
 #endif
-                Debug.Log(compiler.StartInfo.Arguments);
                 compiler.StartInfo.UseShellExecute = false;
                 compiler.StartInfo.RedirectStandardOutput = true;
                 compiler.StartInfo.CreateNoWindow = true;
