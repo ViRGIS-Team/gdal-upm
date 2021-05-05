@@ -11,7 +11,7 @@ namespace Test {
     public class Install{
 
 #if UNITY_EDITOR_WIN
-        const string test = "gdalinfo.exe";
+        const string test = "gdal_test.exe";
 #elif UNITY_EDITOR_OSX
         const string test = "gdalinfo";
         const string basharg = "-l";
