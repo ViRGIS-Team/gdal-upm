@@ -74,7 +74,7 @@ namespace Test {
                         }
                         if (currentVersion != versionString)
                         {
-                            UpdatePackage();
+                            //UpdatePackage();
                         }
                         AssetDatabase.Refresh();
                     }
