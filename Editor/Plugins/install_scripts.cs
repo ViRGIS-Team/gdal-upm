@@ -63,6 +63,7 @@ namespace Test {
 
                                 compiler.WaitForExit();
                             }
+                            Debug.Log($"Response : {response}");
                             currentVersion = response.Split(new char[] { ' ', ',' })[1];
                             Debug.Log($"GDAL Version : {currentVersion}");
                         } catch (Exception e)
