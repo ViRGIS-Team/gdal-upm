@@ -4,8 +4,8 @@ Param(
     [string]$destination,
     [string]$shared_assets
     )
-Set-Location $PSScriptRoot
-conda install -c ../../conda --prefix $destination --copy  --mkdir $install -y
+
+conda install -c conda-forge --prefix $destination --copy  --mkdir $install -y
 
 # Move the shared data to the shared assets folder to esnure that it gets built into the client
 
