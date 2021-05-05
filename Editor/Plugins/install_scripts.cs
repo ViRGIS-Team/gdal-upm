@@ -13,15 +13,15 @@ namespace Test {
 #if UNITY_EDITOR_WIN
         const string test = "gdal_test.exe";
 #elif UNITY_EDITOR_OSX
-        const string test = "gdal_test.exe";
+        const string test = "gdalinfo";
         const string basharg = "-l";
 #elif UNITY_EDITOR_LINUX
-        const string test = "gdal_test.exe";
+        const string test = "gdalinfo";
         const string basharg = "-i";
 #endif
 
         const string packageVersion = "1.0.0";
-        const string versionString = "302020";
+        const string versionString = "3.2.2";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
@@ -66,7 +66,7 @@ namespace Test {
 
                                 compiler.WaitForExit();
                             }
-                            currentVersion = response.Split(new char[] { ' ', ',' })[2];
+                            currentVersion = response.Split(new char[] { ' ', ',' })[1];
                             Debug.Log($"GDAL Version : {currentVersion}");
                         } catch (Exception e)
                         {
