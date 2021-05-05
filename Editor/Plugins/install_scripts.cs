@@ -20,7 +20,7 @@ namespace Test {
         const string basharg = "-i";
 #endif
 
-        const string packageVersion = "3.2.2";
+        const string packageVersion = "1.0.0";
         const string versionString = "302020";
 
         [InitializeOnLoadMethod]
@@ -66,7 +66,6 @@ namespace Test {
 
                                 compiler.WaitForExit();
                             }
-                            Debug.Log(response);
                             currentVersion = response.Split(new char[] { ' ', ',' })[2];
                             Debug.Log($"GDAL Version : {currentVersion}");
                         } catch (Exception e)
@@ -125,7 +124,6 @@ namespace Test {
 
                 compiler.WaitForExit();
             }
-            Debug.Log(response);
         }
     }
 }
