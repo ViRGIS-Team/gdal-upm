@@ -11,7 +11,7 @@ namespace Test {
     public class Install{
 
 #if UNITY_EDITOR_WIN
-        const string test = "gdal_test.exe";
+        const string test = "gdalinfo.exe";
 #elif UNITY_EDITOR_OSX
         const string test = "gdalinfo";
         const string basharg = "-l";
@@ -37,10 +37,12 @@ namespace Test {
                     if (!Directory.Exists(pluginPath)) Directory.CreateDirectory(pluginPath);
 #if UNITY_EDITOR_WIN
                     string file = Path.Combine(pluginPath, "Library", "bin", test);
+                    string file2 = Path.Combine(pluginPath, "Library", "bin", "gdal_test.exe");
 #else
                     string file = Path.Combine(pluginPath, "bin", test);
+                    string file2 = Path.Combine(pluginPath, "lib", "gdal_test.exe");
 #endif
-                    if (!File.Exists(file))
+                    if (!File.Exists(file2))
                     {
                         UpdatePackage();
                         AssetDatabase.Refresh();
