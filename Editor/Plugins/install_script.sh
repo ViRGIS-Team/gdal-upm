@@ -12,7 +12,15 @@ done
 
 cd `dirname "$0"`
 
+echo Hello
+
 echo `pwd`
+
+echo `ls`
+
+echo `conda info`
+
+echo `conda list`
 
 conda install -c ../../conda --prefix $destination --copy --mkdir $install -y
 
