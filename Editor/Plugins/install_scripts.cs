@@ -54,6 +54,7 @@ namespace Test {
                             using (Process compiler = new Process())
                             {
                                 compiler.StartInfo.FileName = file;
+                                compiler.StartInfo.Arguments = "--version";
                                 compiler.StartInfo.UseShellExecute = false;
                                 compiler.StartInfo.RedirectStandardOutput = true;
                                 compiler.StartInfo.CreateNoWindow = true;
