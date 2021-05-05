@@ -11,7 +11,7 @@ namespace Test {
     public class Install{
 
 #if UNITY_EDITOR_WIN
-        const string test = "gdal_test.exe";
+        const string test = "gdalinfo.exe";
 #elif UNITY_EDITOR_OSX
         const string test = "gdalinfo";
         const string basharg = "-l";
@@ -64,7 +64,6 @@ namespace Test {
 
                                 compiler.WaitForExit();
                             }
-                            Debug.Log($"Response : {response}");
                             currentVersion = response.Split(new char[] { ' ', ',' })[1];
                             Debug.Log($"GDAL Version : {currentVersion}");
                         } catch (Exception e)
