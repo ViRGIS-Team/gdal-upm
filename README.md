@@ -33,7 +33,7 @@ The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespac
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-This Library and the C# bingings work on Windows, Linux and Mac based platforms. However, it will only work with the MONO compiler and does not work with IL2CPP.
+This Library and the C# bindings work on Windows, Linux and Mac based platforms. However, it will only work with the MONO compiler and does not work with IL2CPP.
 
 ## Running in the Editor
 
