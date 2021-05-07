@@ -2,7 +2,7 @@
 
 The [Geospatial Data Abstraction Layer](https://gdal.org//) (GDAL) is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source License by the Open Source Geospatial Foundation. It provides a single data model for multiple supported data formats. 
 
-This repo is a Unity Package for using GDAL in a project.
+This repo is a Unity Package for using GDAL in a Unity project.
 
 This Package is part of the [ViRGiS project](https://www.virgis.org/) - bringing GiS to VR. 
 
@@ -33,7 +33,7 @@ The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespac
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-This Library and the C# bingings work on Windows, Linux and Mac based platforms.
+This Library and the C# bingings work on Windows, Linux and Mac based platforms. However, it will only work with the MONO compiler and does not work with IL2CPP.
 
 ## Running in the Editor
 
@@ -45,9 +45,9 @@ For this package to work, the development machine MUST have a working copy of Co
 conda info
 ```
 
-If the development machine is running Windows, it must also have a reasonbly up to date version of Powershell installed.
+If the development machine is running Windows, it must also have a reasonably up to date version of Powershell installed.
 
-The package will keep the installation of Mdal in `Assets\Conda`. You may want to exclude this folder from source control.
+The package will keep the installation of GDAL in `Assets\Conda`. You may want to exclude this folder from source control.
 
 This package installs the GDAL package, which copies data for GDAL and for PROJ into the `Assets/StreamingAssets`folder. You may also want to exclude this folder from source control.
 
