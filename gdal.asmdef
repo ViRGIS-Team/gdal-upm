@@ -1,10 +1,10 @@
 {
     "name": "gdal",
+    "rootNamespace": "",
     "references": [
+        "CondaExt"
     ],
-    "includePlatforms": [
-        
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
     "overrideReferences": false,
