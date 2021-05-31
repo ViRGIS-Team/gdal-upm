@@ -65,5 +65,5 @@ This package installs the GDAL package, which copies data for GDAL and for PROJ 
 
 ## Documentation
 
-See the [GDAL/OGR C# Api](https://gdal.org/api/csharp.html).
+See the [GDAL/OGR C# Api](https://gdal.org/api/csharp/index.html).
 
