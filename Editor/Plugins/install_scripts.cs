@@ -12,7 +12,6 @@ namespace OSGeo.Install {
     public class Install{
 
         const string packageVersion = "1.0.0";
-        const string versionString = "3020200";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
@@ -25,12 +24,6 @@ namespace OSGeo.Install {
                 try
                 {
                     string currentVersion = Gdal.VersionInfo(null);
-                    if (currentVersion != versionString)
-                    {
-                        UpdatePackage();
-                        AssetDatabase.Refresh();
-                    }
-                    
                 }
                 catch (Exception e)
                 {
