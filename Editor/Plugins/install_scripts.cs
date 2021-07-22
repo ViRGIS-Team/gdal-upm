@@ -11,7 +11,7 @@ namespace OSGeo.Install {
 
     public class Install{
 
-        const string packageVersion = "1.0.0";
+        const string packageVersion = "1.0.1";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
@@ -41,7 +41,7 @@ namespace OSGeo.Install {
 
         static void UpdatePackage()
         {
-            Debug.Log("Mdal Install Script Awake");
+            Debug.Log("Gdal Install Script Awake");
             string path = Path.GetDirectoryName(new StackTrace(true).GetFrame(0).GetFileName());
 #if UNITY_EDITOR_WIN
             path = Path.Combine(path, "install_script.ps1");
@@ -49,6 +49,7 @@ namespace OSGeo.Install {
             path = Path.Combine(path, "install_script.sh");
 #endif
             string response = Conda.Conda.Install($"gdal-csharp={packageVersion}", path);
+            Debug.Log(response);
         }
     }
 }
