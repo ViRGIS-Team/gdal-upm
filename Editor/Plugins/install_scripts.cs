@@ -49,7 +49,6 @@ namespace OSGeo.Install {
             path = Path.Combine(path, "install_script.sh");
 #endif
             string response = Conda.Conda.Install($"gdal-csharp={packageVersion}", path);
-            Debug.Log(response);
         }
     }
 }
