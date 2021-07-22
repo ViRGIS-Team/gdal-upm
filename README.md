@@ -16,7 +16,7 @@ scopedRegistries": [
       "url": "https://package.openupm.com",
       "scopes": [
         "com.openupm",
-        "com.virgis.conda-extensions"
+        "com.virgis"
       ]
     }
   ],
