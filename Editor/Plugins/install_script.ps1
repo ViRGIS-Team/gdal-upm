@@ -14,7 +14,8 @@ $temp = [System.IO.Path]::GetFileName((Get-Location).toString())
 
 if ( $temp -ne "Conda")
 {
-    Write-Output "Working Directory Invalid" (Get-Location).tostring() >> "$logfile"
+    Write-Output "Working Directory Invalid" (Get-Location).tostring()
+    Write-Output $outp
     Exit
 }
 
