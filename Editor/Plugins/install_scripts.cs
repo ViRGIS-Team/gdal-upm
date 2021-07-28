@@ -45,11 +45,11 @@ namespace OSGeo.Install {
             Debug.Log("Gdal Install Script Awake");
             string path = Path.GetDirectoryName(new StackTrace(true).GetFrame(0).GetFileName());
 #if UNITY_EDITOR_WIN
-            path = Path.Combine(path, "install_script.ps1");
+            string script = "install_script.ps1";
 #else
-            path = Path.Combine(path, "install_script.sh");
+            string script = "install_script.sh";
 #endif
-            return Conda.Conda.Install($"gdal-csharp={packageVersion}", path);
+            return Conda.Conda.Install($"gdal-csharp={packageVersion}",script, path);
 
         }
     }
