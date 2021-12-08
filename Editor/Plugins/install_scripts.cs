@@ -13,7 +13,7 @@ namespace OSGeo.Install {
 
     public class Install{
 
-        const string packageVersion = "1.0.3";
+        const string packageVersion = "1.1.0";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
