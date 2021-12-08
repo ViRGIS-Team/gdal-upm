@@ -3,6 +3,8 @@ using UnityEditor;
 using System.IO;
 using System.Diagnostics;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 using OSGeo.GDAL;
 
@@ -11,7 +13,7 @@ namespace OSGeo.Install {
 
     public class Install{
 
-        const string packageVersion = "1.0.1";
+        const string packageVersion = "1.0.3";
 
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
@@ -24,6 +26,13 @@ namespace OSGeo.Install {
             if (Application.isEditor) {
                 try
                 {
+                    List<Conda.CondaItem> list = Conda.Conda.Info().Items.ToList();
+                    Conda.CondaItem entry = list.Find(item => item.name == "gdal-csharp");
+                    if (entry == null || entry.version != packageVersion)
+                    {
+                        response = UpdatePackage();
+                        AssetDatabase.Refresh();
+                    }
                     string currentVersion = Gdal.VersionInfo(null);
                 }
                 catch (Exception e)
