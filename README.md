@@ -39,6 +39,10 @@ This has the unfortunate side effect that 3.1.001 will revert to 3.1.1 and this 
 | 3.1.1   | 3.1.0   |
 | 3.1.100 | 3.1.1.  |
 
+## A note about Upgrading
+
+Unity is a bit "graby" about DLLs and SOs. Once it is loaded it keeps a hardlink to the DLL and does not like changing. This means that for this package, once you have upgraded to a new versin of the UPM package you will, usually, need to restart the Unity Editor for the change to work.
+
 ## Development and Use in the player
 
 The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespace and follow the [GDAL/OGR C# Api](https://gdal.org/api/csharp.html).
