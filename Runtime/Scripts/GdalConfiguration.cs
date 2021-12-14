@@ -61,9 +61,9 @@ namespace OSGeo
                 Gdal.SetConfigOption("GEOTIFF_CSV", gdalData);
 
                 //string projSharePath = Path.Combine(gdalPath, "share");
-                Gdal.SetConfigOption("PROJ_LIB", projData);
                 Gdal.SetConfigOption("CURL_CA_BUNDLE", Path.Combine(gdalData, "cacert.pem"));
                 Osr.SetPROJSearchPath(projData);
+                Osr.SetPROJEnableNetwork(true);
 
                 //Other gdal configs
                 Gdal.SetConfigOption("OGR_WFS_LOAD_MULTIPLE_LAYER_DEFN", "NO");
