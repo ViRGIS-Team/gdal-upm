@@ -41,7 +41,7 @@ This has the unfortunate side effect that 3.1.001 will revert to 3.1.1 and this 
 
 ## A note about Upgrading
 
-Unity is a bit "graby" about DLLs and SOs. Once it is loaded it keeps a hardlink to the DLL and does not like changing. This means that for this package, once you have upgraded to a new versin of the UPM package you will, usually, need to restart the Unity Editor for the change to work.
+Unity is a bit "graby" about DLLs and SOs. Once it is loaded it keeps a hardlink to the DLL and does not like changing. This means that for this package, once you have upgraded to a new version of the UPM package you will, usually, need to restart the Unity Editor for the change to work.
 
 ## Development and Use in the player
 
