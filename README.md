@@ -51,6 +51,8 @@ The GDAL library is loaded as an unmanaged native plugin. This plugin will load 
 
 This Library and the C# bindings work on Windows, Linux and Mac based platforms. However, it will only work with the MONO compiler and does not work with IL2CPP.
 
+Note that since the C# bindings are built in .NET STandard 2.0 on Windows, and do not work with IL2CPP, they cannot be used with the UWP Player target - see here for details https://forum.unity.com/threads/2018-2-16f1-uwp-net-scripting-backend-net-standard-2-0-build-errors.588733/
+
 ## Running in the Editor
 
 This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of GDAL.
