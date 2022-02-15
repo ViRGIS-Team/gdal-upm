@@ -49,7 +49,7 @@ The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespac
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-All versions of this package works in all supported architectures using the Mono scripting back end. As of package version 3.4.102, the package will succesfully build using the IL2CPP scripting backend. The package does NOT support the .NET scripting backend in the UWP player since that scripting backend does not support the System.InteropServices namespace.
+All versions of this package works in all supported architectures using the Mono scripting back end. As of package version 3.4.102, the package will succesfully build using the IL2CPP scripting backend. The package does NOT support the .NET scripting backend in the UWP player since that scripting backend does not support the System.Runtime.InteropServices namespace.
 
 | Architecture        | Mono    | IL2CPP  | .NET |
 |---------------------|---------|---------|------|
