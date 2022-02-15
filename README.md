@@ -49,9 +49,24 @@ The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespac
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-This Library and the C# bindings work on Windows, Linux and Mac based platforms. However, it will only work with the MONO compiler and does not work with IL2CPP.
+All versions of this package works in all supported architectures using the Mono scripting back end. As of package version 3.4.102, the package will succesfully build using the IL2CPP scripting backend. The package does NOT support the .NET scripting backend in the UWP player since that scripting backend does not support the System.InteropServices namespace.
 
-Note that since the C# bindings are built in .NET STandard 2.0 on Windows, and do not work with IL2CPP, they cannot be used with the UWP Player target - see here for details https://forum.unity.com/threads/2018-2-16f1-uwp-net-scripting-backend-net-standard-2-0-build-errors.588733/
+| Architecture        | Mono    | IL2CPP  | .NET |
+|---------------------|---------|---------|------|
+| Windows Standalone  | Yes     | Yes     |  --  |
+| MacOS Standalone    | Yes     | Yes     |  --  |
+| Linux Standalone    | Yes     | Yes     |  --  |
+| UWP  (see note 1)    |  --     | Yes     | No   |
+| Android             | Not Yet | Not Yet |  --  |
+| iOS                 | Not Yet | Not Yet |  --  |
+| WebGL.              | Never   | Never   |  --  |
+
+> NOTE 1 - the UWP architecture has currently only been tested as far as a successful build and not as far as deployng an application - since I do not have the time or resources to do that. If you have successfully deployed an app then please raise an issue to say so. Thanks.
+
+> NOTE 2 - The package architecture should in principle be able to support Android and iOS architectures in the future but this has not been implemented. Yet.
+
+> NOTE 3 - the package architecture will never be able to support the WebGL player - since it relies on native dlls. 
+
 
 ## Running in the Editor
 
