@@ -39,6 +39,10 @@ This has the unfortunate side effect that 3.1.001 will revert to 3.1.1 and this 
 | 3.1.1   | 3.1.0   |
 | 3.1.100 | 3.1.1.  |
 
+FURTHER NOTE : The Library version referenced is the latest version that the package version is tested against. You should note, however, that the actual library version is actually determined by the Conda version algorithm which is dependent on platform and on what other packages are loaded. The version pin is "x.x" which means that, if the the package version is "3.4.xx" (e.g. 3.4.100) then the actual version loaded is most recent version in the range 3.4.00a0 to 3.5.00a0 - which at the time of writing would be 3.4.3!
+
+Also note that this evaluation is only done when downloading GDAL. There is currently no function to update GDAL - the only way is to delete the Conda folder (and Conda.meta ) WHEN Unity is closed.
+
 ## A note about Upgrading
 
 Unity is a bit "graby" about DLLs and SOs. Once it is loaded it keeps a hardlink to the DLL and does not like changing. This means that for this package, once you have upgraded to a new version of the UPM package you will, usually, need to restart the Unity Editor for the change to work.
