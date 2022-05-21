@@ -64,7 +64,7 @@ public class Band : MajorObject {
       base.Dispose();
     }
   }
-/*! Eight bit unsigned integer */ /*@SWIG:../include/csharp/gdal_csharp.i,90,%rasterio_functions@*/
+/*! Eight bit unsigned integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,90,%rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, byte[] buffer, int buf_xSize, int buf_ySize, int pixelSpace, int lineSpace) {
       CPLErr retval;
       GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -111,7 +111,7 @@ public class Band : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Sixteen bit signed integer */ /*@SWIG:../include/csharp/gdal_csharp.i,90,%rasterio_functions@*/
+/*! Sixteen bit signed integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,90,%rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, short[] buffer, int buf_xSize, int buf_ySize, int pixelSpace, int lineSpace) {
       CPLErr retval;
       GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -158,7 +158,7 @@ public class Band : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Thirty two bit signed integer */ /*@SWIG:../include/csharp/gdal_csharp.i,90,%rasterio_functions@*/
+/*! Thirty two bit signed integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,90,%rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, int[] buffer, int buf_xSize, int buf_ySize, int pixelSpace, int lineSpace) {
       CPLErr retval;
       GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -205,7 +205,7 @@ public class Band : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Thirty two bit floating point */ /*@SWIG:../include/csharp/gdal_csharp.i,90,%rasterio_functions@*/
+/*! Thirty two bit floating point */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,90,%rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, float[] buffer, int buf_xSize, int buf_ySize, int pixelSpace, int lineSpace) {
       CPLErr retval;
       GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -252,7 +252,7 @@ public class Band : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Sixty four bit floating point */ /*@SWIG:../include/csharp/gdal_csharp.i,90,%rasterio_functions@*/
+/*! Sixty four bit floating point */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,90,%rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, double[] buffer, int buf_xSize, int buf_ySize, int pixelSpace, int lineSpace) {
       CPLErr retval;
       GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -565,6 +565,12 @@ public class Band : MajorObject {
 
   public CPLErr CreateMaskBand(int nFlags) {
     CPLErr ret = (CPLErr)GdalPINVOKE.Band_CreateMaskBand(swigCPtr, nFlags);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool IsMaskBand() {
+    bool ret = GdalPINVOKE.Band_IsMaskBand(swigCPtr);
     if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

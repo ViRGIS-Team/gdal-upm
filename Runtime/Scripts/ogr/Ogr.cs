@@ -392,6 +392,7 @@ public delegate int GDALProgressFuncDelegate(double Complete, IntPtr Message, In
   public static readonly string OLCCreateGeomField = OgrPINVOKE.OLCCreateGeomField_get();
   public static readonly string OLCCurveGeometries = OgrPINVOKE.OLCCurveGeometries_get();
   public static readonly string OLCMeasuredGeometries = OgrPINVOKE.OLCMeasuredGeometries_get();
+  public static readonly string OLCRename = OgrPINVOKE.OLCRename_get();
   public static readonly string ODsCCreateLayer = OgrPINVOKE.ODsCCreateLayer_get();
   public static readonly string ODsCDeleteLayer = OgrPINVOKE.ODsCDeleteLayer_get();
   public static readonly string ODsCCreateGeomFieldAfterCreateLayer = OgrPINVOKE.ODsCCreateGeomFieldAfterCreateLayer_get();

@@ -291,6 +291,9 @@ class OgrPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_OLCMeasuredGeometries_get___")]
   public static extern string OLCMeasuredGeometries_get();
 
+  [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_OLCRename_get___")]
+  public static extern string OLCRename_get();
+
   [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_ODsCCreateLayer_get___")]
   public static extern string ODsCCreateLayer_get();
 
@@ -587,6 +590,9 @@ class OgrPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_DataSource_RollbackTransaction___")]
   public static extern int DataSource_RollbackTransaction(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_Layer_Rename___")]
+  public static extern int Layer_Rename(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("ogr_wrap", EntryPoint="CSharp_OSGeofOGR_Layer_GetRefCount___")]
   public static extern int Layer_GetRefCount(global::System.Runtime.InteropServices.HandleRef jarg1);

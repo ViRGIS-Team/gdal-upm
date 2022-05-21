@@ -242,6 +242,12 @@ class GdalConstPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDT_Int32_get___")]
   public static extern int GDT_Int32_get();
 
+  [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDT_UInt64_get___")]
+  public static extern int GDT_UInt64_get();
+
+  [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDT_Int64_get___")]
+  public static extern int GDT_Int64_get();
+
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDT_Float32_get___")]
   public static extern int GDT_Float32_get();
 
@@ -545,6 +551,9 @@ class GdalConstPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDAL_DMD_SUBDATASETS_get___")]
   public static extern string GDAL_DMD_SUBDATASETS_get();
 
+  [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDAL_DMD_CREATION_FIELD_DOMAIN_TYPES_get___")]
+  public static extern string GDAL_DMD_CREATION_FIELD_DOMAIN_TYPES_get();
+
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_GDAL_DCAP_OPEN_get___")]
   public static extern string GDAL_DCAP_OPEN_get();
 
@@ -577,6 +586,12 @@ class GdalConstPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_DCAP_COORDINATE_EPOCH_get___")]
   public static extern string DCAP_COORDINATE_EPOCH_get();
+
+  [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_DCAP_FIELD_DOMAINS_get___")]
+  public static extern string DCAP_FIELD_DOMAINS_get();
+
+  [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_DCAP_RENAME_LAYERS_get___")]
+  public static extern string DCAP_RENAME_LAYERS_get();
 
   [global::System.Runtime.InteropServices.DllImport("gdalconst_wrap", EntryPoint="CSharp_OSGeofGDAL_DIM_TYPE_HORIZONTAL_X_get___")]
   public static extern string DIM_TYPE_HORIZONTAL_X_get();
