@@ -20,6 +20,8 @@ public class GdalConst {
   public static readonly int GDT_Int16 = GdalConstPINVOKE.GDT_Int16_get();
   public static readonly int GDT_UInt32 = GdalConstPINVOKE.GDT_UInt32_get();
   public static readonly int GDT_Int32 = GdalConstPINVOKE.GDT_Int32_get();
+  public static readonly int GDT_UInt64 = GdalConstPINVOKE.GDT_UInt64_get();
+  public static readonly int GDT_Int64 = GdalConstPINVOKE.GDT_Int64_get();
   public static readonly int GDT_Float32 = GdalConstPINVOKE.GDT_Float32_get();
   public static readonly int GDT_Float64 = GdalConstPINVOKE.GDT_Float64_get();
   public static readonly int GDT_CInt16 = GdalConstPINVOKE.GDT_CInt16_get();
@@ -121,6 +123,7 @@ public class GdalConst {
   public static readonly string GDAL_DMD_CREATIONDATATYPES = GdalConstPINVOKE.GDAL_DMD_CREATIONDATATYPES_get();
   public static readonly string GDAL_DMD_CREATIONFIELDDATATYPES = GdalConstPINVOKE.GDAL_DMD_CREATIONFIELDDATATYPES_get();
   public static readonly string GDAL_DMD_SUBDATASETS = GdalConstPINVOKE.GDAL_DMD_SUBDATASETS_get();
+  public static readonly string GDAL_DMD_CREATION_FIELD_DOMAIN_TYPES = GdalConstPINVOKE.GDAL_DMD_CREATION_FIELD_DOMAIN_TYPES_get();
   public static readonly string GDAL_DCAP_OPEN = GdalConstPINVOKE.GDAL_DCAP_OPEN_get();
   public static readonly string GDAL_DCAP_CREATE = GdalConstPINVOKE.GDAL_DCAP_CREATE_get();
   public static readonly string GDAL_DCAP_CREATECOPY = GdalConstPINVOKE.GDAL_DCAP_CREATECOPY_get();
@@ -132,6 +135,8 @@ public class GdalConst {
   public static readonly string DCAP_NOTNULL_GEOMFIELDS = GdalConstPINVOKE.DCAP_NOTNULL_GEOMFIELDS_get();
   public static readonly string DCAP_UNIQUE_FIELDS = GdalConstPINVOKE.DCAP_UNIQUE_FIELDS_get();
   public static readonly string DCAP_COORDINATE_EPOCH = GdalConstPINVOKE.DCAP_COORDINATE_EPOCH_get();
+  public static readonly string DCAP_FIELD_DOMAINS = GdalConstPINVOKE.DCAP_FIELD_DOMAINS_get();
+  public static readonly string DCAP_RENAME_LAYERS = GdalConstPINVOKE.DCAP_RENAME_LAYERS_get();
   public static readonly string DIM_TYPE_HORIZONTAL_X = GdalConstPINVOKE.DIM_TYPE_HORIZONTAL_X_get();
   public static readonly string DIM_TYPE_HORIZONTAL_Y = GdalConstPINVOKE.DIM_TYPE_HORIZONTAL_Y_get();
   public static readonly string DIM_TYPE_VERTICAL = GdalConstPINVOKE.DIM_TYPE_VERTICAL_get();

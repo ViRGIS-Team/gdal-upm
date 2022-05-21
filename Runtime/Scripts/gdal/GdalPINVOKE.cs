@@ -402,6 +402,15 @@ class GdalPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_GetThreadLocalConfigOption___")]
   public static extern string GetThreadLocalConfigOption(string jarg1, string jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_SetCredential___")]
+  public static extern void SetCredential(string jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_GetCredential___")]
+  public static extern string GetCredential(string jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_ClearCredentials___")]
+  public static extern void ClearCredentials(string jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_CPLBinaryToHex___")]
   public static extern string CPLBinaryToHex(int jarg1, IntPtr jarg2);
 
@@ -870,11 +879,20 @@ class GdalPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_ClearStatistics___")]
   public static extern void Dataset_ClearStatistics(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_GetFieldDomainNames___")]
+  public static extern IntPtr Dataset_GetFieldDomainNames(global::System.Runtime.InteropServices.HandleRef jarg1, IntPtr[] jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_GetFieldDomain___")]
   public static extern global::System.IntPtr Dataset_GetFieldDomain(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_AddFieldDomain___")]
   public static extern bool Dataset_AddFieldDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_DeleteFieldDomain___")]
+  public static extern bool Dataset_DeleteFieldDomain(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_UpdateFieldDomain___")]
+  public static extern bool Dataset_UpdateFieldDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Dataset_ReadRaster__SWIG_0___")]
   public static extern int Dataset_ReadRaster__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, IntPtr jarg6, int jarg7, int jarg8, int jarg9, int jarg10, int[] jarg11, int jarg12, int jarg13, int jarg14);
@@ -1281,6 +1299,9 @@ class GdalPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Band_CreateMaskBand___")]
   public static extern int Band_CreateMaskBand(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Band_IsMaskBand___")]
+  public static extern bool Band_IsMaskBand(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_Band_GetHistogram___")]
   public static extern int Band_GetHistogram(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, double jarg3, int jarg4, int[] jarg5, int jarg6, int jarg7, Gdal.GDALProgressFuncDelegate jarg8, string jarg9);
 
@@ -1520,6 +1541,9 @@ class GdalPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_GetDataTypeByName___")]
   public static extern int GetDataTypeByName(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_DataTypeUnion___")]
+  public static extern int DataTypeUnion(int jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("gdal_wrap", EntryPoint="CSharp_OSGeofGDAL_GetColorInterpretationName___")]
   public static extern string GetColorInterpretationName(int jarg1);

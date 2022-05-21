@@ -71,6 +71,12 @@ public class Layer : global::System.IDisposable {
     }
   }
 
+  public int Rename(string new_name) {
+    int ret = OgrPINVOKE.Layer_Rename(swigCPtr, new_name);
+    if (OgrPINVOKE.SWIGPendingException.Pending) throw OgrPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public int GetRefCount() {
     int ret = OgrPINVOKE.Layer_GetRefCount(swigCPtr);
     if (OgrPINVOKE.SWIGPendingException.Pending) throw OgrPINVOKE.SWIGPendingException.Retrieve();

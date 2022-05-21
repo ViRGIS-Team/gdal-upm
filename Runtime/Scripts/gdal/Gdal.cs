@@ -327,6 +327,22 @@ public delegate int GDALProgressFuncDelegate(double Complete, IntPtr Message, In
     return ret;
   }
 
+  public static void SetCredential(string pszPathPrefix, string pszKey, string pszValue) {
+    GdalPINVOKE.SetCredential(pszPathPrefix, pszKey, pszValue);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static string GetCredential(string pszPathPrefix, string pszKey, string pszDefault) {
+    string ret = GdalPINVOKE.GetCredential(pszPathPrefix, pszKey, pszDefault);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void ClearCredentials(string pszPathPrefix) {
+    GdalPINVOKE.ClearCredentials(pszPathPrefix);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public static string CPLBinaryToHex(int nBytes, IntPtr pabyData) {
     string ret = GdalPINVOKE.CPLBinaryToHex(nBytes, pabyData);
     if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
@@ -888,6 +904,12 @@ public delegate int GDALProgressFuncDelegate(double Complete, IntPtr Message, In
 
   public static DataType GetDataTypeByName(string pszDataTypeName) {
     DataType ret = (DataType)GdalPINVOKE.GetDataTypeByName(pszDataTypeName);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static DataType DataTypeUnion(DataType a, DataType b) {
+    DataType ret = (DataType)GdalPINVOKE.DataTypeUnion((int)a, (int)b);
     if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

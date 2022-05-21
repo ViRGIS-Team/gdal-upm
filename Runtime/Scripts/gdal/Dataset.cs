@@ -64,7 +64,7 @@ public class Dataset : MajorObject {
       base.Dispose();
     }
   }
-/*! Eight bit unsigned integer */ /*@SWIG:../include/csharp/gdal_csharp.i,153,%ds_rasterio_functions@*/
+/*! Eight bit unsigned integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,153,%ds_rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, byte[] buffer, int buf_xSize, int buf_ySize,
      int bandCount, int[] bandMap, int pixelSpace, int lineSpace, int bandSpace) {
       CPLErr retval;
@@ -119,7 +119,7 @@ public class Dataset : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Sixteen bit signed integer */ /*@SWIG:../include/csharp/gdal_csharp.i,153,%ds_rasterio_functions@*/
+/*! Sixteen bit signed integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,153,%ds_rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, short[] buffer, int buf_xSize, int buf_ySize,
      int bandCount, int[] bandMap, int pixelSpace, int lineSpace, int bandSpace) {
       CPLErr retval;
@@ -174,7 +174,7 @@ public class Dataset : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Thirty two bit signed integer */ /*@SWIG:../include/csharp/gdal_csharp.i,153,%ds_rasterio_functions@*/
+/*! Thirty two bit signed integer */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,153,%ds_rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, int[] buffer, int buf_xSize, int buf_ySize,
      int bandCount, int[] bandMap, int pixelSpace, int lineSpace, int bandSpace) {
       CPLErr retval;
@@ -229,7 +229,7 @@ public class Dataset : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Thirty two bit floating point */ /*@SWIG:../include/csharp/gdal_csharp.i,153,%ds_rasterio_functions@*/
+/*! Thirty two bit floating point */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,153,%ds_rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, float[] buffer, int buf_xSize, int buf_ySize,
      int bandCount, int[] bandMap, int pixelSpace, int lineSpace, int bandSpace) {
       CPLErr retval;
@@ -284,7 +284,7 @@ public class Dataset : MajorObject {
   }
 
 /*@SWIG@*/
-/*! Sixty four bit floating point */ /*@SWIG:../include/csharp/gdal_csharp.i,153,%ds_rasterio_functions@*/
+/*! Sixty four bit floating point */ /*@SWIG:C:/Users/runes/anaconda3/conda-bld/gdal-csharp_1652969338016/work/swig/include/csharp\gdal_csharp.i,153,%ds_rasterio_functions@*/
  public CPLErr ReadRaster(int xOff, int yOff, int xSize, int ySize, double[] buffer, int buf_xSize, int buf_ySize,
      int bandCount, int[] bandMap, int pixelSpace, int lineSpace, int bandSpace) {
       CPLErr retval;
@@ -576,6 +576,29 @@ public CPLErr SetGCPs(GCP[] pGCPs, string pszGCPProjection) {
     if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public string[] GetFieldDomainNames(string[] options) {
+        /* %typemap(csout) char** CSL */
+        IntPtr cPtr = GdalPINVOKE.Dataset_GetFieldDomainNames(swigCPtr, (options != null)? new GdalPINVOKE.StringListMarshal(options)._ar : null);
+        IntPtr objPtr;
+        int count = 0;
+        if (cPtr != IntPtr.Zero) {
+            while (Marshal.ReadIntPtr(cPtr, count*IntPtr.Size) != IntPtr.Zero)
+                ++count;
+        }
+        string[] ret = new string[count];
+        if (count > 0) {
+	        for(int cx = 0; cx < count; cx++) {
+                objPtr = System.Runtime.InteropServices.Marshal.ReadIntPtr(cPtr, cx * System.Runtime.InteropServices.Marshal.SizeOf(typeof(IntPtr)));
+                ret[cx]= (objPtr == IntPtr.Zero) ? null : System.Runtime.InteropServices.Marshal.PtrToStringAnsi(objPtr);
+            }
+        }
+        if (cPtr != IntPtr.Zero)
+            GdalPINVOKE.StringListDestroy(cPtr);
+        
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+        return ret;
+}
+
   public SWIGTYPE_p_OGRFieldDomainShadow GetFieldDomain(string name) {
     IntPtr cPtr = GdalPINVOKE.Dataset_GetFieldDomain(swigCPtr, name);
     SWIGTYPE_p_OGRFieldDomainShadow ret = (cPtr == IntPtr.Zero) ? null : new SWIGTYPE_p_OGRFieldDomainShadow(cPtr, false, ThisOwn_false());
@@ -585,6 +608,18 @@ public CPLErr SetGCPs(GCP[] pGCPs, string pszGCPProjection) {
 
   public bool AddFieldDomain(SWIGTYPE_p_OGRFieldDomainShadow fieldDomain) {
     bool ret = GdalPINVOKE.Dataset_AddFieldDomain(swigCPtr, SWIGTYPE_p_OGRFieldDomainShadow.getCPtr(fieldDomain));
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool DeleteFieldDomain(string name) {
+    bool ret = GdalPINVOKE.Dataset_DeleteFieldDomain(swigCPtr, name);
+    if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool UpdateFieldDomain(SWIGTYPE_p_OGRFieldDomainShadow fieldDomain) {
+    bool ret = GdalPINVOKE.Dataset_UpdateFieldDomain(swigCPtr, SWIGTYPE_p_OGRFieldDomainShadow.getCPtr(fieldDomain));
     if (GdalPINVOKE.SWIGPendingException.Pending) throw GdalPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
