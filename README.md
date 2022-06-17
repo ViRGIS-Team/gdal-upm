@@ -79,7 +79,31 @@ If the development machine is running Windows, it must also have a reasonably up
 
 The package will keep the installation of GDAL in `Assets\Conda`. You may want to exclude this folder from source control.
 
+## Initializing GDAL
+
 This package installs the GDAL package, which copies data for GDAL and for PROJ into the `Assets/StreamingAssets`folder. You may also want to exclude this folder from source control.
+
+GDAL needs to be told where to find the proj data package,
+
+To do this, the package includes a version of the GdalConfiguration.cs script (see https://github.com/ViRGIS-Team/gdal-upm/blob/main/Runtime/Scripts/GdalConfiguration.cs)
+
+A minimum program would look like:
+
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using OSGeo;
+
+
+public class test : MonoBehaviour
+{
+    void Start()
+    {
+        GdalConfiguration.ConfigureGdal();
+    }
+}
+```
 
 ## Documentation
 
