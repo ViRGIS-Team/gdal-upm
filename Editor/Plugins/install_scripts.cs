@@ -18,16 +18,20 @@ namespace OSGeo.Install {
         [InitializeOnLoadMethod]
         static void OnProjectLoadedinEditor()
         {
+            Debug.Log("Starting GDAL Script");
             Stopwatch stopwatch = new Stopwatch();
             string response = "";
             stopwatch.Start();
             EditorUtility.DisplayProgressBar("Restoring Conda Package", "GDAL", 0);
-             
+            Debug.Log($"Is Editor? {Application.isEditor}");
+
             if (Application.isEditor) {
                 try
                 {
+                    Debug.Log("Starting GDAL List");
                     List<Conda.CondaItem> list = Conda.Conda.Info().Items.ToList();
                     Conda.CondaItem entry = list.Find(item => item.name == "gdal-csharp");
+                    Debug.Log($"Conda item {entry.ToString()}");
                     if (entry == null || entry.version != packageVersion)
                     {
                         response = UpdatePackage();
@@ -37,7 +41,7 @@ namespace OSGeo.Install {
                 }
                 catch (Exception e)
                 {
-                    Debug.Log($"Error in Conda Package GDAL: {e.ToString()}");
+                    Debug.Log($"Error in Conda Package GDAL: {e?.ToString()}");
                     response = UpdatePackage();
                     AssetDatabase.Refresh();
                 };
@@ -45,7 +49,7 @@ namespace OSGeo.Install {
 
             EditorUtility.ClearProgressBar();
             stopwatch.Stop();
-            Debug.Log($"Gdal refresh took {stopwatch.Elapsed.TotalSeconds} seconds" + response);
+            Debug.Log($"GDAL refresh took {stopwatch.Elapsed.TotalSeconds} seconds" + response);
         }
 
 
