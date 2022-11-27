@@ -10,11 +10,11 @@ do
    esac
 done
 
-echo $PATH > "$destination"/gdal_log.txt
+echo $PATH 
 
 outp=$(conda install -c conda-forge --prefix "$destination" --copy --mkdir $install -y -vv  2>&1)
 
-echo $outp >> "$destination"/gdal_log.txt
+echo $outp > "$destination"/gdal_log.txt
 
 echo "Processing gdal data" >> "$destination"/gdal_log.txt 2>&1
 echo "copy $destination/share/gdal to $shared_assets" >> "$destination"/gdal_log.txt 2>&1
