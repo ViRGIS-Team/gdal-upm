@@ -23,7 +23,6 @@ namespace OSGeo.Install {
             string response = "";
             stopwatch.Start();
             EditorUtility.DisplayProgressBar("Restoring Conda Package", "GDAL", 0);
-            Debug.Log($"Is Editor? {Application.isEditor}");
 
             if (Application.isEditor) {
                 try
