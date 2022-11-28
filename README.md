@@ -109,3 +109,22 @@ public class test : MonoBehaviour
 
 See the [GDAL/OGR C# Api](https://gdal.org/api/csharp/index.html).
 
+# Use with Unity Cloud Build
+
+As of release 3.6.1, this package will work with Unity Cloud Build.
+
+You will need to add a pre-build script to your build configuration in Unity Cloud Build to load Miniconda.
+
+For Windows configurations - the following script works well:
+
+https://gist.github.com/nimaid/a7d6d793f2eba4020135208a57f5c532
+
+For Macos and Linux, something like this:
+
+```
+echo starting conda install
+
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o conda.sh
+bash conda.sh -b -p ~/local/miniconda3
+echo completed conda install
+```
