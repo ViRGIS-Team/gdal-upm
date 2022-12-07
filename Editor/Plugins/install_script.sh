@@ -20,8 +20,8 @@ echo $outp >> "$destination"/gdal_log.txt
 
 outp=$(conda install -c conda-forge --prefix "$destination" --copy $install -y -vv  2>&1)
 
-echo $CONDA_SUBDIR > "$destination"/pdal_log.txt
-echo $outp >> "$destination"/pdal_log.txt
+echo $CONDA_SUBDIR > "$destination"/gdal_log.txt
+echo $outp >> "$destination"/gdal_log.txt
 
 echo "Processing gdal data" >> "$destination"/gdal_log.txt 2>&1
 echo "copy $destination/share/gdal to $shared_assets" >> "$destination"/gdal_log.txt 2>&1
