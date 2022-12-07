@@ -38,5 +38,4 @@ find "$destination" -type d -not \( -name *bin -or -name *lib -or -name *Conda -
 find "$destination/lib" -type d -not -name *lib -maxdepth 1 -print0 | xargs -0 -I {} rm -r {}
 rm "$destination/lib/terminfo"
 
-rm "$destination"/lib/*_csharp.dll
-rm "$destination"/lib/GDAL*
+rm "$destination"/lib/python3.1
