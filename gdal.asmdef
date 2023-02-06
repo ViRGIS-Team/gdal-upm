@@ -1,5 +1,5 @@
 {
-    "name": "gdal",
+    "name": "Gdal for Unity",
     "rootNamespace": "",
     "references": [
         "CondaExt"

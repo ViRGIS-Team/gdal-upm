@@ -8,47 +8,48 @@ using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 using OSGeo.GDAL;
 
-#if UNITY_EDITOR
 namespace OSGeo.Install {
 
-    public class Install{
+    public class Install : AssetPostprocessor
+    {
 
         const string packageVersion = "2.0.0";
 
-        [InitializeOnLoadMethod]
-        static void OnProjectLoadedinEditor()
+        private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
-            Debug.Log("Starting GDAL Script");
-            Stopwatch stopwatch = new Stopwatch();
-            string response = "";
-            stopwatch.Start();
-            EditorUtility.DisplayProgressBar("Restoring Conda Package", "GDAL", 0);
+            if (!SessionState.GetBool("GdalInitDone", false))
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                string response = "";
+                stopwatch.Start();
+                EditorUtility.DisplayProgressBar("Restoring Conda Package", "GDAL", 0);
 
-            if (Application.isEditor) {
-                try
+                if (Application.isEditor)
                 {
-                    Debug.Log("Starting GDAL List");
-                    List<Conda.CondaItem> list = Conda.Conda.Info().Items.ToList();
-                    Conda.CondaItem entry = list.Find(item => item.name == "gdal-csharp");
-                    Debug.Log($"Conda item {entry.ToString()}");
-                    if (entry == null || entry.version != packageVersion)
+                    try
                     {
+                        List<Conda.CondaItem> list = Conda.Conda.Info().Items.ToList();
+                        Conda.CondaItem entry = list.Find(item => item.name == "gdal-csharp");
+                        if (entry == null || entry.version != packageVersion)
+                        {
+                            response = UpdatePackage();
+                            AssetDatabase.Refresh();
+                        }
+                        string currentVersion = Gdal.VersionInfo(null);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log($"Error in Conda Package GDAL: {e?.ToString()}");
                         response = UpdatePackage();
                         AssetDatabase.Refresh();
-                    }
-                    string currentVersion = Gdal.VersionInfo(null);
-                }
-                catch (Exception e)
-                {
-                    Debug.Log($"Error in Conda Package GDAL: {e?.ToString()}");
-                    response = UpdatePackage();
-                    AssetDatabase.Refresh();
+                    };
                 };
-            };
 
-            EditorUtility.ClearProgressBar();
-            stopwatch.Stop();
-            Debug.Log($"GDAL refresh took {stopwatch.Elapsed.TotalSeconds} seconds" + response);
+                EditorUtility.ClearProgressBar();
+                stopwatch.Stop();
+                Debug.Log($"GDAL refresh took {stopwatch.Elapsed.TotalSeconds} seconds" + response);
+            }
+            SessionState.SetBool("GdalInitDone", true);
         }
 
 
@@ -66,4 +67,3 @@ namespace OSGeo.Install {
         }
     }
 }
-#endif
