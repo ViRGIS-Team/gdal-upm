@@ -1,6 +1,6 @@
 {
   "name": "com.virgis.gdal",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "displayName": "Gdal",
   "description": "Open-Source Geospatial Data Translation LIbrary",
   "unity": "2018.1",
