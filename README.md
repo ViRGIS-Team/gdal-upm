@@ -71,7 +71,7 @@ All versions of this package works in all supported architectures using the Mono
 
 This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of GDAL.
 
-> NOTE - When installing on Windows, you should select the option to add to the Windows Path. This is not the preffered option but IS required for this package to work.
+> NOTE - When installing Miniconda on Windows, you should select the option to add to the Windows Path. This is not the preferred option but IS required for this package to work.
 
 For this package to work, the development machine MUST have a working copy of Conda (either full Conda or Miniconda) installed and in the path. The following CLI command should work without change or embellishment:
 
@@ -79,11 +79,11 @@ For this package to work, the development machine MUST have a working copy of Co
 conda info
 ```
 
-If the development machine is running Windows, it must also have a reasonably up to date version of Powershell installed.
+If the development machine is running Windows, it must also have a reasonably up-to-date version of Powershell installed.
 
-> NOTE - recent versions of miniconda for Windows create a "Conda Shell" for running conda commands and have not included the conda executables in the general Windows path. For this package to work, the command listed above MUST work in the general Command Prompt and thus conda must be in the path.
-> This usually (if miniconda was installed for one user only) means that the following must be added to the path environment variable in Control Panel:
-> `%USERPROFILE%\miniconda3\condabin`. If miniconda was installed for All Users, the actual path will be different and this entry should be updated accordingly
+> NOTE - recent versions of Miniconda for Windows by default create a "Conda Shell" for running conda commands and have not included the conda executables in the general Windows path. For this package to work, the command listed above MUST work in the general Command Prompt and thus conda must be in the path.
+> If the path entry is not created during the Miniconda install, this usually (if Miniconda was installed for one user only) means that the following must be added to the path environment variable in Control Panel:
+> `%USERPROFILE%\miniconda3\condabin`. If Miniconda was installed for All Users, the actual path will be different and this entry should be updated accordingly
 
 The package will keep the installation of GDAL in `Assets\Conda`. You may want to exclude this folder from source control.
 
