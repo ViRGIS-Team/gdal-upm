@@ -52,7 +52,7 @@ namespace OSGeo
             {
                 // Set the GDAL environment variables.
                 string gdalPath = Application.streamingAssetsPath;
-                string gdalData = Path.Combine(gdalPath, "gdal-data");
+                string gdalData = Path.Combine(gdalPath, "gdal");
                 string projData = Path.Combine(gdalPath, "proj");
                 Gdal.SetConfigOption("GDAL_DATA", gdalData);
 
