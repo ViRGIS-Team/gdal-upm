@@ -33,7 +33,6 @@ namespace OSGeo.Install {
                         if (entry == null || entry.version != packageVersion)
                         {
                             response = UpdatePackage();
-                            AssetDatabase.Refresh();
                         }
                         string currentVersion = Gdal.VersionInfo(null);
                     }
@@ -41,7 +40,6 @@ namespace OSGeo.Install {
                     {
                         Debug.Log($"Error in Conda Package GDAL: {e?.ToString()}");
                         response = UpdatePackage();
-                        AssetDatabase.Refresh();
                     };
                 };
 
@@ -62,7 +60,11 @@ namespace OSGeo.Install {
 #else
             string script = "install_script.sh";
 #endif
-            return Conda.Conda.Install($"gdal-csharp={packageVersion}",script, path);
+            string resp = Conda.Conda.Install($"gdal-csharp={packageVersion}",script, path);
+
+            AssetDatabase.Refresh();
+
+            return resp;
 
         }
     }
