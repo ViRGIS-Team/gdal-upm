@@ -1,3 +1,5 @@
+[![openupm](https://img.shields.io/npm/v/com.virgis.gdal?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.virgis.gdal/)
+
 # Unity Package for GDAL
 
 The [Geospatial Data Abstraction Layer](https://gdal.org//) (GDAL) is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source License by the Open Source Geospatial Foundation. It provides a single data model for multiple supported data formats. 
