@@ -29,6 +29,7 @@ using UnityEngine.Jobs;
 using Unity.Burst;
 using System.Threading.Tasks;
 using Unity.Jobs;
+using Unity.Mathematics;
 
 namespace OSGeo.GDAL
 {
@@ -92,6 +93,21 @@ namespace OSGeo.GDAL
             return tex;
         }
 
+        /// <summary>
+        /// Converts a GDAL geoTransform into a Transformation Matrix
+        /// </summary>
+        /// <param name="gt"></param>
+        /// <returns></returns>
+        public static double3x3 ToTransform(this double[] gt)
+        {
+            if (gt.Length != 6) throw new Exception("This Array is not a geoTransform");
+            return new(
+                gt[1], gt[2], gt[0],
+                gt[4], gt[5], gt[3],
+                0, 0, 1
+                );
+        }
+
         public static void CalculateMapUVs(this DMesh3 dMesh, Dataset raster)
         {
             
@@ -103,39 +119,28 @@ namespace OSGeo.GDAL
                 double Y_size = raster.RasterYSize;
 
                 raster.GetGeoTransform(gtRaw);
-                if (gtRaw == null && gtRaw[1] == 0)
+                if (gtRaw is null || gtRaw[1] == 0)
                 {
                     throw new Exception("Could not get a GeoTransform");
                 }
 
-                NativeArray<double> geoTransform = new NativeArray<double>(gtRaw, Allocator.Persistent);
-                NativeArray<double> U = new NativeArray<double>(dMesh.VertexCount, Allocator.Persistent);
-                NativeArray<double> V = new NativeArray<double>(dMesh.VertexCount, Allocator.Persistent);
+                NativeArray<Vector2d> UV = new NativeArray<Vector2d>(dMesh.VertexCount, Allocator.Persistent);
 
                 NativeArray<Vector3d> vertices = new NativeArray<Vector3d>(dMesh.Vertices().ToArray<Vector3d>(), Allocator.Persistent);
-                double F = geoTransform[2] / geoTransform[5];
 
-                MapUV uv = new();
-                uv.F0 = 1 / ((geoTransform[1] - F * geoTransform[4]) * X_size);
-                uv.F1 = F * uv.F0;
-                uv.F2 = 1 / (geoTransform[5] * Y_size);
-                uv.F3 = geoTransform[4] * uv.F2 * X_size;
-                uv.vertices = vertices;
-                uv.U = U;
-                uv.V = V;
-                uv.geoTransform = geoTransform;
+                MapUV uvJob = new();
+                uvJob.transform = math.inverse(gtRaw.ToTransform());
+                uvJob.vertices = vertices;
 
-                JobHandle jh = uv.Schedule(vertices.Length, 10);
+                JobHandle jh = uvJob.Schedule(vertices.Length, 10);
                 jh.Complete();
 
-                for (int i = 0; i < U.Length; i++)
+                for (int i = 0; i < UV.Length; i++)
                 {
-                    dMesh.SetVertexUV(i, new Vector2f((float)U[i], (float)V[i]));
+                    dMesh.SetVertexUV(i, (Vector2f)uvJob.UV[i]);
                 }
 
-                geoTransform.Dispose();
-                U.Dispose();
-                V.Dispose();
+                UV.Dispose();
                 vertices.Dispose();
 
             }
@@ -167,34 +172,20 @@ namespace OSGeo.GDAL
             public NativeArray<Vector3d> vertices;
 
             [ReadOnly]
-            public NativeArray<double> geoTransform;
+            public Matrix3d transform;
 
-            [ReadOnly]
-            public double F0;
 
-            [ReadOnly]
-            public double F1;
+            public NativeArray<Vector2d> UV;
 
-            [ReadOnly]
-            public double F2;
-
-            [ReadOnly]
-            public double F3;
-
-            public NativeArray<double> U;
-            public NativeArray<double> V;
 
             public void Execute(int job)
             {
                 Vector3d vertex = vertices[job];
-                double X_geo = vertex.x - geoTransform[0];
-                double Y_geo = vertex.y - geoTransform[3];
 
-                double X = F0 * X_geo - F1 * Y_geo;
-                double Y = F2 * Y_geo - F3 * X;
+                Vector3d flatvert = new(vertex.x, vertex.z, 1);
 
-                U[job] = X;
-                V[job] = 1 - Y;
+                Vector2d uv = (Vector2d)(transform * flatvert) ;
+
             }
         }
     }

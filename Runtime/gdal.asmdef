@@ -4,7 +4,8 @@
     "references": [
         "CondaExt",
         "geometry3Sharp",
-        "Unity.Burst"
+        "Unity.Burst",
+        "Unity.Mathematics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

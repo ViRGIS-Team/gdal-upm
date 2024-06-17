@@ -222,8 +222,8 @@ namespace OSGeo.OGR {
         /// <summary>
         /// Convert Geometry to IEnumerable<Vector3d>
         ///
-        /// If the optional <paramref name="transform"/> affine transformation sequence is defined, then that transformation
-        /// matrix will be applied to the Vector3d. A Unity Matrix4x4 will be impicitly cast into Transfomation Sequence and can be used.
+        /// If the optional <paramref name="transform"/> affine transformation matrix is defined, then that transformation
+        /// matrix will be applied to the Vector3d.
         /// A Unity Transform can be convertd to Matrix4x4 using Transform.localToWorldMatrix and Transform.worldToLocalMatrix.
         ///
         /// If the optional <paramref name="crs"/> is defined, the geometries are transformed into that SR
