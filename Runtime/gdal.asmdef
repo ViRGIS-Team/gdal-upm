@@ -2,7 +2,9 @@
     "name": "Gdal for Unity",
     "rootNamespace": "",
     "references": [
-        "CondaExt"
+        "CondaExt",
+        "geometry3Sharp",
+        "Unity.Burst"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
