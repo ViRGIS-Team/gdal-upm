@@ -36,16 +36,15 @@ namespace OSGeo.OGR {
         /// <param name="geom"></param>
         /// <param name="crs"></param>
         /// <returns></returns>
-        public static IEnumerable<DMesh3> ToMeshList(this Geometry geom, SpatialReference crs = null, Matrix4d transform = default)
+        public static IEnumerable<DMesh3> ToMeshList(this Geometry geom, SpatialReference crs = null)
         {
-            if (transform == default) transform = new(true);
             switch (geom.GetGeometryType())
             {
                 case wkbGeometryType.wkbPolygon:
                 case wkbGeometryType.wkbPolygon25D:
                 case wkbGeometryType.wkbPolygonM:
                 case wkbGeometryType.wkbPolygonZM:
-                    yield return geom.ToPolygonMesh(crs, transform);
+                    yield return geom.ToPolygonMesh(crs);
                     break;
                 case wkbGeometryType.wkbMultiPolygon:
                 case wkbGeometryType.wkbMultiPolygon25D:
@@ -55,7 +54,7 @@ namespace OSGeo.OGR {
                     for (int i = 0; i < n; i++)
                     {
                         Geometry poly = geom.GetGeometryRef(i);
-                        yield return poly.ToPolygonMesh(crs, transform);
+                        yield return poly.ToPolygonMesh(crs);
                     }
                     break;
                 case wkbGeometryType.wkbPolyhedralSurface:
@@ -72,7 +71,7 @@ namespace OSGeo.OGR {
                     for (int i = 0; i < n; i++)
                     {
                         Geometry poly = geom.GetGeometryRef(i);
-                        IEnumerable<DCurve3> rings = poly.ToCurveList(crs, transform);
+                        IEnumerable<DCurve3> rings = poly.ToCurveList(crs);
                         switch (rings.Count())
                         {
                             case 0:
@@ -134,16 +133,15 @@ namespace OSGeo.OGR {
         /// <param name="geom"></param>
         /// <param name="crs"></param>
         /// <returns></returns>
-        public static DMesh3 ToPolygonMesh(this Geometry geom, SpatialReference crs = null, Matrix4d transform = default)
+        public static DMesh3 ToPolygonMesh(this Geometry geom, SpatialReference crs = null)
         {
-            if (transform == default) transform = new(true);
             switch (geom.GetGeometryType())
             {
                 case wkbGeometryType.wkbPolygon:
                 case wkbGeometryType.wkbPolygon25D:
                 case wkbGeometryType.wkbPolygonM:
                 case wkbGeometryType.wkbPolygonZM:
-                    IEnumerable<DCurve3> rings = geom.ToCurveList(crs, transform);
+                    IEnumerable<DCurve3> rings = geom.ToCurveList(crs);
                     if (rings.First().VertexCount < 4) throw new Exception("Polygon is invalid or is a triangle");
                     GeneralPolygon2d polygon2d = new(rings, out _, out IEnumerable<Vector3d> VerticesItr);
                     Index3i[] triangles = polygon2d.GetMesh();
@@ -161,8 +159,7 @@ namespace OSGeo.OGR {
         /// </summary>
         /// <param name="crs"> the crs to u for the DCurve3 DEFAULT map default projections or project CRS if none</param>
         /// <returns></returns>
-        public static IEnumerable<DCurve3> ToCurveList(this Geometry geom, SpatialReference crs = null, Matrix4d transform = default) {
-            if (transform == default) transform = new(true);
+        public static IEnumerable<DCurve3> ToCurveList(this Geometry geom, SpatialReference crs = null) {
             switch (geom.GetGeometryType())
             {
                 case wkbGeometryType.wkbLineString:
@@ -170,7 +167,7 @@ namespace OSGeo.OGR {
                 case wkbGeometryType.wkbLineString25D:
                 case wkbGeometryType.wkbLineStringM:
                 case wkbGeometryType.wkbLineStringZM:
-                    yield return geom.ToCurve(crs, transform);
+                    yield return geom.ToCurve(crs);
                     break;
                 case wkbGeometryType.wkbMultiLineString:
                 case wkbGeometryType.wkbMultiLineString25D:
@@ -180,7 +177,7 @@ namespace OSGeo.OGR {
                     for (int i = 0; i < n; i++)
                     {
                         Geometry line = geom.GetGeometryRef(i);
-                        yield return line.ToCurve(crs, transform);
+                        yield return line.ToCurve(crs);
                     }
                     break;
                 case wkbGeometryType.wkbPolygon:
@@ -195,7 +192,7 @@ namespace OSGeo.OGR {
                     for (int i = 0; i < n; i++)
                     {
                         Geometry line = geom.GetGeometryRef(i);
-                        yield return line.ToCurve(crs, transform);
+                        yield return line.ToCurve(crs);
                     }
                     break;
                 default:
@@ -203,9 +200,8 @@ namespace OSGeo.OGR {
             }
         }
 
-        public static DCurve3 ToCurve(this Geometry geom, SpatialReference crs = null, Matrix4d transform = default)
+        public static DCurve3 ToCurve(this Geometry geom, SpatialReference crs = null)
         {
-            if (transform == default) transform = new(true);
             switch (geom.GetGeometryType())
             {
                 // Note that counter intuitively - OGR should NOT report a type of LinearRing in the API!
@@ -213,7 +209,7 @@ namespace OSGeo.OGR {
                 case wkbGeometryType.wkbLineString25D:
                 case wkbGeometryType.wkbLineStringM:
                 case wkbGeometryType.wkbLineStringZM:
-                    return new(geom.ToVector3d(crs, transform).ToList<Vector3d>());
+                    return new(geom.ToVector3d(crs).ToList<Vector3d>());
                 default:
                     throw new Exception("Incorrect Geometry Type"); 
             }
@@ -222,19 +218,14 @@ namespace OSGeo.OGR {
         /// <summary>
         /// Convert Geometry to IEnumerable<Vector3d>
         ///
-        /// If the optional <paramref name="transform"/> affine transformation matrix is defined, then that transformation
-        /// matrix will be applied to the Vector3d.
-        /// A Unity Transform can be convertd to Matrix4x4 using Transform.localToWorldMatrix and Transform.worldToLocalMatrix.
-        ///
         /// If the optional <paramref name="crs"/> is defined, the geometries are transformed into that SR
         ///
         /// NOTE - the CRS transformation is applied BEFORE the transformation matrix
         ///
         /// </summary>
         /// <param name="crs">Optional - Spatial Reference into which to transform the points</param>
-        /// <param name="transform">Optional - Transformation Matrix</param> 
-        /// <returns>VEctor3[]</returns>
-        public static IEnumerable<Vector3d> ToVector3d(this Geometry geom, SpatialReference crs = null, Matrix4d transform = default) {
+        /// <returns>IEnumerable<Vector3d></returns>
+        public static IEnumerable<Vector3d> ToVector3d(this Geometry geom, SpatialReference crs = null) {
             if (crs != null)
             {
                 if (geom.GetSpatialReference() == null)
@@ -246,7 +237,6 @@ namespace OSGeo.OGR {
                     geom.TransformTo(crs);
                 }
             }
-            if (transform == default) transform = new(true);
             int count = geom.GetPointCount();
             if (count > 0)
                 for (int i = 0; i < count; i++) {
@@ -254,7 +244,7 @@ namespace OSGeo.OGR {
                     geom.GetPoint(i, argout);
                     Vector3d v = new Vector3d(argout);
                     v.axisOrder = geom.GetSpatialReference().GetAxisOrder(); ;
-                    yield return transform * v ;
+                    yield return v ;
                 }
             else {
                 throw new NotSupportedException("No Points in Geometry (which is a pointless geometry ...");
