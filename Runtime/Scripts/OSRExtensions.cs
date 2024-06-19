@@ -52,10 +52,11 @@ namespace OSGeo.OSR
             return axis;
         }
 
-        public static bool Transform(this DMesh3 dMesh, CoordinateTransformation transformer)
+        public static bool Project(this DMesh3 dMesh, CoordinateTransformation transformer, AxisOrder target)
         {
             try
             {
+                dMesh.axisOrder = target;
                 for (int i = 0; i < dMesh.VertexCount; i++)
                 {
                     if (dMesh.IsVertex(i))
@@ -63,7 +64,7 @@ namespace OSGeo.OSR
                         Vector3d vertex = dMesh.GetVertex(i);
                         double[] dV = new double[3] { vertex.x, vertex.y, vertex.z };
                         transformer.TransformPoint(dV);
-                        dMesh.SetVertex(i, new Vector3d(dV));
+                        dMesh.SetVertex(i, new Vector3d(dV) { axisOrder = target });
                     }
                 };
                 return true;
