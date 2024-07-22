@@ -22,6 +22,7 @@ SOFTWARE. */
 
 using VirgisGeometry;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Unity.Collections;
@@ -124,13 +125,17 @@ namespace OSGeo.GDAL
                     throw new Exception("Could not get a GeoTransform");
                 }
 
-                NativeArray<Vector2d> UV = new NativeArray<Vector2d>(dMesh.VertexCount, Allocator.Persistent);
+                IEnumerable<double3> v = dMesh.Vertices().Cast<double3>();
 
-                NativeArray<Vector3d> vertices = new NativeArray<Vector3d>(dMesh.Vertices().ToArray<Vector3d>(), Allocator.Persistent);
+                NativeArray<double2> UV = new (dMesh.VertexCount, Allocator.Persistent);
 
-                MapUV uvJob = new();
-                uvJob.transform = math.inverse(gtRaw.ToTransform());
-                uvJob.vertices = vertices;
+                NativeArray<double3> vertices = new (v.ToArray(), Allocator.Persistent);
+
+                MapUV uvJob = new()
+                {
+                    transform = math.inverse(gtRaw.ToTransform()),
+                    vertices = vertices
+                };
 
                 JobHandle jh = uvJob.Schedule(vertices.Length, 10);
                 jh.Complete();
@@ -169,23 +174,24 @@ namespace OSGeo.GDAL
         struct MapUV : IJobParallelFor
         {
             [ReadOnly]
-            public NativeArray<Vector3d> vertices;
+            public NativeArray<double3> vertices;
 
             [ReadOnly]
-            public Matrix3d transform;
+            public double3x3 transform;
 
 
-            public NativeArray<Vector2d> UV;
+            public NativeArray<double2> UV;
 
 
             public void Execute(int job)
             {
-                Vector3d vertex = vertices[job];
+                double3 vertex = vertices[job];
 
-                Vector3d flatvert = new(vertex.x, vertex.z, 1);
+                double3 flatvert = new(vertex.x, vertex.z, 1);
 
-                Vector2d uv = (Vector2d)(transform * flatvert) ;
+                double3 uv = math.mul(transform, flatvert);
 
+                UV[job] = new double2(uv.x, uv.y);
             }
         }
     }
