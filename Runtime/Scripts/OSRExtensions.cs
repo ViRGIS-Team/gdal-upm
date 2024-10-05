@@ -27,6 +27,12 @@ namespace OSGeo.OSR
 {
     public static class OsrExtensions
     {
+        /// <summary>
+        /// Returns the AxisOrder object for a SpatialReference
+        /// </summary>
+        /// <param name="sr"></param>
+        /// <returns>AxisOrder</returns>
+        /// <exception cref="Exception"></exception>
         public static AxisOrder GetAxisOrder(this SpatialReference sr) {
             int axisCount = sr.GetAxesCount();
             if (axisCount < 2 || axisCount > 3) {
@@ -52,6 +58,13 @@ namespace OSGeo.OSR
             return axis;
         }
 
+        /// <summary>
+        /// Projects a Dmesh3 using the supplied Coordinate Transformation
+        /// </summary>
+        /// <param name="dMesh"></param>
+        /// <param name="transformer"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static bool Project(this DMesh3 dMesh, CoordinateTransformation transformer, AxisOrder target)
         {
             try
@@ -75,6 +88,11 @@ namespace OSGeo.OSR
             }
         }
 
+        /// <summary>
+        /// Attempts to turn Text String into a SpatialReference
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static SpatialReference TextToSR(string str)
         {
             if (str.Contains("epsg:") || str.Contains("EPSG:"))
