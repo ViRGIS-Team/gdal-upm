@@ -39,21 +39,25 @@ namespace OSGeo.OSR
                 throw new Exception("Invalid Number of Axes in Spatial Reference");
             }
             AxisOrder axis = new AxisOrder();
-            for (int i = 0; i < axisCount; i++)
+            axis.Axis1 = (AxisType)Enum
+                .ToObject(typeof(AxisType),
+                    (int)sr.GetAxisOrientation("PROJCS", 0)
+                );
+
+            axis.Axis2 = (AxisType)Enum
+                .ToObject(typeof(AxisType),
+                    (int)sr.GetAxisOrientation("PROJCS", 1)
+                );
+
+            if (axisCount == 3)
             {
-                AxisOrientation ax = sr.GetAxisOrientation("PROJCS", i);
-                switch (i)
-                {
-                    case 0:
-                        axis.Axis1 = (AxisType)Enum.ToObject(typeof(AxisType), (int)ax);
-                        break;
-                    case 1:
-                        axis.Axis2 = (AxisType)Enum.ToObject(typeof(AxisType), (int)ax);
-                        break;
-                    case 2:
-                        axis.Axis3 = (AxisType)Enum.ToObject(typeof(AxisType), (int)ax);
-                        break;
-                }
+                axis.Axis3 = (AxisType)Enum
+                    .ToObject(typeof(AxisType),
+                        (int)sr.GetAxisOrientation("PROJCS", 2)
+                    );
+            } else
+            {
+                axis.Axis3 = AxisType.Up;
             }
             return axis;
         }
@@ -88,6 +92,27 @@ namespace OSGeo.OSR
             }
         }
 
+        public static bool Project(this DCurve3 curve, CoordinateTransformation transformer, AxisOrder target)
+        {
+            try
+            {
+                AxisOrder source = curve.axisOrder;
+                curve.axisOrder = target;
+                for (int i = 0; i < curve.VertexCount; i++)
+                {
+                    Vector3d vertex = curve.GetVertex(i);
+                    double[] dV = new double[3] { vertex.x, vertex.y, vertex.z };
+                    transformer.TransformPoint(dV);
+                    curve.SetVertex(i, new Vector3d(dV) { axisOrder = source });
+                };
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Attempts to turn Text String into a SpatialReference
         /// </summary>
@@ -96,7 +121,7 @@ namespace OSGeo.OSR
         public static SpatialReference TextToSR(string str)
         {
             if (str.Contains("epsg:") || str.Contains("EPSG:"))
-            {
+            {   
                 SpatialReference crs = new SpatialReference(null);
                 string[] parts = str.Split(':');
                 crs.ImportFromEPSG(int.Parse(parts[1]));
