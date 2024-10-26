@@ -419,8 +419,33 @@ namespace OSGeo.OGR {
         public static T Get<T>(this Feature feature, string name)
         {
             object value = feature.Get(name, out Type S);
-            if (typeof(T) != S ) throw new Exception("OGR Feature Get : The data Types do not match");
+            if (typeof(T) != S ) throw new Exception($"OGR Feature Get : The data Types do not match. Expected {typeof(T).ToString()} got {S.ToString()} : {value} ");
             return (T)value;
+        }
+
+        /// <summary>
+        /// Attempt to Get as type T and force the conversion
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="feature"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static T GetForce<T>(this Feature feature, string name)
+        {
+            object value = feature.Get(name, out Type S);
+            if (typeof(T) == S ) return (T)value;
+            try
+            {
+                if (typeof(T) == typeof(string)) return (T)(object)value.ToString();
+                if (typeof(T) == typeof(int)) return (T)(object)int.Parse((string)value);
+                if (typeof(T) == typeof(float)) return (T)(object)float.Parse((string)value);
+                if (typeof(T) == typeof(double)) return (T)(object)double.Parse((string)value);
+            } catch (Exception e)
+            {
+                throw new Exception( $"{name}, {value.ToString()} : {e.Message}");
+            }
+            throw new Exception($"OGR Feature Get : Cannot Force the data Types to match. Expected {typeof(T).ToString()} got {S.ToString()} ");
         }
 
         public static Dictionary<string, object> GetAll(this Feature feature) {
