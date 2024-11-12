@@ -48,8 +48,8 @@ namespace OSGeo.GDAL
         /// If there is less than 3 bands then the first band will be rendered in Black and white
         /// 
         /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
+        /// <param name="dataset" cref="Dataset"></param>
+        /// <returns cref="Texture2D"></returns>
         public static Texture2D ToRGB(this Dataset dataset)
         {
             // Get the GDAL Band objects from the Dataset
@@ -95,6 +95,99 @@ namespace OSGeo.GDAL
         }
 
         /// <summary>
+        /// Copies a raster band into a new double array
+        /// </summary>
+        /// <param name="band" cref="Band"></param>
+        /// <param name="buffer"> double[] containing the data</param>
+        /// <returns>True if successful</returns>
+        public static bool ToArray(this Band band, out double[] buffer)
+        {
+            try
+            {
+                // Get the width and height of the Dataset
+                int X_size = band.XSize;
+                int Y_size = band.YSize;
+
+                buffer = new double[X_size * Y_size];
+                band.ReadRaster(0, 0, X_size, Y_size, buffer, X_size, Y_size, 0, 0);
+
+                return true;
+            } catch(Exception e) 
+            {
+                Debug.Log(e.Message);
+                buffer = new double[0];
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to convert a raster band into a planar 3D mesh
+        /// </summary>
+        /// <param name="band" cref="Band"></param>
+        /// <param name="mesh" cref="DMesh3"> returned mesh</param>
+        /// <param name="maxTriCount"> indication of the maximum number of triangles that there should be in the return</param>
+        /// <returns>True if successfull</returns>
+        public static bool ToMesh(this Band band, out DMesh3 mesh)
+        {
+            // Get the width and height of the Dataset
+            double[] gtRaw = new double[6];
+
+            int X_size = band.XSize;
+            int Y_size = band.YSize;
+
+            band.GetDataset().GetGeoTransform(gtRaw);
+            if (gtRaw is null || gtRaw[1] == 0)
+            {
+                Debug.Log("Could not get a GeoTransform");
+                mesh = default;
+                return false;
+            }
+
+            if (band.ToArray(out double[] buffer))
+            {
+                mesh = DMesh3Builder.Build<Vector3d, Index3i, Vector3d>(VerCalc(X_size, Y_size, gtRaw, buffer, band.DataType), TriCalc(X_size, Y_size));
+                return true;
+            }
+            else
+            {
+                mesh = default;
+                return false;
+            }
+
+        }
+
+        private static IEnumerable<Index3i>TriCalc(int pixelCount, int rowCount)
+        {
+            for (int row = 0; row < rowCount - 1; row++)
+                for (int pix = 0; pix < pixelCount - 1; pix++)
+                {
+                    yield return new Index3i(
+                        pixelCount*row + pix,
+                        pixelCount*(row +1) + pix + 1,
+                        pixelCount*(row + 1) + pix
+                    );
+                    yield return new Index3i(
+                        pixelCount * row + pix,
+                        pixelCount * row + pix + 1,
+                        pixelCount * (row + 1) + pix + 1
+                    );
+                }
+        }
+
+        private static IEnumerable<Vector3d> VerCalc(int pixelCount, int rowCount, double[] gt, double[] buffer,  DataType dt)
+        {
+            for (int row = 0; row < rowCount; row++)
+                for (int pix = 0; pix < pixelCount; pix++)
+                {
+                    yield return new Vector3d(
+                        gt[0] + pix * gt[1] + row * gt[2],
+                        gt[3] + pix * gt[4] + row * gt[5],
+                        buffer[pix + row * pixelCount]
+                        );
+                }
+        }
+
+        /// <summary>
         /// Converts a GDAL geoTransform into a Transformation Matrix
         /// </summary>
         /// <param name="gt"></param>
@@ -109,6 +202,11 @@ namespace OSGeo.GDAL
                 );
         }
 
+        /// <summary>
+        /// Calculates the UVs for the provided Mesh that would correctly geolocate the raster image on the mesh
+        /// </summary>
+        /// <param name="dMesh" cref="DMesh3"></param>
+        /// <param name="raster" cref="Dataset"></param>
         public static void CalculateMapUVs(this DMesh3 dMesh, Dataset raster)
         {
             

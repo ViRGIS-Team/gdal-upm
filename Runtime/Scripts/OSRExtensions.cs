@@ -74,7 +74,7 @@ namespace OSGeo.OSR
             try
             {
                 dMesh.axisOrder = target;
-                for (int i = 0; i < dMesh.VertexCount; i++)
+                foreach (int i in dMesh.VertexIndices())
                 {
                     if (dMesh.IsVertex(i))
                     {
