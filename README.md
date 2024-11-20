@@ -119,6 +119,15 @@ public class test : MonoBehaviour
 
 See the [GDAL/OGR C# Api](https://gdal.org/api/csharp/index.html).
 
+## Unity Extensions
+
+This package includes some extensions to the API for Unity and for ViRGiS Geometry:
+
+- `Band` has the addition of `Band.ToMesh()` that converts the `Band` into a `VirgisGeometry.DMesh3` mesh assuming that the band values are elevation,
+- `Band` has the addition of `Band.ToArray()` that converts the `Band` into an `double[]`,
+- `Dataset` has the additional of `Dataset.ToRGB()` that attempts to convert a dataset into a `Texture2D` assuming that the `Dataset` has r,g and b bands with reasonable names,
+- Utilities to project `DMesh3` and `DCurev3` using OSR using the ViRGiS Geometry AxisOrder utilities to allow projection into the Unity left-handed coordinate space.
+
 # Minimum Project / Test Project
 You can see a minimum working project in the test project used to test build this package (and two others):
 
