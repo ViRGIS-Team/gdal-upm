@@ -13,7 +13,7 @@ namespace OSGeo.Install {
     public class Install : AssetPostprocessor
     {
 
-        const string packageVersion = "2.1.2";
+        const string packageVersion = "2.1.3";
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
