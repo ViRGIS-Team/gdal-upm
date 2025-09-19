@@ -18,9 +18,9 @@ namespace OSGeo.Install {
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
-            if (true ) //!SessionState.GetBool("GdalInitDone", false))
+            if (!SessionState.GetBool("GdalInitDone", false))
             {
-                
+
                 Stopwatch stopwatch = new Stopwatch();
                 string response = "";
                 stopwatch.Start();
