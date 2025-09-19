@@ -18,8 +18,9 @@ namespace OSGeo.Install {
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
-            if (!SessionState.GetBool("GdalInitDone", false))
+            if (true ) //!SessionState.GetBool("GdalInitDone", false))
             {
+                
                 Stopwatch stopwatch = new Stopwatch();
                 string response = "";
                 stopwatch.Start();
@@ -59,13 +60,19 @@ namespace OSGeo.Install {
             string resp = Conda.Conda.Install($"gdal-csharp={packageVersion}");
             string condaLibrary;
             string condaShared;
+            string condaBin;
 #if UNITY_EDITOR_WIN
             condaLibrary = Path.Combine(Application.dataPath, "Conda", "Env", "Library");
             condaShared = Path.Combine(condaLibrary, "share");
+            condaBin = Path.Combine(condaLibrary, "bin");
+#else
+            condaLibrary = Path.Combine(Application.dataPath, "Conda", "Env");
+            condaShared = Path.Combine(condaLibrary, "share");
+            condaBin = Path.Combine(condaLibrary, "lib");
 #endif
             try
             {
-                Conda.Conda.RecurseAndClean(Path.Combine(condaLibrary, "bin"),
+                Conda.Conda.RecurseAndClean(condaBin,
                     new Regex[] {
                         new Regex("."),
                     },
@@ -90,7 +97,7 @@ namespace OSGeo.Install {
                     File.Copy(file, Path.Combine(projDir, Path.GetFileName(file)), true);
                 }
             }
-            catch ( Exception e )
+            catch (Exception e)
             {
                 _ = e;
             }
