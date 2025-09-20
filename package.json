@@ -17,7 +17,7 @@
   },
   "hideInEditor": false,
   "dependencies": {
-    "com.virgis.conda-extensions": "1.0.4",
+    "com.virgis.conda-extensions": "2.0.0",
     "com.virgis.geometry": "4.0.1"
   }
 }
