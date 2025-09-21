@@ -3,10 +3,7 @@ using UnityEditor;
 using System.IO;
 using System.Diagnostics;
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
-using OSGeo.GDAL;
 using System.Text.RegularExpressions;
 
 namespace OSGeo.Install {
@@ -28,21 +25,9 @@ namespace OSGeo.Install {
 
                 if (Application.isEditor)
                 {
-                    try
-                    {
-                        List<Conda.CondaItem> list = Conda.Conda.Info().Items.ToList();
-                        Conda.CondaItem entry = list.Find(item => item.name == "gdal-csharp");
-                        if (entry == null || entry.version != packageVersion)
-                        {
-                            response = UpdatePackage();
-                        }
-                        string currentVersion = Gdal.VersionInfo(null);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.Log($"Error in Conda Package GDAL: {e?.ToString()}");
+                    if (!Conda.Conda.IsInstalled("gdal-csharp", packageVersion))
                         response = UpdatePackage();
-                    };
+                    AssetDatabase.Refresh();
                 };
 
                 EditorUtility.ClearProgressBar();

@@ -1,6 +1,6 @@
 {
   "name": "com.virgis.gdal",
-  "version": "3.11.1",
+  "version": "3.11.2",
   "displayName": "Gdal",
   "description": "Open-Source Geospatial Data Translation LIbrary",
   "unity": "2018.1",
@@ -17,7 +17,7 @@
   },
   "hideInEditor": false,
   "dependencies": {
-    "com.virgis.conda-extensions": "2.0.0",
+    "com.virgis.conda-extensions": "2.0.1",
     "com.virgis.geometry": "4.0.1"
   }
 }
