@@ -28,9 +28,9 @@ The Package can also be installed using the Unity Package Manager directly from 
 
 ## Build Tests and Platform Support
 
-This package is build tested on multiple platforms using the [ViRGiS Team Test Project](https://github.com/ViRGIS-Team/test-project).
+This package is build-tested on multiple platforms using the [ViRGiS Team Test Project](https://github.com/ViRGIS-Team/test-project).
 
-See that project for working examples and current list of working platforms.
+See that project for working examples and the current list of working platforms.
 
 ## Version numbers
 
@@ -38,7 +38,7 @@ UPDATED NOTE ABOUT VERSIONS:
 
 This OpenUPM package wraps a Conda Package that invokes GDAL.
 
-Because of the way that Conda works as a package manager, this means that actual library version is actually determined by the Conda version algorithm which is dependent on platform and on what other packages are loaded. The version pin is "x.x" which means that, if the the package version is "3.4.xx" (e.g. 3.4.100) then the actual version loaded is most recent version in the range 3.4.00a0 to 3.5.00a0 - which at the time of writing would be 3.4.3!
+Because of the way that Conda works as a package manager, this means that the actual library version is actually determined by the Conda version algorithm which is dependent on platform and on what other packages are loaded. The version pin is "x.x" which means that, if the package version is "3.4.xx" (e.g. 3.4.100) then the actual version loaded is most recent version in the range 3.4.00a0 to 3.5.00a0 - which at the time of writing would be 3.4.3!
 
 Therefore, the OpenUPM package number is done as follows x.y.b where x.y MAJOR & MINOR versions of GDAL to which this package is pinned and b is the build number of the package (starting e.g at 3.5.0 to mean build 0 of the package for GDAL 3.5.x and going up incrementally).
 
@@ -56,7 +56,7 @@ The scripts for accessing GDAL/OGR functions are included in the `OSGEO`namespac
 
 The GDAL library is loaded as an unmanaged native plugin. This plugin will load correctly in the player when built. See below for a note about use in the Editor.
 
-All versions of this package works in all supported architectures using the Mono scripting back end. As of package version 3.4.102, the package will succesfully build using the IL2CPP scripting backend. The package does NOT support the .NET scripting backend in the UWP player since that scripting backend does not support the System.Runtime.InteropServices namespace.
+All versions of this package work in all supported architectures using the Mono scripting back end. As of package version 3.4.102, the package will succesfully build using the IL2CPP scripting backend. The package does NOT support the .NET scripting backend in the UWP player since that scripting backend does not support the System.Runtime.InteropServices namespace.
 
 | Architecture        | Mono    | IL2CPP  | .NET |
 |---------------------|---------|---------|------|
@@ -68,9 +68,9 @@ All versions of this package works in all supported architectures using the Mono
 | iOS                 | Not Yet | Not Yet |  --  |
 | WebGL.              | Never   | Never   |  --  |
 
-> NOTE 1 - the UWP architecture has currently only been tested as far as a successful build and not as far as deploying an application - since I do not have the time or resources to do that. If you have successfully deployed an app then please raise an issue to say so. Thanks.
+> NOTE 1 - The UWP architecture has currently only been tested as far as a successful build and not as far as deploying an application - since I do not have the time or resources to do that. If you have successfully deployed an app then please raise an issue to say so. Thanks.
 
-> NOTE 2 - The package architecture should in principle be able to support Android and iOS architectures in the future but this has not been implemented. Yet.
+> NOTE 2 - The package architecture should, in principle, be able to support Android and iOS architectures in the future but this has not been implemented. Yet.
 
 > NOTE 3 - the package architecture will never be able to support the WebGL player - since it relies on native dlls. 
 
@@ -83,7 +83,7 @@ As of version 3.11.1, this package uses Version 2 of the Conda Extension package
 
 Note that when upgrading, you MUST delete the Assets/Conda directory and restart Unity.
 
-## Initializing GDAL
+## Initialising GDAL
 
 This package installs the GDAL package, which copies data for GDAL and for PROJ into the `Assets/StreamingAssets`folder. You may also want to exclude this folder from source control.
 
@@ -110,17 +110,15 @@ public class test : MonoBehaviour
 ```
 
 ## Documentation
-
 See the [GDAL/OGR C# Api](https://gdal.org/api/csharp/index.html).
 
 ## Unity Extensions
-
 This package includes some extensions to the API for Unity and for ViRGiS Geometry:
 
-- `Band` has the addition of `Band.ToMesh()` that converts the `Band` into a `VirgisGeometry.DMesh3` mesh assuming that the band values are elevation,
-- `Band` has the addition of `Band.ToArray()` that converts the `Band` into an `double[]`,
-- `Dataset` has the additional of `Dataset.ToRGB()` that attempts to convert a dataset into a `Texture2D` assuming that the `Dataset` has r,g and b bands with reasonable names,
-- Utilities to project `DMesh3` and `DCurev3` using OSR using the ViRGiS Geometry AxisOrder utilities to allow projection into the Unity left-handed coordinate space.
+- `Band` has the addition of `Band.ToMesh()` that converts the `Band` into a `VirgisGeometry.DMesh3` mesh, assuming that the band values are elevation,
+- `Band` has the addition of `Band.ToArray()` that converts the `Band` into a `double[]`,
+- `Dataset` has the addition of `Dataset.ToRGB()` that attempts to convert a dataset into a `Texture2D` assuming that the `Dataset` has r,g and b bands with reasonable names,
+- Utilities to project `DMesh3` and `DCurev3` using OSR, using the ViRGiS Geometry AxisOrder utilities to allow projection into the Unity left-handed coordinate space.
 
 # Minimum Project / Test Project
 You can see a minimum working project in the test project used to test build this package (and two others):
@@ -128,7 +126,10 @@ You can see a minimum working project in the test project used to test build thi
 https://github.com/ViRGIS-Team/test-project.
 
 # Use with Unity Cloud Build
-
-As of release 3.6.1, this package will work with Unity Cloud Build.
-
 As of release 3.11.1 this package will work with Unity Cloud Build without any additional work or pre-build scripts.
+
+Uniy Cloud Build extensively utilises macOS on Apple Silicon as its runners. To build for osx-64, you need to have a separate build and override the Conda architecture by creating the following environment variable in the Unity Cloud Build configuration (or similar for different build hosts) :
+
+Name | Value
+--- | --- |
+CONDA_ARCH_OVERRIDE | osx-64
