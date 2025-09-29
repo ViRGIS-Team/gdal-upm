@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System;
 using Debug = UnityEngine.Debug;
 using System.Text.RegularExpressions;
+using Conda;
 
 namespace OSGeo.Install {
 
@@ -26,8 +27,10 @@ namespace OSGeo.Install {
                 if (Application.isEditor)
                 {
                     if (!Conda.Conda.IsInstalled("gdal-csharp", packageVersion))
+                    {
                         response = UpdatePackage();
-                    AssetDatabase.Refresh();
+                        AssetDatabase.Refresh();
+                    }
                 };
 
                 EditorUtility.ClearProgressBar();
@@ -41,23 +44,11 @@ namespace OSGeo.Install {
         static string UpdatePackage()
         {
             Debug.Log("Gdal Install Script Awake");
-
             string resp = Conda.Conda.Install($"gdal-csharp={packageVersion}");
-            string condaLibrary;
-            string condaShared;
-            string condaBin;
-#if UNITY_EDITOR_WIN
-            condaLibrary = Path.Combine(Application.dataPath, "Conda", "Env", "Library");
-            condaShared = Path.Combine(condaLibrary, "share");
-            condaBin = Path.Combine(condaLibrary, "bin");
-#else
-            condaLibrary = Path.Combine(Application.dataPath, "Conda", "Env");
-            condaShared = Path.Combine(condaLibrary, "share");
-            condaBin = Path.Combine(condaLibrary, "lib");
-#endif
+
             try
             {
-                Conda.Conda.RecurseAndClean(condaBin,
+                Conda.Conda.RecurseAndClean(Conda.Conda.condaBin,
                     new Regex[] {
                         new Regex("."),
                     },
@@ -72,12 +63,12 @@ namespace OSGeo.Install {
                 string projDir = Path.Combine(sharedAssets, "proj");
                 if (!Directory.Exists(projDir)) Directory.CreateDirectory(projDir);
 
-                foreach (var file in Directory.GetFiles(Path.Combine(condaShared, "gdal")))
+                foreach (var file in Directory.GetFiles(Path.Combine(Conda.Conda.condaShared, "gdal")))
                 {
                     File.Copy(file, Path.Combine(gdalDir, Path.GetFileName(file)), true);
                 }
 
-                foreach (var file in Directory.GetFiles(Path.Combine(condaShared, "proj")))
+                foreach (var file in Directory.GetFiles(Path.Combine(Conda.Conda.condaShared, "proj")))
                 {
                     File.Copy(file, Path.Combine(projDir, Path.GetFileName(file)), true);
                 }
