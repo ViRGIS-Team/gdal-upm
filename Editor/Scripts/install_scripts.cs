@@ -18,7 +18,6 @@ namespace OSGeo.Install {
         {
             if (!SessionState.GetBool("GdalInitDone", false))
             {
-
                 Stopwatch stopwatch = new Stopwatch();
                 string response = "";
                 stopwatch.Start();
@@ -45,7 +44,7 @@ namespace OSGeo.Install {
         {
             Debug.Log("Gdal Install Script Awake");
             string resp = Conda.Conda.Install($"gdal-csharp={packageVersion}");
-
+            string condaGdal = Path.Combine(Conda.Conda.condaShared, "gdal");
             try
             {
                 Conda.Conda.RecurseAndClean(Conda.Conda.condaBin,
@@ -53,8 +52,14 @@ namespace OSGeo.Install {
                         new Regex("."),
                     },
                     new Regex[] {
-                        new Regex("^GDAL"),
-                        new Regex("_csharp.dll^"),
+                        new Regex("^GDAL.")
+                    });
+                Conda.Conda.RecurseAndClean(condaGdal,
+                    new Regex[] {
+                        new Regex("."),
+                    },
+                    new Regex[] {
+                        new Regex("./.nupkg$"),
                     });
                 string sharedAssets = Application.streamingAssetsPath;
                 if (!Directory.Exists(sharedAssets)) Directory.CreateDirectory(sharedAssets);
@@ -63,7 +68,7 @@ namespace OSGeo.Install {
                 string projDir = Path.Combine(sharedAssets, "proj");
                 if (!Directory.Exists(projDir)) Directory.CreateDirectory(projDir);
 
-                foreach (var file in Directory.GetFiles(Path.Combine(Conda.Conda.condaShared, "gdal")))
+                foreach (var file in Directory.GetFiles(condaGdal))
                 {
                     File.Copy(file, Path.Combine(gdalDir, Path.GetFileName(file)), true);
                 }
