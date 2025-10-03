@@ -18,16 +18,62 @@ namespace OSGeo.Install {
         {
             if (!SessionState.GetBool("GdalInitDone", false))
             {
-                Stopwatch stopwatch = new Stopwatch();
+                Stopwatch stopwatch = new();
                 string response = "";
                 stopwatch.Start();
                 EditorUtility.DisplayProgressBar("Restoring Conda Package", "GDAL", 0);
 
                 if (Application.isEditor)
                 {
-                    if (!Conda.Conda.IsInstalled("gdal-csharp", packageVersion))
+                    CondaApp conda = new();
+                    if (!conda.IsInstalled("gdal-csharp", packageVersion))
                     {
-                        response = UpdatePackage();
+                        Debug.Log("Gdal Install Script Awake");
+                        string resp =  conda.Install($"gdal-csharp={packageVersion}");
+                        
+                        string condaGdal = Path.Combine(conda.condaShared, "gdal");
+                        try
+                        {
+                            conda.RecurseAndClean(conda.condaBin,
+                                new Regex[] {
+                                    new Regex("."),
+                                    },
+                                new Regex[] {
+                                    new Regex("^GDAL.")
+                                 }
+                            );
+                            conda.RecurseAndClean(condaGdal,
+                                new Regex[] {
+                                new Regex("."),
+                                        },
+                                new Regex[] {
+                                    new Regex("./.nupkg$"),
+                                         }
+                            );
+                            string sharedAssets = Application.streamingAssetsPath;
+                            if (!Directory.Exists(sharedAssets)) Directory.CreateDirectory(sharedAssets);
+                            string gdalDir = Path.Combine(sharedAssets, "gdal");
+                            if (!Directory.Exists(gdalDir)) Directory.CreateDirectory(gdalDir);
+                            string projDir = Path.Combine(sharedAssets, "proj");
+                            if (!Directory.Exists(projDir)) Directory.CreateDirectory(projDir);
+
+                            if (Directory.Exists(Path.Combine(conda.condaShared, "gdal")))
+                                foreach (var file in Directory.GetFiles(Path.Combine(conda.condaShared, "gdal")))
+                                {
+                                    File.Copy(file, Path.Combine(gdalDir, Path.GetFileName(file)), true);
+                                }
+
+                            if (Directory.Exists(Path.Combine(conda.condaShared, "proj")))
+                                foreach (var file in Directory.GetFiles(Path.Combine(conda.condaShared, "proj")))
+                                {
+                                    File.Copy(file, Path.Combine(projDir, Path.GetFileName(file)), true);
+                                }
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogException(e);
+                        }
+                        conda.TreeShake();
                         AssetDatabase.Refresh();
                     }
                 };
@@ -37,58 +83,6 @@ namespace OSGeo.Install {
                 Debug.Log($"GDAL refresh took {stopwatch.Elapsed.TotalSeconds} seconds" + response);
             }
             SessionState.SetBool("GdalInitDone", true);
-        }
-
-
-        static string UpdatePackage()
-        {
-            Debug.Log("Gdal Install Script Awake");
-            string resp = Conda.Conda.Install($"gdal-csharp={packageVersion}");
-            string condaGdal = Path.Combine(Conda.Conda.condaShared, "gdal");
-            try
-            {
-                Conda.Conda.RecurseAndClean(Conda.Conda.condaBin,
-                    new Regex[] {
-                        new Regex("."),
-                    },
-                    new Regex[] {
-                        new Regex("^GDAL.")
-                    });
-                Conda.Conda.RecurseAndClean(condaGdal,
-                    new Regex[] {
-                        new Regex("."),
-                    },
-                    new Regex[] {
-                        new Regex("./.nupkg$"),
-                    });
-                string sharedAssets = Application.streamingAssetsPath;
-                if (!Directory.Exists(sharedAssets)) Directory.CreateDirectory(sharedAssets);
-                string gdalDir = Path.Combine(sharedAssets, "gdal");
-                if (!Directory.Exists(gdalDir)) Directory.CreateDirectory(gdalDir);
-                string projDir = Path.Combine(sharedAssets, "proj");
-                if (!Directory.Exists(projDir)) Directory.CreateDirectory(projDir);
-
-                foreach (var file in Directory.GetFiles(condaGdal))
-                {
-                    File.Copy(file, Path.Combine(gdalDir, Path.GetFileName(file)), true);
-                }
-
-                foreach (var file in Directory.GetFiles(Path.Combine(Conda.Conda.condaShared, "proj")))
-                {
-                    File.Copy(file, Path.Combine(projDir, Path.GetFileName(file)), true);
-                }
-            }
-            catch (Exception e)
-            {
-                _ = e;
-            }
-
-            Conda.Conda.TreeShake();
-
-            AssetDatabase.Refresh();
-
-            return resp;
-
         }
     }
 }
