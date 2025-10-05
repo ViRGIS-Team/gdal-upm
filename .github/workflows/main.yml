@@ -37,22 +37,22 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git
           ./vcpkg/bootstrap-vcpkg.sh
 
-      - name: Build GDAL with vcpkg for all ABIs
+      - name: Build GDAL with vcpkg for supported ABIs
         run: |
           ./vcpkg/vcpkg install gdal:arm64-android
-          ./vcpkg/vcpkg install gdal:arm-android
           ./vcpkg/vcpkg install gdal:x64-android
+          ./vcpkg/vcpkg install gdal:x86-android
           ./vcpkg/vcpkg integrate install
 
       - name: Create Android Library project
         run: |
           mkdir -p android-gdal/libs/arm64-v8a
-          mkdir -p android-gdal/libs/armeabi-v7a
           mkdir -p android-gdal/libs/x86_64
+          mkdir -p android-gdal/libs/x86
 
           cp ./vcpkg/installed/arm64-android/lib/libgdal.so android-gdal/libs/arm64-v8a/
-          cp ./vcpkg/installed/arm-android/lib/libgdal.so android-gdal/libs/armeabi-v7a/
           cp ./vcpkg/installed/x64-android/lib/libgdal.so android-gdal/libs/x86_64/
+          cp ./vcpkg/installed/x86-android/lib/libgdal.so android-gdal/libs/x86/
 
           cp -r ./vcpkg/installed/arm64-android/include android-gdal/include
 
@@ -88,7 +88,7 @@ jobs:
                       }
                   }
                   ndk {
-                      abiFilters "arm64-v8a", "armeabi-v7a", "x86_64"
+                      abiFilters "arm64-v8a", "x86_64", "x86"
                   }
               }
               externalNativeBuild {
@@ -129,47 +129,3 @@ jobs:
           cat > android-gdal/CMakeLists.txt <<'EOF'
           cmake_minimum_required(VERSION 3.15)
           project(gdal-android)
-
-          # Pick the right ABI library
-          set(ANDROID_ABI $ENV{ANDROID_ABI})
-
-          add_library(gdal SHARED IMPORTED)
-
-          set_target_properties(gdal PROPERTIES
-              IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libgdal.so
-              INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/include
-          )
-
-          add_library(gdalwrapper SHARED gdalwrapper.cpp)
-          target_link_libraries(gdalwrapper gdal)
-          EOF
-
-          # Simple JNI wrapper
-          cat > android-gdal/gdalwrapper.cpp <<'EOF'
-          #include <jni.h>
-          #include "gdal.h"
-
-          extern "C"
-          JNIEXPORT jstring JNICALL
-          Java_org_gdal_Gdal_version(JNIEnv* env, jobject) {
-              const char* ver = GDALVersionInfo("RELEASE_NAME");
-              return env->NewStringUTF(ver);
-          }
-          EOF
-
-      - name: Generate Gradle Wrapper
-        run: |
-          cd android-gdal
-          gradle wrapper --gradle-version 8.6
-
-      - name: Build AAR
-        run: |
-          cd android-gdal
-          ./gradlew assembleRelease publish
-
-      - name: Upload AAR artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: gdal-aar
-          path: android-gdal/build/outputs/aar/*.aar
-
