@@ -40,19 +40,13 @@ jobs:
       - name: Build GDAL with vcpkg for supported ABIs
         run: |
           ./vcpkg/vcpkg install gdal:arm64-android
-          ./vcpkg/vcpkg install gdal:x64-android
-          ./vcpkg/vcpkg install gdal:x86-android
           ./vcpkg/vcpkg integrate install
 
       - name: Create Android Library project
         run: |
           mkdir -p android-gdal/libs/arm64-v8a
-          mkdir -p android-gdal/libs/x86_64
-          mkdir -p android-gdal/libs/x86
 
           cp ./vcpkg/installed/arm64-android/lib/libgdal.so android-gdal/libs/arm64-v8a/
-          cp ./vcpkg/installed/x64-android/lib/libgdal.so android-gdal/libs/x86_64/
-          cp ./vcpkg/installed/x86-android/lib/libgdal.so android-gdal/libs/x86/
 
           cp -r ./vcpkg/installed/arm64-android/include android-gdal/include
 
