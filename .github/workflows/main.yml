@@ -1,0 +1,131 @@
+name: Build GDAL AAR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip ninja-build cmake git curl build-essential
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: |
+          sdkmanager --install "ndk;26.1.10909125"
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.1.10909125" >> $GITHUB_ENV
+
+      - name: Clone vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Build GDAL with vcpkg for arm64-v8a
+        run: |
+          ./vcpkg/vcpkg install gdal:arm64-android
+          ./vcpkg/vcpkg integrate install
+
+      - name: Create Android Library project
+        run: |
+          mkdir -p android-gdal/libs/arm64-v8a
+          cp -r ./vcpkg/installed/arm64-android/lib/* android-gdal/libs/arm64-v8a/
+          cp -r ./vcpkg/installed/arm64-android/include android-gdal/include
+
+          cat > android-gdal/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.library'
+              id 'maven-publish'
+          }
+
+          android {
+              namespace "org.gdal"
+              compileSdkVersion 34
+              ndkVersion "26.1.10909125"
+
+              defaultConfig {
+                  minSdkVersion 21
+                  targetSdkVersion 34
+                  externalNativeBuild {
+                      cmake {
+                          cppFlags ""
+                      }
+                  }
+                  ndk {
+                      abiFilters "arm64-v8a"
+                  }
+              }
+              externalNativeBuild {
+                  cmake {
+                      path "CMakeLists.txt"
+                  }
+              }
+              publishing {
+                  singleVariant("release")
+              }
+          }
+
+          publishing {
+              publications {
+                  release(MavenPublication) {
+                      groupId = "com.github.\${System.getenv('GITHUB_REPOSITORY_OWNER')}"
+                      artifactId = "gdal-android"
+                      version = "1.0.0"
+                      afterEvaluate {
+                          from components.release
+                      }
+                  }
+              }
+              repositories {
+                  maven {
+                      name = "GitHubPackages"
+                      url = uri("https://maven.pkg.github.com/${{ github.repository }}")
+                      credentials {
+                          username = System.getenv("GITHUB_ACTOR")
+                          password = System.getenv("GITHUB_TOKEN")
+                      }
+                  }
+              }
+          }
+          EOF
+
+          cat > android-gdal/CMakeLists.txt <<'EOF'
+          cmake_minimum_required(VERSION 3.15)
+          project(gdal-android)
+
+          add_library(gdal SHARED IMPORTED)
+          set_target_properties(gdal PROPERTIES
+              IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/arm64-v8a/libgdal.so
+              INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/include
+          )
+
+          add_library(gdalwrapper SHARED gdalwrapper.cpp)
+          target_link_libraries(gdalwrapper gdal)
+          EOF
+
+          echo '#include "gdal.h"\nextern "C" JNIEXPORT jint JNICALL Java_org_gdal_Gdal_version(JNIEnv*, jobject){ return GDALVersionInfo("RELEASE_NAME")[0]; }' > android-gdal/gdalwrapper.cpp
+
+      - name: Build AAR
+        run: |
+          cd android-gdal
+          ./gradlew assembleRelease publish
+
+      - name: Upload AAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gdal-aar
+          path: android-gdal/build/outputs/aar/*.aar
