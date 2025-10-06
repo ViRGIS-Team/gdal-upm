@@ -43,11 +43,23 @@ jobs:
           restore-keys: |
             vcpkg-bincache-${{ runner.os }}-arm64-android-
 
-      - name: Build GDAL with vcpkg (arm64-v8a)
+      - name: Add custom triplet for shared libs
+        run: |
+          mkdir -p vcpkg/triplets
+          cat > vcpkg/triplets/arm64-android-dynamic.cmake <<'EOF'
+          set(VCPKG_TARGET_ARCHITECTURE arm64)
+          set(VCPKG_CRT_LINKAGE dynamic)
+          set(VCPKG_LIBRARY_LINKAGE dynamic)
+          set(VCPKG_CMAKE_SYSTEM_NAME Android)
+          EOF
+
+
+      - name: Build GDAL with vcpkg (arm64-v8a shared)
         run: |
           export VCPKG_BINARY_SOURCES="clear;files,$HOME/.cache/vcpkg,readwrite"
-          ./vcpkg/vcpkg install gdal:arm64-android
+          ./vcpkg/vcpkg install gdal:arm64-android-dynamic
           ./vcpkg/vcpkg integrate install
+
 
       - name: Create Android Library project
         run: |
