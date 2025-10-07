@@ -29,51 +29,27 @@ namespace OSGeo.Install {
                     if (!conda.IsInstalled("gdal-csharp", packageVersion))
                     {
                         Debug.Log("Gdal Install Script Awake");
-                        string resp =  conda.Install($"gdal-csharp={packageVersion}");
-                        
-                        string condaGdal = Path.Combine(conda.condaShared, "gdal");
-                        try
+                        conda.Add($"gdal-csharp={packageVersion}", new ConfigFile.Package()
                         {
-                            conda.RecurseAndClean(conda.condaBin,
-                                new Regex[] {
-                                    new Regex("."),
-                                    },
-                                new Regex[] {
-                                    new Regex("^GDAL.")
-                                 }
-                            );
-                            conda.RecurseAndClean(condaGdal,
-                                new Regex[] {
-                                new Regex("."),
-                                        },
-                                new Regex[] {
-                                    new Regex("./.nupkg$"),
-                                         }
-                            );
-                            string sharedAssets = Application.streamingAssetsPath;
-                            if (!Directory.Exists(sharedAssets)) Directory.CreateDirectory(sharedAssets);
-                            string gdalDir = Path.Combine(sharedAssets, "gdal");
-                            if (!Directory.Exists(gdalDir)) Directory.CreateDirectory(gdalDir);
-                            string projDir = Path.Combine(sharedAssets, "proj");
-                            if (!Directory.Exists(projDir)) Directory.CreateDirectory(projDir);
-
-                            if (Directory.Exists(Path.Combine(conda.condaShared, "gdal")))
-                                foreach (var file in Directory.GetFiles(Path.Combine(conda.condaShared, "gdal")))
+                            Name = "gdal",
+                            Cleans = new ConfigFile.Clean[] {
+                                new()
                                 {
-                                    File.Copy(file, Path.Combine(gdalDir, Path.GetFileName(file)), true);
-                                }
-
-                            if (Directory.Exists(Path.Combine(conda.condaShared, "proj")))
-                                foreach (var file in Directory.GetFiles(Path.Combine(conda.condaShared, "proj")))
+                                    path = new string[] {"conda_bin" },
+                                    excludes = new string[] { "." }, 
+                                    includes = new string[] { "^GDAL." }
+                                },
+                                new()
                                 {
-                                    File.Copy(file, Path.Combine(projDir, Path.GetFileName(file)), true);
+                                    path = new string[] {"conda_shared", "gdal" },
+                                    excludes = new string[] { "." },
+                                    includes = new string[] { "./.nupkg$" }
                                 }
-                        }
-                        catch (Exception e)
-                        {
-                            Debug.LogException(e);
-                        }
-                        conda.TreeShake();
+                            },
+                            Shared_Datas = new string[] {
+                                "gdal", "proj"
+                            }
+                        });
                         AssetDatabase.Refresh();
                     }
                 };
