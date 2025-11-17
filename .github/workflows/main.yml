@@ -51,15 +51,28 @@ jobs:
           set(VCPKG_CRT_LINKAGE dynamic)
           set(VCPKG_LIBRARY_LINKAGE dynamic)
           set(VCPKG_CMAKE_SYSTEM_NAME Android)
+          set(VCPKG_CMAKE_SYSTEM_VERSION 21) # match minSdkVersion
+          # Chainload the Android NDK toolchain so vcpkg/CMake detects the NDK compiler correctly
+          if(NOT DEFINED ENV{ANDROID_NDK_HOME})
+            message(FATAL_ERROR "ANDROID_NDK_HOME must be set in environment")
+          endif()
+          set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "$ENV{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake")
           EOF
 
-
       - name: Build GDAL with vcpkg (arm64-v8a shared)
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
         run: |
-          export VCPKG_BINARY_SOURCES="clear;files,$HOME/.cache/vcpkg,readwrite"
-          ./vcpkg/vcpkg install gdal:arm64-android-dynamic
+          export ANDROID_NDK_HOME=${ANDROID_NDK_HOME:-$ANDROID_SDK_ROOT/ndk/26.1.10909125}
+          export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
+          # Use the NDK clang wrappers for the target API level 21
+          export CC=aarch64-linux-android21-clang
+          export CXX=aarch64-linux-android21-clang++
+          export VCPKG_CHAINLOAD_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
+          export VCPKG_DEFAULT_TRIPLET=arm64-android-dynamic
+          ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/vcpkg install gdal --triplet=arm64-android-dynamic
           ./vcpkg/vcpkg integrate install
-
 
       - name: Create Android Library project
         run: |
@@ -115,7 +128,7 @@ jobs:
           publishing {
               publications {
                   release(MavenPublication) {
-                      groupId = "com.github.\${System.getenv('GITHUB_REPOSITORY_OWNER')}"
+                      groupId = "com.github.${System.getenv('GITHUB_REPOSITORY_OWNER')}"
                       artifactId = "gdal-android"
                       version = "1.0.0"
                       afterEvaluate {
