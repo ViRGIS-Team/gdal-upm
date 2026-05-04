@@ -70,6 +70,10 @@ jobs:
           export CXX=aarch64-linux-android21-clang++
           export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
           # Use the NDK clang wrappers for the target API level 21
+          export VCPKG_INSTALLED_DIR=$PWD/vcpkg/installed
+          export PKG_CONFIG_PATH=$VCPKG_INSTALLED_DIR/arm64-android/lib/pkgconfig
+          export CPPFLAGS="-I$VCPKG_INSTALLED_DIR/arm64-android/include"
+          export LDFLAGS="-L$VCPKG_INSTALLED_DIR/arm64-android/lib"
           export VCPKG_CHAINLOAD_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
           export VCPKG_DEFAULT_TRIPLET=arm64-android
           ./vcpkg/bootstrap-vcpkg.sh
