@@ -101,24 +101,18 @@ jobs:
       # -----------------------------------------------------
       # Create Android Library (NO C++ COMPILATION HERE)
       # -----------------------------------------------------
-      - name: Assemble Android library project
-        run: |
-          mkdir -p android-gdal/libs/arm64-v8a
-          mkdir -p android-gdal/include
+      - name: Assemble Android project files
+  run: |
+    mkdir -p android-gdal/libs/arm64-v8a
+    mkdir -p android-gdal/include
 
-          cp -r gdal-prebuilt/lib/*.so android-gdal/libs/arm64-v8a/ || true
-          cp -r gdal-prebuilt/include/* android-gdal/include/ || true
-
-          # settings.gradle
-          cat > android-gdal/settings.gradle <<EOF
+    cat <<'EOF' > android-gdal/settings.gradle
 rootProject.name = "gdal-android"
 EOF
 
-          # build.gradle
-          cat > android-gdal/build.gradle <<EOF
+    cat <<'EOF' > android-gdal/build.gradle
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
 }
 
 android {
@@ -141,22 +135,7 @@ android {
         }
     }
 }
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = "com.github.${System.getenv('GITHUB_REPOSITORY_OWNER')}"
-            artifactId = "gdal-android"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from components.release
-            }
-        }
-    }
-}
 EOF
-
       # -----------------------------------------------------
       # JNI wrapper (kept minimal)
       # -----------------------------------------------------
