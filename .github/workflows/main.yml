@@ -1,186 +1,195 @@
-name: Build GDAL AAR (arm64-v8a cached)
+name: Build GDAL Android AAR (Clean Pipeline)
 
 on:
   workflow_dispatch:
 
+env:
+  ANDROID_API: 21
+  ANDROID_ABI: arm64-v8a
+  NDK_VERSION: 26.1.10909125
+
 jobs:
-  build:
+
+# =========================================================
+# STAGE 1 — BUILD GDAL FOR ANDROID (NO VCPKG)
+# =========================================================
+  build-gdal:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout GDAL wrapper repo
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Install dependencies
+      - name: Install build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y unzip ninja-build cmake git curl build-essential
+          sudo apt-get install -y \
+            cmake ninja-build git curl unzip \
+            build-essential pkg-config perl
 
-      - name: Set up Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Install Android NDK
         run: |
-          sdkmanager --install "ndk;26.1.10909125"
-          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.1.10909125" >> $GITHUB_ENV
+          sdkmanager "ndk;${NDK_VERSION}"
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/${NDK_VERSION}" >> $GITHUB_ENV
 
-      - name: Clone vcpkg
+      # -----------------------------------------------------
+      # Build GDAL natively for Android
+      # -----------------------------------------------------
+      - name: Clone GDAL source
         run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          ./vcpkg/bootstrap-vcpkg.sh
+          git clone https://github.com/OSGeo/gdal.git
+          cd gdal
+          git checkout v3.8.5   # pin a stable version (important)
 
-      - name: Restore vcpkg binary cache
-        uses: actions/cache@v4
+      - name: Configure GDAL (Android)
+        run: |
+          cd gdal
+          mkdir build && cd build
+
+          cmake .. \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+            -DANDROID_ABI=${ANDROID_ABI} \
+            -DANDROID_PLATFORM=android-${ANDROID_API} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DBUILD_TESTING=OFF \
+            -DBUILD_CURL=OFF \
+            -DGDAL_BUILD_OPTIONAL_DRIVERS=OFF \
+            -DCMAKE_INSTALL_PREFIX=$PWD/install
+
+      - name: Build GDAL
+        run: |
+          cd gdal/build
+          cmake --build . --target install -- -j$(nproc)
+
+      - name: Upload GDAL artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: ~/.cache/vcpkg
-          key: vcpkg-bincache-${{ runner.os }}-arm64-android-${{ hashFiles('**/vcpkg.json') }}
-          restore-keys: |
-            vcpkg-bincache-${{ runner.os }}-arm64-android-
+          name: gdal-android-${{ env.ANDROID_ABI }}
+          path: gdal/build/install
 
-      - name: Add custom triplet for shared libs
-        run: |
-          mkdir -p vcpkg/triplets
-          cat > vcpkg/triplets/arm64-android-dynamic.cmake <<'EOF'
-          set(VCPKG_TARGET_ARCHITECTURE arm64)
-          set(VCPKG_CRT_LINKAGE dynamic)
-          set(VCPKG_LIBRARY_LINKAGE dynamic)
-          set(VCPKG_CMAKE_SYSTEM_NAME Android)
-          set(VCPKG_CMAKE_SYSTEM_VERSION 21) # match minSdkVersion
-          # Chainload the Android NDK toolchain so vcpkg/CMake detects the NDK compiler correctly
-          if(NOT DEFINED ENV{ANDROID_NDK_HOME})
-            message(FATAL_ERROR "ANDROID_NDK_HOME must be set in environment")
-          endif()
-          set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "$ENV{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake")
-          set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOPENSSL_NO_EC_NISTP_64_GCC_128=0")
-          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOPENSSL_NO_EC_NISTP_64_GCC_128=0")
-          EOF
 
-      - name: Build GDAL with vcpkg (arm64-v8a shared)
-        env:
-          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
-        run: |
-          export ANDROID_NDK_HOME=${ANDROID_NDK_HOME:-$ANDROID_SDK_ROOT/ndk/26.1.10909125}
-          export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
-          # Use the NDK clang wrappers for the target API level 21
-          export CC=aarch64-linux-android21-clang
-          export CXX=aarch64-linux-android21-clang++
-          export VCPKG_CHAINLOAD_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
-          export VCPKG_DEFAULT_TRIPLET=arm64-android
-          ./vcpkg/bootstrap-vcpkg.sh
-          ./vcpkg/vcpkg install gdal --triplet=arm64-android
-          ./vcpkg/vcpkg integrate install
+# =========================================================
+# STAGE 2 — BUILD AAR (PURE PACKAGING, NO COMPILATION)
+# =========================================================
+  build-aar:
+    needs: build-gdal
+    runs-on: ubuntu-latest
 
-      - name: Create Android Library project
+    steps:
+      - name: Checkout wrapper project
+        uses: actions/checkout@v4
+
+      - name: Download GDAL artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: gdal-android-arm64-v8a
+          path: gdal-prebuilt
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+
+      # -----------------------------------------------------
+      # Create Android Library (NO C++ COMPILATION HERE)
+      # -----------------------------------------------------
+      - name: Assemble Android library project
         run: |
           mkdir -p android-gdal/libs/arm64-v8a
-          cp ./vcpkg/installed/arm64-android/lib/*.so android-gdal/libs/arm64-v8a/
-          cp -r ./vcpkg/installed/arm64-android/include android-gdal/include
+          mkdir -p android-gdal/include
+
+          cp -r gdal-prebuilt/lib/*.so android-gdal/libs/arm64-v8a/ || true
+          cp -r gdal-prebuilt/include/* android-gdal/include/ || true
 
           # settings.gradle
-          cat > android-gdal/settings.gradle <<'EOF'
-          rootProject.name = "gdal-android"
-          EOF
-
-          # gradle.properties
-          cat > android-gdal/gradle.properties <<'EOF'
-          android.useAndroidX=true
-          android.enableJetifier=true
-          EOF
+          cat > android-gdal/settings.gradle <<EOF
+rootProject.name = "gdal-android"
+EOF
 
           # build.gradle
-          cat > android-gdal/build.gradle <<'EOF'
-          plugins {
-              id 'com.android.library'
-              id 'maven-publish'
-          }
+          cat > android-gdal/build.gradle <<EOF
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
-          android {
-              namespace "org.gdal"
-              compileSdkVersion 34
-              ndkVersion "26.1.10909125"
+android {
+    namespace "org.gdal"
+    compileSdk 34
 
-              defaultConfig {
-                  minSdkVersion 21
-                  targetSdkVersion 34
-                  externalNativeBuild {
-                      cmake {
-                          cppFlags ""
-                      }
-                  }
-                  ndk {
-                      abiFilters "arm64-v8a"
-                  }
-              }
-              externalNativeBuild {
-                  cmake {
-                      path "CMakeLists.txt"
-                  }
-              }
-              publishing {
-                  singleVariant("release")
-              }
-          }
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
 
-          publishing {
-              publications {
-                  release(MavenPublication) {
-                      groupId = "com.github.${System.getenv('GITHUB_REPOSITORY_OWNER')}"
-                      artifactId = "gdal-android"
-                      version = "1.0.0"
-                      afterEvaluate {
-                          from components.release
-                      }
-                  }
-              }
-              repositories {
-                  maven {
-                      name = "GitHubPackages"
-                      url = uri("https://maven.pkg.github.com/${{ github.repository }}")
-                      credentials {
-                          username = System.getenv("GITHUB_ACTOR")
-                          password = System.getenv("GITHUB_TOKEN")
-                      }
-                  }
-              }
-          }
-          EOF
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+    }
 
-          # CMakeLists.txt
-          cat > android-gdal/CMakeLists.txt <<'EOF'
-          cmake_minimum_required(VERSION 3.15)
-          project(gdal-android)
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            java.srcDirs = ['src']
+        }
+    }
+}
 
-          add_library(gdal SHARED IMPORTED)
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.github.${System.getenv('GITHUB_REPOSITORY_OWNER')}"
+            artifactId = "gdal-android"
+            version = "1.0.0"
 
-          set_target_properties(gdal PROPERTIES
-              IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/arm64-v8a/libgdal.so
-              INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/include
-          )
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
+EOF
 
-          add_library(gdalwrapper SHARED gdalwrapper.cpp)
-          target_link_libraries(gdalwrapper gdal)
-          EOF
+      # -----------------------------------------------------
+      # JNI wrapper (kept minimal)
+      # -----------------------------------------------------
+      - name: Create JNI wrapper
+        run: |
+          mkdir -p android-gdal/src/main/java/org/gdal
+          mkdir -p android-gdal/src/main/cpp
 
-          # Simple JNI wrapper
-          cat > android-gdal/gdalwrapper.cpp <<'EOF'
-          #include <jni.h>
-          #include "gdal.h"
+          cat > android-gdal/src/main/cpp/gdalwrapper.cpp <<EOF
+#include <jni.h>
+#include "gdal.h"
 
-          extern "C"
-          JNIEXPORT jstring JNICALL
-          Java_org_gdal_Gdal_version(JNIEnv* env, jobject) {
-              const char* ver = GDALVersionInfo("RELEASE_NAME");
-              return env->NewStringUTF(ver);
-          }
-          EOF
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_org_gdal_Gdal_version(JNIEnv* env, jobject) {
+    const char* ver = GDALVersionInfo("RELEASE_NAME");
+    return env->NewStringUTF(ver);
+}
+EOF
 
-      - name: Generate Gradle Wrapper
+          cat > android-gdal/src/main/java/org/gdal/Gdal.java <<EOF
+package org.gdal;
+
+public class Gdal {
+    static {
+        System.loadLibrary("gdal");
+    }
+
+    public native String version();
+}
+EOF
+
+      - name: Setup Gradle wrapper
         run: |
           cd android-gdal
           gradle wrapper --gradle-version 8.6
@@ -188,9 +197,9 @@ jobs:
       - name: Build AAR
         run: |
           cd android-gdal
-          ./gradlew assembleRelease publish
+          ./gradlew assembleRelease
 
-      - name: Upload AAR artifact
+      - name: Upload AAR
         uses: actions/upload-artifact@v4
         with:
           name: gdal-aar
