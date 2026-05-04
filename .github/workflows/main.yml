@@ -20,14 +20,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y unzip ninja-build cmake git curl build-essential
+          sudo apt-get install -y unzip ninja-build cmake git curl build-essential autoconf autoconf-archive automake libtool pkg-config perl python3
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Install Android NDK
         run: |
-          sdkmanager --install "ndk;26.1.10909125"
+          sdkmanager --install "ndk;25.2.9519653"
           echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.1.10909125" >> $GITHUB_ENV
 
       - name: Clone vcpkg
@@ -68,13 +68,9 @@ jobs:
           export ANDROID_NDK_HOME=${ANDROID_NDK_HOME:-$ANDROID_SDK_ROOT/ndk/26.1.10909125}
           export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
           # Use the NDK clang wrappers for the target API level 21
-          export CC=aarch64-linux-android21-clang
-          export CXX=aarch64-linux-android21-clang++
           export VCPKG_CHAINLOAD_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
-          export VCPKG_DEFAULT_TRIPLET=arm64-android-dynamic
           export VCPKG_DEFAULT_TRIPLET=arm64-android
           ./vcpkg/bootstrap-vcpkg.sh
-          ./vcpkg/vcpkg install gdal --triplet=arm64-android-dynamic
           ./vcpkg/vcpkg install gdal --triplet=arm64-android
           ./vcpkg/vcpkg integrate install
 
