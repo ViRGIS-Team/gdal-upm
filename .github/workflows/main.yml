@@ -73,6 +73,7 @@ jobs:
           export VCPKG_CHAINLOAD_TOOLCHAIN_FILE="$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake"
           export VCPKG_DEFAULT_TRIPLET=arm64-android
           ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/vcpkg install libiconv:arm64-android
           ./vcpkg/vcpkg install gdal --triplet=arm64-android
           ./vcpkg/vcpkg integrate install
 
