@@ -102,40 +102,40 @@ jobs:
       # Create Android Library (NO C++ COMPILATION HERE)
       # -----------------------------------------------------
       - name: Assemble Android project files
-  run: |
-    mkdir -p android-gdal/libs/arm64-v8a
-    mkdir -p android-gdal/include
-
-    cat <<'EOF' > android-gdal/settings.gradle
-rootProject.name = "gdal-android"
-EOF
-
-    cat <<'EOF' > android-gdal/build.gradle
-plugins {
-    id 'com.android.library'
-}
-
-android {
-    namespace "org.gdal"
-    compileSdk 34
-
-    defaultConfig {
-        minSdk 21
-        targetSdk 34
-
-        ndk {
-            abiFilters "arm64-v8a"
-        }
-    }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-            java.srcDirs = ['src']
-        }
-    }
-}
-EOF
+        run: |
+          mkdir -p android-gdal/libs/arm64-v8a
+          mkdir -p android-gdal/include
+      
+          cat <<'EOF' > android-gdal/settings.gradle
+          rootProject.name = "gdal-android"
+          EOF
+          
+              cat <<'EOF' > android-gdal/build.gradle
+          plugins {
+              id 'com.android.library'
+          }
+          
+          android {
+              namespace "org.gdal"
+              compileSdk 34
+          
+              defaultConfig {
+                  minSdk 21
+                  targetSdk 34
+          
+                  ndk {
+                      abiFilters "arm64-v8a"
+                  }
+              }
+          
+              sourceSets {
+                  main {
+                      jniLibs.srcDirs = ['libs']
+                      java.srcDirs = ['src']
+                  }
+              }
+          }
+          EOF
       # -----------------------------------------------------
       # JNI wrapper (kept minimal)
       # -----------------------------------------------------
@@ -145,28 +145,28 @@ EOF
           mkdir -p android-gdal/src/main/cpp
 
           cat > android-gdal/src/main/cpp/gdalwrapper.cpp <<EOF
-#include <jni.h>
-#include "gdal.h"
-
-extern "C"
-JNIEXPORT jstring JNICALL
-Java_org_gdal_Gdal_version(JNIEnv* env, jobject) {
-    const char* ver = GDALVersionInfo("RELEASE_NAME");
-    return env->NewStringUTF(ver);
-}
-EOF
+          #include <jni.h>
+          #include "gdal.h"
+          
+          extern "C"
+          JNIEXPORT jstring JNICALL
+          Java_org_gdal_Gdal_version(JNIEnv* env, jobject) {
+              const char* ver = GDALVersionInfo("RELEASE_NAME");
+              return env->NewStringUTF(ver);
+          }
+          EOF
 
           cat > android-gdal/src/main/java/org/gdal/Gdal.java <<EOF
-package org.gdal;
-
-public class Gdal {
-    static {
-        System.loadLibrary("gdal");
-    }
-
-    public native String version();
-}
-EOF
+          package org.gdal;
+          
+          public class Gdal {
+              static {
+                  System.loadLibrary("gdal");
+              }
+          
+              public native String version();
+          }
+          EOF
 
       - name: Setup Gradle wrapper
         run: |
