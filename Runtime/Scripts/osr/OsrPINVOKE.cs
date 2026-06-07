@@ -203,7 +203,6 @@ class OsrPINVOKE {
   }
 
 
-  protected class SWIGStringHelper {
   public class SWIGStringWithLengthHelper {
 
     [global::System.Runtime.InteropServices.DllImport("Osr", EntryPoint="SWIG_csharp_string_to_c")]

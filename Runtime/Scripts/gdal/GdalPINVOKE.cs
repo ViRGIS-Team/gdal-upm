@@ -203,7 +203,6 @@ class GdalPINVOKE {
   }
 
 
-  protected class SWIGStringHelper {
   public class SWIGStringWithLengthHelper {
 
     [global::System.Runtime.InteropServices.DllImport("Gdal", EntryPoint="SWIG_csharp_string_to_c")]
