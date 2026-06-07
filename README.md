@@ -77,9 +77,9 @@ All versions of this package work in all supported architectures using the Mono 
 
 ## Running in the Editor
 
-This package uses [Conda](https://docs.conda.io/en/latest/) to download the latest version of GDAL.
+This package uses [Conda](https://docs.conda.io/en/latest/) and [Pixi](https://pixi.prefix.dev/latest/) to download the latest version of MDAL.
 
-As of version 3.11.1, this package uses Version 2 of the Conda Extension package. This means that the package now includes a complete self contained and standalone installation of the Conda API. You no longer need to install Conda on your development machines.
+As of version 3.13.0, this package uses Version 3 of the Conda Extension package. This means that the package now includes a complete self contained and standalone installation of `Pixi`. You no longer need to install Conda on your development machines.
 
 Note that when upgrading, you MUST delete the Assets/Conda directory and restart Unity.
 

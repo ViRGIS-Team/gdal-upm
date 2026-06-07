@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEditor;
-using System.IO;
 using System.Diagnostics;
-using System;
 using Debug = UnityEngine.Debug;
-using System.Text.RegularExpressions;
 using Conda;
 
 namespace OSGeo.Install {
@@ -12,7 +9,7 @@ namespace OSGeo.Install {
     public class Install : AssetPostprocessor
     {
 
-        const string packageVersion = "2.1.4";
+        const string packageVersion = "2.1.6";
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
