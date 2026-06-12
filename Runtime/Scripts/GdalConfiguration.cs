@@ -59,8 +59,8 @@ namespace OSGeo
                 Gdal.SetConfigOption("GDAL_DRIVER_PATH", gdalData);
                 Gdal.SetConfigOption("GEOTIFF_CSV", gdalData);
 
-                Gdal.SetConfigOption("CURL_CA_BUNDLE", Path.Combine(gdalData, "cacert.pem"));
-                Environment.SetEnvironmentVariable("PROJ_CURL_CA_BUNDLE", Path.Combine(projData, "cacert.pem"));
+                Gdal.SetConfigOption("CURL_CA_BUNDLE", Path.Combine(gdalPath, "cacert.pem"));
+                Environment.SetEnvironmentVariable("PROJ_CURL_CA_BUNDLE", Path.Combine(gdalPath, "cacert.pem"));
                 Osr.SetPROJSearchPath(projData);
                 Osr.SetPROJEnableNetwork(true);
 
