@@ -103,11 +103,7 @@ namespace OSGeo.OGR {
                                             new Index3i(0, 3, 4)
                                         };
                                         break;
-                                    default:
-                                        break;
                                 }
-                                break;
-                            default:
                                 break;
                         };
                         if (vertices is null)
@@ -121,12 +117,10 @@ namespace OSGeo.OGR {
                     }
                     break;
                 default:
-                    throw new Exception("Unknown Geometry Type");
+                    throw new Exception($"Incorrect Geometry Type {geom.GetGeometryType()}");
             }
         }
-
-
-
+        
         /// <summary>
         /// Creates a g3.DMesh3 from a geometry. Intended for Polygons and Surfaces
         /// </summary>
@@ -143,11 +137,11 @@ namespace OSGeo.OGR {
                 case wkbGeometryType.wkbPolygonZM:
                     IEnumerable<DCurve3> rings = geom.ToCurveList(crs);
                     if (rings.First().VertexCount < 4) throw new Exception("Polygon is invalid or is a triangle");
-                    GeneralPolygon2d polygon2d = new(rings, out _, out IEnumerable<Vector3d> VerticesItr);
-                    Index3i[] triangles = polygon2d.GetMesh();
+                    GeneralPolygon2d polygon2D = new(rings, out _, out IEnumerable<Vector3d> VerticesItr);
+                    Index3i[] triangles = polygon2D.GetMesh();
                     return DMesh3Builder.Build<Vector3d, Index3i, Vector3d>(VerticesItr, triangles);
                 default:
-                    throw new Exception("Incorrect Geometry type");
+                    throw new Exception($"Incorrect Geometry Type {geom.GetGeometryType()}");
             }
         }
 
@@ -196,7 +190,7 @@ namespace OSGeo.OGR {
                     }
                     break;
                 default:
-                    throw new Exception("Unknown Geometry Type");
+                    throw new Exception($"Incorrect Geometry Type {geom.GetGeometryType()}");
             }
         }
 
@@ -211,7 +205,39 @@ namespace OSGeo.OGR {
                 case wkbGeometryType.wkbLineStringZM:
                     return new(geom.ToVector3d(crs).ToList<Vector3d>());
                 default:
-                    throw new Exception("Incorrect Geometry Type"); 
+                    throw new Exception($"Incorrect Geometry Type {geom.GetGeometryType()}"); 
+            }
+        }
+
+        /// <summary>
+        /// Add the vertices from the DCurve3 to the Geometry.
+        ///
+        /// The Geometry must be of a LineString type.
+        ///
+        /// Assumes that the curve does not need to be reprojected. AxisOrder `ax` should be the AxisOrder required by
+        /// the geometry, this functions checks the AxisOrer of each Vector3d before adding.
+        /// </summary>
+        /// <param name="geom">LineString type Geometry</param>
+        /// <param name="curve">DCurve3</param>
+        /// <param name="ax">AxisOrder required by the Geometry</param>
+        /// <exception cref="Exception"></exception>
+        public static void FromCurve(this Geometry geom, DCurve3 curve, AxisOrder ax)
+        {
+            switch (geom.GetGeometryType())
+            {
+                case wkbGeometryType.wkbLineString:
+                case wkbGeometryType.wkbLinearRing:
+                case wkbGeometryType.wkbLineString25D:
+                case wkbGeometryType.wkbLineStringM:
+                case wkbGeometryType.wkbLineStringZM:
+                    foreach (Vector3d v in curve.Vertices)
+                    {
+                        v.ChangeAxisOrderTo(ax);
+                        geom.AddPoint(v.x, v.y, v.z);
+                    }
+                    break;
+                default:
+                    throw new Exception($"Incorrect Geometry Type {geom.GetGeometryType()}");
             }
         }
 
@@ -242,32 +268,28 @@ namespace OSGeo.OGR {
                 for (int i = 0; i < count; i++) {
                     double[] argout = new double[3];
                     geom.GetPoint(i, argout);
-                    Vector3d v = new Vector3d(argout);
-                    v.axisOrder = geom.GetSpatialReference().GetAxisOrder(); ;
+                    Vector3d v = new Vector3d(argout)
+                    {
+                        axisOrder = geom.GetSpatialReference().GetAxisOrder()
+                    };
+                    ;
                     yield return v ;
                 }
             else {
                 throw new NotSupportedException("No Points in Geometry (which is a pointless geometry ...");
             }
         }
-
+        
         /// <summary>
-        /// Converts Vector3 positions to Points in the Geometry
-        ///
-        /// If the optional Spatialreference is defined, the geometries are transformed from that SR.
-        /// NOTE - in this case the SR of the Geometry should be set beforehand.
-        /// 
-        /// </summary>
-        /// <param name="geom"> Geometry top add the points to</param>
-        /// <param name="points"> Array of Vector3d positions</param>
-        /// <returns></returns>
-        public static Geometry AddPoints(this Geometry geom, IEnumerable<Vector3d> points, SpatialReference crs = null)
-        {
-            foreach (Vector3d point in points)
-            {
-
-                //geom.AddPoint(mapLocal.x, mapLocal.z, mapLocal.y);
-            }
+        /// Converts a Vector3d position in Map Space coordinates into a valid Geometry with the defined CRS.
+        /// <param name="position">Vector3 position in World Space Coordinates</param>
+        /// <param name="crs"> The CRS to set in the Geometry</param>
+        /// <returns>Geometry</returns>
+        public static Geometry ToGeometry(this Vector3d position, SpatialReference crs, wkbGeometryType geomType = wkbGeometryType.wkbPoint) {
+            position.ChangeAxisOrderTo((AxisOrder.ENU));
+            Geometry geom = new(geomType);
+            geom.AssignSpatialReference(crs);
+            geom.AddPoint(position.x,position.y, position.z );
             return geom;
         }
 
@@ -331,15 +353,13 @@ namespace OSGeo.OGR {
                     T = typeof(int);
                     return feature.GetFieldAsInteger(i);
                 case FieldType.OFTDate:
-                    int year, month, day, hour, minute;
-                    float seconds;
                     feature.GetFieldAsDateTime(i,
-                        out year,
-                        out month,
-                        out day,
-                        out hour,
-                        out minute,
-                        out seconds,
+                        out int year,
+                        out int month,
+                        out int day,
+                        out int hour,
+                        out int minute,
+                        out float seconds,
                         out _
                         );
                     T = typeof(DateTime);
